@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sait Elmas | Academic Consulting & Software Engineering</title>
+    <!-- Dinamik Sayfa Başlığı -->
+    <title><%= pageTitle %></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Sait Elmas</h1>
-        <p>Mathematics & Computer Science Engineer</p>
-    </header>
+    <%- include('partials/navbar') %>
     <main>
         <section class="card">
-            <h2>About Me</h2>
+            <h2>My Expertise</h2>
+            <ul>
+                <!-- Node.js'ten gelen diziyi döngüye sokarak listeleme -->
+                <% courses.forEach(function(course) { %>
+                    <li><strong><%= course %></strong></li>
+                <% }) %>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Suzanna</h2>
+            <!-- Fransızca metniniz aynen burada duruyor -->
             <p style="white-space: pre-line; line-height: 1.8;">
                 Ah mon ange,
 

@@ -1,16 +1,18 @@
 const express = require('express');
-const path = require('path');
+const app = express();
 const mainRoutes = require('./src/routes/mainRoutes');
 
-const app = express();
-const PORT = 3000;
+// --- YENİ EKLENEN EJS AYARLARI ---
+app.set('view engine', 'ejs');
+app.set('views', 'views'); // EJS dosyalarının 'views' klasöründe aranacağını belirtir
 
-// Middleware to serve static assets transparently
-app.use(express.static(path.join(__dirname, 'public')));
+// Statik dosyalar (CSS vb.)
+app.use(express.static('public'));
 
-// Use our modular MVC route file
+// Rotalar
 app.use('/', mainRoutes);
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running smoothly on http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
