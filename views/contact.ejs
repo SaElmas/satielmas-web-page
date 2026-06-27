@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <section class="card">
+            <h2>Get in Touch</h2>
+            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+                Whether you're looking for tutoring, academic collaboration, or just want to discuss mathematics and computer science, feel free to reach out.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <h3 style="color: #0f172a; margin-top: 0;">Contact Information</h3>
+                    <ul style="list-style: none; padding: 0; line-height: 2.5; font-size: 1.05rem;">
+                        <li>
+                            <i class="fas fa-map-marker-alt" style="color: #ef4444; width: 25px; text-align: center;"></i> 
+                            <strong>Location:</strong> Ankara, Türkiye
+                        </li>
+                        <li>
+                            <a href="mailto:saitelmas@gmail.com" style="text-decoration: none; color: inherit; transition: color 0.3s;">
+                                <i class="fas fa-envelope" style="color: #ea4335; width: 25px; text-align: center;"></i> 
+                                <strong>Email:</strong> saitelmas@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/905309537225" target="_blank" style="text-decoration: none; color: inherit; transition: color 0.3s;">
+                                <i class="fab fa-whatsapp" style="color: #25d366; width: 25px; text-align: center;"></i> 
+                                <strong>WhatsApp:</strong> +90 530 953 7225
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/saitelmas" target="_blank" style="text-decoration: none; color: inherit; transition: color 0.3s;">
+                                <i class="fab fa-linkedin" style="color: #0a66c2; width: 25px; text-align: center;"></i> 
+                                <strong>LinkedIn:</strong> saitelmas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/saitelmas_tutor" target="_blank" style="text-decoration: none; color: inherit; transition: color 0.3s;">
+                                <i class="fab fa-instagram" style="color: #e1306c; width: 25px; text-align: center;"></i> 
+                                <strong>Instagram:</strong> @saitelmas_tutor
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <h3 style="color: #0f172a; margin-top: 0;">Send a Message</h3>
+                    <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div>
+                            <label for="name" style="display: block; font-weight: bold; margin-bottom: 0.5rem; color: #0f172a;">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label for="email" style="display: block; font-weight: bold; margin-bottom: 0.5rem; color: #0f172a;">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label for="message" style="display: block; font-weight: bold; margin-bottom: 0.5rem; color: #0f172a;">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="How can I help you?" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" style="background-color: #0f172a; color: white; padding: 0.75rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background-color 0.3s;">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

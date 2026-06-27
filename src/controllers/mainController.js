@@ -28,3 +28,9 @@ exports.getResumePage = (req, res, next) => {
         pageTitle: 'Resume & Academic Background | Sait Elmas'
     });
 };
+
+exports.getContactPage = (req, res, next) => {
+    res.render('contact', {
+        pageTitle: 'Contact | Sait Elmas'
+    });
+};
