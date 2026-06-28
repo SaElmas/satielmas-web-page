@@ -11,7 +11,79 @@
 
 <h3 style="color: #3b82f6; margin-bottom: 1rem;">Section 1.1: Semigroups, Monoids and Groups</h3>
 
+
 <div class="note-container">
+
+    <div class="exercise-box">
+        <strong>Exercise 1.1.1:</strong> Give examples other than those in the text of semigroups and monoids that are not groups.
+    </div>
+    
+    <h4 class="proof-title">Solution:</h4>
+    
+    <ul class="proof-text">
+        <li>
+            Take $S = \{a, b, c\}$ and define the binary operation as $xy = x$ for any $x, y \in S$. 
+            This operation is associative, but the set does not have a two-sided identity. 
+            So, $(S, \cdot)$ is a <strong>semigroup</strong> but not a monoid.
+        </li>
+        <br>
+        <li>
+            Let $\mathcal{B} = \{0, 1\}$ and define the operation as follows:
+            <div style="margin: 1rem auto; width: 100px; text-align: center;">
+                <table style="border-collapse: collapse; width: 100%; text-align: center;">
+                    <tr style="border-bottom: 1px solid #000;">
+                        <td>+</td> <td>0</td> <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td> <td>0</td> <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td> <td>1</td> <td>1</td>
+                    </tr>
+                </table>
+            </div>
+            $(\mathcal{B}, +)$ is a <strong>monoid</strong> (with identity 0), but the element $1$ does not have an inverse, hence it is not a group.
+        </li>
+    </ul>
+
+
+
+    <div class="exercise-box">
+        <strong>Exercise 1.1.2:</strong> Let $G$ be a group (written additively), $S$ a nonempty set, and $M(S, G)$ the set of all functions $f: S \to G$. Define addition in $M(S, G)$ as $(f + g)(s) = f(s) + g(s)$. Prove that $M(S, G)$ is a group, which is abelian if $G$ is.
+    </div>
+    
+    <h4 class="proof-title">Proof / Solution:</h4>
+    <p class="proof-text">
+        <strong>1. Non-emptiness:</strong> $M(S, G)$ is not empty since the constant function $f(s) = 0_G$ for all $s \in S$ is in $M(S, G)$.
+    </p>
+
+    <p class="proof-text">
+        <strong>2. Associativity:</strong> Take $f, g, h \in M(S, G)$. For any $s \in S$:
+    </p>
+    <div class="katex-display">
+        $$ [f+(g+h)](s) = f(s) + (g(s) + h(s)) = (f(s) + g(s)) + h(s) = [(f+g) + h](s) $$
+    </div>
+
+    <p class="proof-text">
+        <strong>3. Identity:</strong> The identity element is the constant function $f(s) = 0_G$. For any $g \in M(S, G)$:
+    </p>
+    <div class="katex-display">
+        $$ (f+g)(s) = 0_G + g(s) = g(s) = g(s) + 0_G = (g+f)(s) $$
+    </div>
+
+    <p class="proof-text">
+        <strong>4. Inverse:</strong> For every $f \in M(S, G)$, define $g(s) = -f(s)$. Since $G$ is a group, $-f(s)$ is well-defined in $G$:
+    </p>
+    <div class="katex-display">
+        $$ (f+g)(s) = f(s) + (-f(s)) = 0_G $$
+    </div>
+    <p class="proof-text">
+        Thus, $f+g$ is the identity function. As a result, $M(S, G)$ is a group. If $G$ is abelian, then $f(s) + g(s) = g(s) + f(s)$, making $M(S, G)$ abelian as well. $\blacksquare$
+    </p>
+
+
+
+    
     <div class="exercise-box">
         <strong>Exercise 1.1.4:</strong> If $G$ is a group such that $x^2 = e$ for all $x \in G$, prove that $G$ is abelian.
     </div>

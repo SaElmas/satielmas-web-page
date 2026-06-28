@@ -1,34 +1,18 @@
-const coursesData = require('../data/courses')
+const coursesData = require('../data/courses');
+const nodemailer = require('nodemailer');
 
 
 exports.getHomePage = (req, res, next) => {
-    // Sayfaya göndereceğimiz dinamik ders listesi
-    const myCourses = [
-        "AP Calculus & Statistics",
-        "IB Mathematics",
-        "University Level Physics",
-        "Computer Science A"
-    ];
-
     // 'index' dosyasını render et ve courses değişkenini sayfaya yolla
     res.render('index', { 
-        pageTitle: 'Sait Elmas | Academic & Engineering',
-        courses: myCourses
+        pageTitle: 'Sait Elmas | Academic & Engineering'
     });
 };
-
-// ... (getTutoringPage ve getResumePage fonksiyonlarınız aynı kalacak) ...
 
 // YENİ EKLENENLER: İsimlerin tam olarak böyle yazıldığından emin olun
 exports.getTutoringPage = (req, res, next) => {
     res.render('tutoring', {
         pageTitle: 'Tutoring Services | Sait Elmas'
-    });
-};
-
-exports.getResumePage = (req, res, next) => {
-    res.render('resume', {
-        pageTitle: 'Resume & Academic Background | Sait Elmas'
     });
 };
 
@@ -76,4 +60,44 @@ exports.getNoteByTopic = (req, res) => {
         pageTitle: 'Academic Notes - Sait Elmas',
         activeTopic: requestedTopic 
     });
+};
+
+// iletişim formunun mail göndermesi için gerekli.
+exports.sendContactEmail = async (req, res) => {
+    const { name, email, message } = req.body;
+
+    // 1. Taşıyıcıyı (Transporter) yapılandır
+    let transporter = nodemailer.createTransport({
+        service: 'gmail', // veya 'outlook', 'yahoo'
+        auth: {
+            user: process.env.EMAIL_USER, // Maili gönderecek adres
+            pass: process.env.EMAIL_PASS // Gmail kullanıyorsan "Uygulama Şifresi" kullanmalısın
+        }
+    });
+
+// 2. Mail içeriğini hazırla
+    try {
+        await transporter.sendMail({
+            from: email,
+            to: process.env.EMAIL_USER, // veya kendi mail adresiniz
+            subject: `Yeni İletişim Formu: ${name}`,
+            text: message,
+            html: `<p>Gönderen: ${name} (${email})</p><p>${message}</p>`
+        });
+        
+        // BAŞARILI DURUMU: Sayfayı 'successMessage' ile tekrar yükle
+        res.render('contact', { 
+            pageTitle: 'Contact - Sait Elmas',
+            successMessage: 'Your message has been sent successfully! I will get back to you as soon as possible.' 
+        });
+
+    } catch (error) {
+        console.error(error);
+        
+        // HATA DURUMU: Sayfayı 'errorMessage' ile tekrar yükle
+        res.render('contact', { 
+            pageTitle: 'Contact - Sait Elmas',
+            errorMessage: 'An error occurred while sending your message. Please try again or reach out via LinkedIn/WhatsApp.' 
+        });
+    }
 };

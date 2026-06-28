@@ -13,4 +13,6 @@ router.get('/notes/:topic', mainController.getNoteByTopic);
 
 router.get('/contact', mainController.getContactPage);
 
+router.post('/contact', mainController.sendContactEmail);
+
 module.exports = router;

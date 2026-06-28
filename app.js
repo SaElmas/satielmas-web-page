@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const mainRoutes = require('./src/routes/mainRoutes');
@@ -8,6 +9,9 @@ app.set('views', 'views'); // EJS dosyalarının 'views' klasöründe aranacağ�
 
 // Statik dosyalar (CSS vb.)
 app.use(express.static('public'));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Rotalar
 app.use('/', mainRoutes);
