@@ -1,0 +1,47 @@
+<div class="reference-box">
+    <h3>📚 Primary Reference</h3>
+    <p>
+        <strong>Title:</strong> <em>Algebra</em> by Thomas W. Hungerford<br>
+        <strong>Series:</strong> Graduate Texts in Mathematics (Volume 73), Springer<br>
+        <strong>Scope:</strong> Selected exercise solutions and theoretical proofs.
+    </p>
+</div>
+
+<h2 style="margin-top: 2rem; margin-bottom: 1.5rem;">Chapter 1: Groups</h2>
+
+<h3 style="color: #3b82f6; margin-bottom: 1rem;">Section 1.1: Semigroups, Monoids and Groups</h3>
+
+<div class="note-container">
+    <div class="exercise-box">
+        <strong>Exercise 1.1.4:</strong> If $G$ is a group such that $x^2 = e$ for all $x \in G$, prove that $G$ is abelian.
+    </div>
+    
+    <h4 class="proof-title">Proof.</h4>
+    <p class="proof-text">
+        Let $a, b \in G$. We want to show that $ab = ba$. By the given hypothesis, for any element in the group, its square is the identity $e$. Since $G$ is closed under its binary operation, the product $ab \in G$. Therefore, we have:
+    </p>
+    
+    <div class="katex-display">
+        $$ (ab)^2 = e \implies abab = e $$
+    </div>
+
+    <p class="proof-text">
+        To isolate the terms, we can multiply the equation on the left by $a$ and on the right by $b$:
+    </p>
+
+    <div class="katex-display">
+        $$ a(abab)b = aeb \implies (a^2)ba(b^2) = ab $$
+    </div>
+
+    <p class="proof-text">
+        Since $a^2 = e$ and $b^2 = e$ by our initial hypothesis, the equation simplifies to:
+    </p>
+
+    <div class="katex-display">
+        $$ ebae = ab \implies ba = ab $$
+    </div>
+
+    <p class="proof-text">
+        Since $a$ and $b$ were chosen arbitrarily from $G$, the group operation is commutative. Thus, $G$ is an abelian group. $\blacksquare$
+    </p>
+</div>

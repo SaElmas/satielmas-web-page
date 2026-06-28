@@ -360,3 +360,52 @@ main {
         position: static;
     }
 }
+
+/* KaTeX font boyutunu metin ile uyumlu hale getirme */
+.katex {
+    font-size: 0.95em !important;
+}
+
+/* Notlar için kapsayıcı */
+.note-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+/* Referans Kutusu */
+.reference-box {
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Egzersiz Başlığı / Kutusu */
+.exercise-box {
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #64748b;
+    margin-bottom: 1.5rem;
+    color: #334155;
+}
+
+/* İspat Başlığı */
+.proof-title {
+    color: #10b981;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+/* İspat Metni */
+.proof-text {
+    color: #334155;
+    line-height: 1.8;
+}

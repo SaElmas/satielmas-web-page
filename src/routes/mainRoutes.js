@@ -7,7 +7,10 @@ router.get('/', mainController.getHomePage);
 // Buradaki isimler Controller'daki 'exports.isim' kısımlarıyla aynı olmalı!
 router.get('/tutoring', mainController.getTutoringPage);
 router.get('/tutoring/:courseName', mainController.getCourseDetails)
-router.get('/notes', mainController.getNotesPage);
+
+router.get('/notes', mainController.getNotesIndex);
+router.get('/notes/:topic', mainController.getNoteByTopic);
+
 router.get('/contact', mainController.getContactPage);
 
 module.exports = router;

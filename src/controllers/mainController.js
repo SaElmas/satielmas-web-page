@@ -59,6 +59,21 @@ exports.getCourseDetails = (req, res, next) => {
     });
 };
 
-exports.getNotesPage = (req, res) => {
-    res.render('notes', { pageTitle: 'My Notes - Sait Elmas' });
+// Kullanıcı sadece /notes yazarsa "Özet/Karşılama" sayfasını render et
+exports.getNotesIndex = (req, res) => {
+    res.render('notes', { 
+        pageTitle: 'Academic Notes - Sait Elmas',
+        activeTopic: 'index' 
+    });
+};
+
+
+// URL'den gelen konuya (:topic) göre sayfayı render et
+exports.getNoteByTopic = (req, res) => {
+    const requestedTopic = req.params.topic;
+    
+    res.render('notes', { 
+        pageTitle: 'Academic Notes - Sait Elmas',
+        activeTopic: requestedTopic 
+    });
 };
