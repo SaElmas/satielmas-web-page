@@ -1,3 +1,6 @@
+const coursesData = require('../data/courses')
+
+
 exports.getHomePage = (req, res, next) => {
     // Sayfaya göndereceğimiz dinamik ders listesi
     const myCourses = [
@@ -32,5 +35,26 @@ exports.getResumePage = (req, res, next) => {
 exports.getContactPage = (req, res, next) => {
     res.render('contact', {
         pageTitle: 'Contact | Sait Elmas'
+    });
+};
+
+
+// 2. Dinamik Ders Detay Fonksiyonu (EN ALTA EKLEYİN)
+exports.getCourseDetails = (req, res, next) => {
+    // URL'den gelen ders ismini (slug) yakala
+    const courseSlug = req.params.courseName; 
+    
+    // Veritabanında bu ismi ara
+    const courseInfo = coursesData[courseSlug]; 
+
+    // Eğer URL'ye yanlış bir ders ismi yazıldıysa, Tutoring sayfasına geri yolla
+    if (!courseInfo) {
+        return res.redirect('/tutoring');
+    }
+
+    // Ders bulunduysa dinamik EJS'yi render et ve verileri gönder
+    res.render('course-detail', {
+        pageTitle: `${courseInfo.title} | Tutoring`,
+        course: courseInfo
     });
 };

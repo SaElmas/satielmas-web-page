@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main style="max-width: 900px; margin: 2rem auto; padding: 0 1rem;">
+        <section class="card" style="border-top: 5px solid #3b82f6;">
+            <p style="color: #64748b; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;"><%= course.category %></p>
+            <h1 style="color: #0f172a; margin-top: 0; font-size: 2.5rem;"><%= course.title %></h1>
+            
+            <p style="font-size: 1.15rem; line-height: 1.8; color: #334155; margin-bottom: 2rem;">
+                <%= course.description %>
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: #0f172a; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Curriculum / Syllabus</h3>
+                    <ul style="line-height: 1.8; color: #475569; padding-left: 1.2rem;">
+                        <% course.syllabus.forEach(function(item) { %>
+                            <li><%= item %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: #0f172a; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Exam & Course Strategy</h3>
+                    <p style="line-height: 1.8; color: #475569;">
+                        <%= course.examInfo %>
+                    </p>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="/contact" style="display: inline-block; background: #0f172a; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s;">
+                        Book a Free Trial Lesson
+                    </a>
+                </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="/tutoring" style="color: #3b82f6; text-decoration: none; font-weight: bold;">← Back to All Courses</a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

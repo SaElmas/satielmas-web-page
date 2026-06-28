@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Dinamik Sayfa Başlığı -->
-    <title><%= pageTitle %></title>
+    <title>About Me | Sait Elmas</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <%- include('partials/navbar') %>
-    <main>
-        <section class="card">
-            <h2>My Expertise</h2>
-            <ul>
-                <!-- Node.js'ten gelen diziyi döngüye sokarak listeleme -->
-                <% courses.forEach(function(course) { %>
-                    <li><strong><%= course %></strong></li>
-                <% }) %>
-            </ul>
-        </section>
 
-        <section class="card">
-            <h2>Suzanna</h2>
-            <!-- Fransızca metniniz aynen burada duruyor -->
-            <p style="white-space: pre-line; line-height: 1.8;">
-                Ah mon ange,
-
-                J'ai des choses à te dire,
-                Mais d'abord, promets-moi, ma douceur, de ne jamais te lasser de mon amour pour toi.
-                Tout ce que mes yeux peuvent voir est à toi,
-                Car tu es avec moi à chaque instant,
-                À chaque instant dans mes pensées, dans mon cœur.
-                J'ai encore d'autres choses à te dire, mon amour,
-                Mais d'abord, s'il te plaît, promets-moi de ne pas te lasser de l'amour que j'ai pour toi.
-                Tu es au plus profond de moi à chaque instant, mon ange,
-                Tes mains, tes yeux, tes lèvres et chacune de tes courbes sont dans mon esprit.
-                Ta présence grandit de plus en plus, et m'arrache à moi-même.
-                Cela te paraîtra peut-être comme de grands mots, mon amour, mais crois-moi,
-                C'est la première fois de ma vie que je ressens un tel manque pour une autre âme.
-                Je t'embrasse de partout, mon unique amour.
+    <main style="max-width: 1000px; margin: 3rem auto; padding: 0 1rem;">
+        
+        <!-- Hero Section -->
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1 style="font-size: 3rem; color: #0f172a; margin-bottom: 1rem;">Mathematician. Engineer. Educator.</h1>
+            <p style="font-size: 1.25rem; color: #475569; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                Bridging the gap between pure mathematics, computer science, and real-world engineering to guide the next generation of analytical minds.
             </p>
         </section>
+
+        <!-- Grid Layout -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+            
+            <!-- Left Column: Academic Journey -->
+            <div>
+                <h2 style="color: #3b82f6; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">My Academic Journey</h2>
+                <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
+                    My path to education is built on a foundation of rigorous engineering and pure science. After earning my degree in Shipbuilding Engineering from <strong>Istanbul Technical University (ITU)</strong> and practicing in the field until 2016, I pursued my passion for fundamental sciences.
+                </p>
+                <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
+                    This drive led me to <strong>Middle East Technical University (METU)</strong>, where I completed a double major in <strong>Mathematics</strong> and <strong>Computer Engineering</strong>. I am currently continuing my academic journey there as a <strong>Ph.D.</strong> student in <strong>Mathematics</strong>. I bring this multifaceted engineering and theoretical perspective into every lesson I teach.
+                </p>
+            </div>
+
+            <!-- Right Column: Beyond the Desk -->
+            <div>
+                <h2 style="color: #10b981; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Beyond the Desk</h2>
+                <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
+                    Currently based in Ankara, Türkiye, I believe that a sharp mind requires a balanced life. When I am not tutoring or coding in Python and Java, I immerse myself in the world of social Latin dances, practicing Kizomba and Bachata regularly. 
+                </p>
+                <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
+                    I am also an avid reader of philosophy, particularly Stoicism, and hold a deep fascination for ancient history. Whether I am capturing moments through photography or exploring new ideas, I approach life with the same curiosity I bring to mathematics.
+                </p>
+            </div>
+        </div>
+
     </main>
 
     <%- include('partials/footer') %>

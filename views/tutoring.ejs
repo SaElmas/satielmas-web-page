@@ -8,115 +8,151 @@
 </head>
 <body>
     <%- include('partials/navbar') %>
+    <style>
+        /* Yatay Alt Menü (Sub-nav) Tasarımı */
+        .category-nav {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin: 0 auto 2rem auto;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 50; /* Açılır menünün kartların üstünde kalmasını sağlar */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
 
-<style>
-        /* Sidebar ve İçerik Düzeni (Grid) */
-        .tutoring-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr; /* Sol 280px sidebar, sağ taraf kalan tüm boşluk */
-            gap: 2.5rem;
-            align-items: start; /* Sidebar'ın aşağı uzamasını engeller, sticky için şarttır */
+        .category-item {
+            position: relative;
+            flex: 1; /* Menüleri eşit genişlikte yayar */
+            text-align: center;
+        }
+
+        .category-item > a {
+            display: block;
+            padding: 1.2rem 2rem;
+            color: #0f172a;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .category-item:hover > a {
+            color: #3b82f6;
+            border-bottom: 3px solid #3b82f6;
+            background: #f8fafc;
+        }
+
+        /* Açılır Menü (Dropdown) */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            padding: 0.5rem 0;
+            list-style: none;
+            text-align: left;
+        }
+
+        .category-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .dropdown li a:hover {
+            background: #f8fafc;
+            color: #3b82f6;
+            padding-left: 2rem; /* Üzerine gelince metnin hafif sağa kayma efekti */
+        }
+
+        /* Sayfa Düzeni */
+        .tutoring-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
         }
 
-        /* Sidebar Tasarımı ve Yapışkan Özelliği */
-        .sidebar {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 1.5rem;
-            position: sticky;
-            top: 2rem; /* Kaydırırken yukarıda bırakılacak boşluk */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .sidebar h3 {
-            color: #0f172a;
-            font-size: 1.1rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #cbd5e1;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.5rem 0;
-        }
-
-        .sidebar ul:last-child {
-            margin-bottom: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            color: #475569;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar li::before {
-            content: "▸";
-            color: #3b82f6; /* Mavi ok işareti */
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        /* Mobil Cihazlar İçin Uyumluluk (Responsive) */
-        @media (max-width: 900px) {
-            .tutoring-layout {
-                grid-template-columns: 1fr; /* Mobilde tek sütun yap */
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            .category-nav {
+                flex-direction: column;
             }
-            .sidebar {
-                position: static; /* Mobilde yapışkan özelliği kapat */
-                margin-bottom: 2rem;
+            .category-item {
+                border-bottom: 1px solid #e2e8f0;
             }
+            .category-item:last-child {
+                border-bottom: none;
+            }
+            .dropdown {
+                position: static;
+                box-shadow: none;
+                border: none;
+                background: #f8fafc;
+                display: none;
+            }
+            /* Mobilde tıklanınca/fokuslanınca açılsın diye hover korundu, CSS destekler */
         }
     </style>
 
-    <main class="tutoring-layout">
-        <aside class="sidebar">
-            <h3>High School</h3>
-            <ul>
-                <li>AP Calculus AB & BC</li>
-                <li>AP Statistics</li>
-                <li>AP Physics (1, 2, C)</li>
-                <li>AP Computer Science</li>
-                <li>IB Math (AA & AI)</li>
-                <li>IB Physics</li>
-                <li>SAT Math Prep</li>
-            </ul>
-
-            <h3>University Math</h3>
-            <ul>
-                <li>Calculus I-II-III</li>
-                <li>Linear Algebra</li>
-                <li>Differential Equations</li>
-                <li>Real & Complex Analysis</li>
-                <li>Numerical Analysis</li>
-                <li>Engineering Math</li>
-            </ul>
-
-            <h3>University CS</h3>
-            <ul>
-                <li>Python, C/C++, Java</li>
-                <li>Data Structures</li>
-                <li>Algorithm Design</li>
-                <li>Automata Theory</li>
-                <li>Discrete Mathematics</li>
-                <li>Database Systems</li>
-            </ul>
-        </aside>
+    <main class="tutoring-content">
+        <ul class="category-nav">
+            <li class="category-item">
+                <a href="#">High School ▾</a>
+                <ul class="dropdown">
+                    <li><a href="/tutoring/ap-calculus">AP Calculus AB & BC</a></li>
+                    <li><a href="/tutoring/ap-statistics">AP Statistics</a></li>
+                    <li><a href="/tutoring/ap-physics">AP Physics (1, 2, C)</a></li>
+                    <li><a href="/tutoring/ap-computer-science">AP Computer Science</a></li>
+                    <li><a href="/tutoring/ib-math">IB Math (AA & AI)</a></li>
+                    <li><a href="/tutoring/ib-physics">IB Physics</a></li>
+                    <li><a href="/tutoring/sat-math">SAT Math Prep</a></li>
+                </ul>
+            </li>
+            <li class="category-item">
+                <a href="#">University Math ▾</a>
+                <ul class="dropdown">
+                    <li><a href="/tutoring/calculus">Calculus I-II-III</a></li>
+                    <li><a href="/tutoring/linear-algebra">Linear Algebra</a></li>
+                    <li><a href="/tutoring/differential-equations">Differential Equations</a></li>
+                    <li><a href="/tutoring/real-complex-analysis">Real & Complex Analysis</a></li>
+                    <li><a href="/tutoring/numerical-analysis">Numerical Analysis</a></li>
+                    <li><a href="/tutoring/engineering-math">Engineering Math</a></li>
+                </ul>
+            </li>
+            <li class="category-item">
+                <a href="#">University CS ▾</a>
+                <ul class="dropdown">
+                    <li><a href="/tutoring/programming-languages">Python, C/C++, Java</a></li>
+                    <li><a href="/tutoring/data-structures">Data Structures</a></li>
+                    <li><a href="/tutoring/algorithm-design">Algorithm Design</a></li>
+                    <li><a href="/tutoring/automata-theory">Automata Theory</a></li>
+                    <li><a href="/tutoring/discrete-math">Discrete Mathematics</a></li>
+                    <li><a href="/tutoring/database-systems">Database Systems</a></li>
+                </ul>
+            </li>
+        </ul>
 
         <section class="content">
-            <h2 style="margin-top: 0;">STEM Tutoring & Lecturing</h2>
-            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+            <h2 style="margin-top: 0; text-align: center;">STEM Tutoring & Lecturing</h2>
+            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; text-align: center;">
                 I specialize in providing high-quality, structured tutoring for high school and university students across international curricula. My approach focuses on deep conceptual understanding and rigorous problem-solving.
             </p>
             
@@ -170,105 +206,106 @@
         </section>
     </main>
 
-<!-- Üniversiteler Metin Kayar Bant Başlangıcı -->
-<style>
-    /* Slider kapsayıcısını baştan uca tam ekran yapıyoruz */
-    .university-slider-fullwidth {
-        width: 100%;
-        background-color: #ffffff;
-        border-top: 1px solid #e2e8f0;
-        border-bottom: 1px solid #e2e8f0;
-        padding: 2rem 0;
-        margin-top: 3rem;
-        overflow: hidden;
-        position: relative;
-        display: flex;
-    }
 
-    .slider-track {
-        display: flex;
-        /* 15 kart + 15 kopya = 30 kart. Kart genişliği (250px) + boşluk (1rem=16px) */
-        width: calc((250px + 16px) * 30); 
-        animation: scrollText 40s linear infinite;
-        align-items: center;
-        gap: 16px;
-    }
+    <!-- Üniversiteler Metin Kayar Bant Başlangıcı -->
+    <style>
+        /* Slider kapsayıcısını baştan uca tam ekran yapıyoruz */
+        .university-slider-fullwidth {
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+        }
 
-    .slider-track:hover {
-        animation-play-state: paused;
-    }
+        .slider-track {
+            display: flex;
+            /* 15 kart + 15 kopya = 30 kart. Kart genişliği (250px) + boşluk (1rem=16px) */
+            width: calc((250px + 16px) * 30); 
+            animation: scrollText 40s linear infinite;
+            align-items: center;
+            gap: 16px;
+        }
 
-    .text-card {
-        width: 250px;
-        height: 70px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: 600;
-        color: #334155;
-        font-size: 0.95rem;
-        padding: 0 1rem;
-        transition: all 0.3s ease;
-        cursor: default;
-        box-sizing: border-box;
-    }
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
 
-    .text-card:hover {
-        background: #0f172a;
-        color: #ffffff;
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        border-color: #0f172a;
-    }
+        .text-card {
+            width: 250px;
+            height: 70px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95rem;
+            padding: 0 1rem;
+            transition: all 0.3s ease;
+            cursor: default;
+            box-sizing: border-box;
+        }
 
-    @keyframes scrollText {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc((-250px - 16px) * 15)); } 
-    }
-</style>
+        .text-card:hover {
+            background: #0f172a;
+            color: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #0f172a;
+        }
 
-<div class="university-slider-fullwidth">
-    <div class="slider-track">
-        <!-- Orijinal 15 Üniversite Kartı -->
-        <div class="text-card">Orta Doğu Teknik Üni. (ODTÜ)</div>
-        <div class="text-card">İstanbul Teknik Üni. (İTÜ)</div>
-        <div class="text-card">Boğaziçi Üniversitesi</div>
-        <div class="text-card">Bilkent Üniversitesi</div>
-        <div class="text-card">Koç Üniversitesi</div>
-        <div class="text-card">Sabancı Üniversitesi</div>
-        <div class="text-card">Yıldız Teknik Üni. (YTÜ)</div>
-        <div class="text-card">İzmir Yüksek Teknoloji (İYTE)</div>
-        <div class="text-card">Hacettepe Üniversitesi</div>
-        <div class="text-card">Galatasaray Üniversitesi</div>
-        <div class="text-card">Gebze Teknik Üni. (GTÜ)</div>
-        <div class="text-card">Ankara Üniversitesi</div>
-        <div class="text-card">Gazi Üniversitesi</div>
-        <div class="text-card">Ege Üniversitesi</div>
-        <div class="text-card">Marmara Üniversitesi</div>
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc((-250px - 16px) * 15)); } 
+        }
+    </style>
 
-        <!-- Animasyonun kesintisiz dönmesi için 15 kartı kopyalıyoruz -->
-        <div class="text-card">Orta Doğu Teknik Üni. (ODTÜ)</div>
-        <div class="text-card">İstanbul Teknik Üni. (İTÜ)</div>
-        <div class="text-card">Boğaziçi Üniversitesi</div>
-        <div class="text-card">Bilkent Üniversitesi</div>
-        <div class="text-card">Koç Üniversitesi</div>
-        <div class="text-card">Sabancı Üniversitesi</div>
-        <div class="text-card">Yıldız Teknik Üni. (YTÜ)</div>
-        <div class="text-card">İzmir Yüksek Teknoloji (İYTE)</div>
-        <div class="text-card">Hacettepe Üniversitesi</div>
-        <div class="text-card">Galatasaray Üniversitesi</div>
-        <div class="text-card">Gebze Teknik Üni. (GTÜ)</div>
-        <div class="text-card">Ankara Üniversitesi</div>
-        <div class="text-card">Gazi Üniversitesi</div>
-        <div class="text-card">Ege Üniversitesi</div>
-        <div class="text-card">Marmara Üniversitesi</div>
+    <div class="university-slider-fullwidth">
+        <div class="slider-track">
+            <!-- Orijinal 15 Üniversite Kartı -->
+            <div class="text-card">Orta Doğu Teknik Üni. (ODTÜ)</div>
+            <div class="text-card">İstanbul Teknik Üni. (İTÜ)</div>
+            <div class="text-card">Boğaziçi Üniversitesi</div>
+            <div class="text-card">Bilkent Üniversitesi</div>
+            <div class="text-card">Koç Üniversitesi</div>
+            <div class="text-card">Sabancı Üniversitesi</div>
+            <div class="text-card">Yıldız Teknik Üni. (YTÜ)</div>
+            <div class="text-card">İzmir Yüksek Teknoloji (İYTE)</div>
+            <div class="text-card">Hacettepe Üniversitesi</div>
+            <div class="text-card">Galatasaray Üniversitesi</div>
+            <div class="text-card">Gebze Teknik Üni. (GTÜ)</div>
+            <div class="text-card">Ankara Üniversitesi</div>
+            <div class="text-card">Gazi Üniversitesi</div>
+            <div class="text-card">Ege Üniversitesi</div>
+            <div class="text-card">Marmara Üniversitesi</div>
+
+            <!-- Animasyonun kesintisiz dönmesi için 15 kartı kopyalıyoruz -->
+            <div class="text-card">Orta Doğu Teknik Üni. (ODTÜ)</div>
+            <div class="text-card">İstanbul Teknik Üni. (İTÜ)</div>
+            <div class="text-card">Boğaziçi Üniversitesi</div>
+            <div class="text-card">Bilkent Üniversitesi</div>
+            <div class="text-card">Koç Üniversitesi</div>
+            <div class="text-card">Sabancı Üniversitesi</div>
+            <div class="text-card">Yıldız Teknik Üni. (YTÜ)</div>
+            <div class="text-card">İzmir Yüksek Teknoloji (İYTE)</div>
+            <div class="text-card">Hacettepe Üniversitesi</div>
+            <div class="text-card">Galatasaray Üniversitesi</div>
+            <div class="text-card">Gebze Teknik Üni. (GTÜ)</div>
+            <div class="text-card">Ankara Üniversitesi</div>
+            <div class="text-card">Gazi Üniversitesi</div>
+            <div class="text-card">Ege Üniversitesi</div>
+            <div class="text-card">Marmara Üniversitesi</div>
+        </div>
     </div>
-</div>
-<!-- Üniversiteler Metin Kayar Bant Bitişi -->
+    <!-- Üniversiteler Metin Kayar Bant Bitişi -->
 
 <%- include('partials/footer') %>
 </body>
