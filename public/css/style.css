@@ -36,6 +36,7 @@ main {
     background-color: #0f172a; /* Koyu lacivert/siyah arka plan */
     padding: 1rem 2rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position:relative;
 }
 
 .nav-brand a {
@@ -63,6 +64,64 @@ main {
 
 .nav-links a:hover {
     color: #60a5fa; /* Üzerine gelince açık mavi olma efekti */
+}
+
+/* --- Çarpı (X) Butonunun Çerçevesini Temizleme --- */
+.mobile-menu-btn {
+    display: none;
+    border: none;
+    outline: none; /* Tıklanınca çıkan varsayılan çerçeveyi siler */
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.8rem; /* İkonu biraz büyütelim, daha şık dursun */
+    padding: 0;
+}
+
+.mobile-menu-btn:hover {
+    color: #60a5fa;
+}
+
+/* --- Responsive (Mobil Ekranlar) İçin Navbar Kuralları --- */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block; /* Ekranda yeri geldiğinde butonu göster */
+    }
+
+    .nav-links {
+        /* Menüyü başlangıçta gizle ve mutlak pozisyonla aşağı sarkıt */
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0f172a;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out; /* Yumuşak açılma efekti */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+
+    .nav-links li {
+        width: 100%;
+        border-top: 1px solid #1e293b;
+        /* Buradaki display: flex; komutunu SİLDİK */
+    }
+
+    .nav-links li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 1.5rem 0; /* Sadece alt ve üstten eşit boşluk bırakıyoruz */
+        /* display: flex, height ve line-height gibi zorlayıcı kuralların hepsini SİLDİK */
+    }
+
+    /* JavaScript'in ekleyeceği "active" sınıfı */
+    .nav-links.active {
+        max-height: 400px; /* Menünün açıldığında alacağı maksimum yükseklik */
+    }
 }
 
 /* =========================================
@@ -508,4 +567,189 @@ textarea.form-input {
 
 .submit-btn:hover {
     background-color: #1e293b;
+}
+
+
+/* =========================================
+   TUTORING PAGE - SPECIFIC STYLES
+========================================= */
+
+/* A Note on Giving Back Section */
+.giving-back-notice {
+    background: #f0fdf4;
+    border-left: 4px solid #10b981;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.giving-back-title {
+    color: #065f46;
+    margin-top: 0;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.giving-back-text {
+    color: #334155;
+    margin-bottom: 0;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+/* Exam Preparation Programs Section */
+.exam-programs-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    color: #0f172a;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.exam-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.exam-card h3 {
+    color: #1e293b;
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.exam-card p {
+    color: #475569;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Exam Card Top Borders */
+.border-blue { border-top: 4px solid #3b82f6; }
+.border-green { border-top: 4px solid #10b981; }
+.border-orange { border-top: 4px solid #f59e0b; }
+.border-purple { border-top: 4px solid #8b5cf6; }
+
+/* STEM Tutoring Intro */
+.stem-intro {
+    text-align: center;
+    margin: 0 auto 3rem auto;
+    max-width: 800px;
+}
+
+.stem-intro h1 {
+    color: #0f172a;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.stem-intro p {
+    color: #475569;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 auto 1.5rem auto;
+}
+
+.language-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid #bfdbfe;
+}
+
+/* Curriculum Grid Variations */
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.curriculum-box {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.curriculum-box h3 {
+    color: #0f172a;
+    margin-top: 0;
+}
+
+.curriculum-box ul {
+    list-style-type: square;
+    margin-left: 1rem;
+}
+
+.border-left-blue { border-left: 4px solid #3b82f6; }
+.border-left-red { border-left: 4px solid #ef4444; }
+.border-left-orange { border-left: 4px solid #f59e0b; }
+.border-left-green { border-left: 4px solid #10b981; }
+.border-left-purple { border-left: 4px solid #8b5cf6; }
+
+/* --- Highlight Badges (Online, 90-Min, Language) --- */
+.highlight-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.feature-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8fafc; /* Hafif gri/beyaz arka plan */
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   FOOTER STYLES
+========================================= */
+.site-footer {
+    background-color: #0f172a;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.site-footer p {
+    margin: 0; /* Paragrafların varsayılan boşluğunu sıfırlıyoruz */
+}
+
+.site-footer .footer-location {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
 }

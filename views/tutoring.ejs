@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <%- include('partials/head') %>
 </head>
 <body>
     <%- include('partials/navbar') %>
 
     <main class="tutoring-content">
-        <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 1.5rem; margin-bottom: 2.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: #065f46; margin-top: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+        
+        <div class="giving-back-notice">
+            <h3 class="giving-back-title">
                 <span style="font-size: 1.3rem;">🌱</span> A Note on Giving Back
             </h3>
-            <p style="color: #334155; margin-bottom: 0; line-height: 1.6; font-size: 1.05rem;">
+            <p class="giving-back-text">
                 I deeply believe that quality education should be accessible. Subject to my schedule and availability, I provide <strong>completely free tutoring sessions for orphaned students</strong>. If you or a student you know is in this situation, please do not hesitate to reach out—simply sending a message is enough.
             </p>
         </div>
@@ -56,85 +54,90 @@
             </li>
         </ul>
 
-        <section style="margin-bottom: 4rem;">
-            <h2 style="color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; margin-bottom: 2rem;">Exam Preparation Programs</h2>
+        <section class="exam-programs-section">
+            <h2 class="section-title">Exam Preparation Programs</h2>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #3b82f6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">🗓️ Flexible Formats</h3>
-                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+            <div class="exam-grid">
+                <div class="exam-card border-blue">
+                    <h3>🗓️ Flexible Formats</h3>
+                    <p>
                         Offering both <strong>1-on-1 individual</strong> and <strong>group sessions</strong>. Choose between an <strong>8-week accelerated</strong> crash course or a comprehensive <strong>16-week standard</strong> program tailored to your exam timeline.
                     </p>
                 </div>
 
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #10b981; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">📊 Mock Exams & Analysis</h3>
-                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                <div class="exam-card border-green">
+                    <h3>📊 Mock Exams & Analysis</h3>
+                    <p>
                         Every student receives <strong>5 free mock exams</strong> simulating real test conditions, followed by comprehensive <strong>result evaluation reports</strong> to pinpoint areas for improvement.
                     </p>
                 </div>
 
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #f59e0b; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">🎯 Strategic Problem Solving</h3>
-                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                <div class="exam-card border-orange">
+                    <h3>🎯 Strategic Problem Solving</h3>
+                    <p>
                         Includes <strong>personalized homework</strong> and guided solving sessions. Students master the effective use of <strong>TI and Desmos calculators</strong>, saving crucial time during exams.
                     </p>
                 </div>
 
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #8b5cf6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">⭐ The Guarantee</h3>
-                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                <div class="exam-card border-purple">
+                    <h3>⭐ The Guarantee</h3>
+                    <p>
                         Start with a completely <strong>Free Trial Lesson</strong> to experience the methodology firsthand. I stand by a strict <strong>Success Guarantee</strong> for students who complete the required program milestones.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- 3. ANA BAŞLIK: STEM Tutoring & Lecturing -->
-        <section style="text-align: center; margin: 0 auto 3rem auto; max-width: 800px;">
-            <h1 style="color: #0f172a; font-size: 2.5rem; margin-bottom: 1rem;">STEM Tutoring & Lecturing</h1>
-            
-            <p style="color: #475569; font-size: 1.1rem; line-height: 1.6; margin: 0 auto 1.5rem auto;">
+        <section class="stem-intro">
+            <h1>STEM Tutoring & Lecturing</h1>
+            <p>
                 I specialize in providing high-quality, structured tutoring for high school and university students across international curricula. My approach focuses on deep conceptual understanding and rigorous problem-solving.
             </p>
-
-            <!-- Dil Yetkinliği Vurgusu -->
-            <div style="display: inline-block; background: #eff6ff; color: #1d4ed8; font-weight: 600; font-size: 0.95rem; padding: 0.5rem 1.2rem; border-radius: 999px; border: 1px solid #bfdbfe;">
-                🌍 Sessions can be conducted fluently in both English and Turkish.
+            
+            <div class="highlight-badges">
+                <div class="feature-badge" style="background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe;">
+                    🌍 English & Turkish
+                </div>
+                <div class="feature-badge" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">
+                    💻 100% Online
+                </div>
+                <div class="feature-badge" style="background: #fef2f2; color: #b91c1c; border-color: #fecaca;">
+                    ⏱️ 90-Minute Blocks
+                </div>
             </div>
         </section>
 
         <section class="content">
-            <div class="curriculum-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="curriculum-grid">
                 
-                <div class="curriculum-box" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                    <h3 style="color: #0f172a; margin-top: 0;">AP (Advanced Placement)</h3>
-                    <ul style="list-style-type: square; margin-left: 1rem;">
+                <div class="curriculum-box border-left-blue">
+                    <h3>AP (Advanced Placement)</h3>
+                    <ul>
                         <li><strong>Mathematics:</strong> Calculus AB & BC, Statistics</li>
                         <li><strong>Physics:</strong> Physics 1, 2, and Physics C (Mechanics & E&M)</li>
                         <li><strong>Computer Science:</strong> Computer Science A, Computer Science Principles</li>
                     </ul>
                 </div>
 
-                <div class="curriculum-box" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ef4444;">
-                    <h3 style="color: #0f172a; margin-top: 0;">IB (International Baccalaureate)</h3>
-                    <ul style="list-style-type: square; margin-left: 1rem;">
+                <div class="curriculum-box border-left-red">
+                    <h3>IB (International Baccalaureate)</h3>
+                    <ul>
                         <li><strong>Mathematics:</strong> Analysis and Approaches (AA), Applications and Interpretation (AI) - HL & SL</li>
                         <li><strong>Physics:</strong> Higher Level (HL) & Standard Level (SL)</li>
                         <li><strong>Computer Science:</strong> Higher Level (HL) & Standard Level (SL)</li>
                     </ul>
                 </div>
 
-                <div class="curriculum-box" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                    <h3 style="color: #0f172a; margin-top: 0;">SAT Preparation</h3>
-                    <ul style="list-style-type: square; margin-left: 1rem;">
+                <div class="curriculum-box border-left-orange">
+                    <h3>SAT Preparation</h3>
+                    <ul>
                         <li><strong>Mathematics:</strong> Comprehensive SAT Math preparation, advanced problem-solving, and timing strategies.</li>
                     </ul>
                 </div>
 
-                <div class="curriculum-box" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #10b981;">
-                    <h3 style="color: #0f172a; margin-top: 0;">University Math & Physics</h3>
-                    <ul style="list-style-type: square; margin-left: 1rem;">
+                <div class="curriculum-box border-left-green">
+                    <h3>University Math & Physics</h3>
+                    <ul>
                         <li><strong>Core Calculus & Analysis:</strong> Calculus I-II-III (Multivariable), Advanced Calculus, Real Analysis, Complex Analysis</li>
                         <li><strong>Algebra & Geometry:</strong> Linear Algebra, Abstract Algebra, Differential Geometry</li>
                         <li><strong>Applied & Engineering Math:</strong> Ordinary & Partial Differential Equations (ODE & PDE), Numerical Analysis, Engineering Mathematics, Probability & Statistics</li>
@@ -142,9 +145,9 @@
                     </ul>
                 </div>
 
-                <div class="curriculum-box" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                    <h3 style="color: #0f172a; margin-top: 0;">University Computer Science</h3>
-                    <ul style="list-style-type: square; margin-left: 1rem;">
+                <div class="curriculum-box border-left-purple">
+                    <h3>University Computer Science</h3>
+                    <ul>
                         <li><strong>Programming Languages:</strong> Python, C, C++, Java</li>
                         <li><strong>Core CS & Theory:</strong> Data Structures, Algorithm Design, Automata Theory, Discrete Mathematics</li>
                         <li><strong>Systems & Hardware:</strong> Database Systems, Computer Architecture, Circuit Design</li>
@@ -172,7 +175,6 @@
             <div class="text-card">Gazi University</div>
             <div class="text-card">Ege University</div>
             <div class="text-card">Marmara University</div>
-
             <div class="text-card">Middle East Technical Univ. (METU)</div>
             <div class="text-card">Istanbul Technical Univ. (ITU)</div>
             <div class="text-card">Bogazici University</div>
