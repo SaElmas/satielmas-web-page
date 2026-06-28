@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ]
+        });">
+    </script>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="notes-layout">
+        
+        <aside class="notes-sidebar">
+            <h3>Subjects & Topics</h3>
+            <ul>
+                <li><a href="#hungerford-algebra" class="active">Hungerford Algebra</a></li>
+                <li><a href="#abstract-algebra">Abstract Algebra</a></li>
+                <li><a href="#linear-algebra">Linear Algebra</a></li>
+                <li><a href="#real-analysis">Real & Complex Analysis</a></li>
+                <li><a href="#programming">Python & Java Algorithms</a></li>
+            </ul>
+        </aside>
+
+        <main class="notes-content">
+            <h1 style="color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; margin-top: 0;">Academic Notes</h1>
+            
+            <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <h3 style="color: #1e3a8a; margin-top: 0; margin-bottom: 0.5rem; font-size: 1.1rem;">📚 Primary Reference</h3>
+                <p style="margin: 0; color: #1e40af; font-size: 1rem; line-height: 1.6;">
+                    <strong>Title:</strong> <em>Algebra</em> by Thomas W. Hungerford<br>
+                    <strong>Series:</strong> Graduate Texts in Mathematics (Volume 73), Springer<br>
+                    <strong>ISBN-13:</strong> 978-0387905181 &nbsp;|&nbsp; <strong>ISBN-10:</strong> 0387905189
+                </p>
+            </div>
+
+            <p style="color: #475569; font-size: 1.1rem; margin-bottom: 2rem;">
+                A collection of my academic notes, derivations, and theoretical frameworks. Use the sidebar to navigate through topics.
+            </p>
+
+            <div id="hungerford-algebra" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 2rem;">
+                <h2 style="color: #3b82f6; margin-top: 0; margin-bottom: 1rem;">Chapter 1: Groups</h2>
+                
+                <p style="color: #334155; line-height: 1.8;">
+                    A group is a nonempty set $G$ together with a binary operation on $G$ (denoted by juxtaposition) such that the following axioms are satisfied:
+                </p>
+                
+                <ul style="color: #334155; line-height: 1.8;">
+                    <li><strong>Associativity:</strong> For all $a, b, c \in G$, $(ab)c = a(bc)$.</li>
+                    <li><strong>Identity:</strong> There exists an element $e \in G$ such that for all $a \in G$, $ea = ae = a$.</li>
+                    <li><strong>Inverse:</strong> For each $a \in G$, there exists an element $a^{-1} \in G$ such that $aa^{-1} = a^{-1}a = e$.</li>
+                </ul>
+
+                <p style="color: #334155; line-height: 1.8; margin-top: 1.5rem;">
+                    Consider a homomorphism of groups $\varphi: G \to H$. The relationship between the kernel and the image is given by the First Isomorphism Theorem:
+                </p>
+
+                <div style="font-size: 1.2rem; margin: 1.5rem 0; text-align: center; color: #0f172a;">
+                    $$ G / \ker(\varphi) \cong \text{Im}(\varphi) $$
+                </div>
+
+                <p style="color: #334155; line-height: 1.8;">
+                    This fundamental theorem establishes that the quotient of the domain by the kernel is isomorphic to the image of the homomorphism.
+                </p>
+            </div>
+
+            <div id="abstract-algebra" style="background: #f8fafc; border: 2px dashed #cbd5e1; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; opacity: 0.8;">
+                <h2 style="color: #64748b; margin-top: 0; margin-bottom: 1rem;">Abstract Algebra</h2>
+                <div style="background: #e2e8f0; color: #475569; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.95rem;">
+                    > TODO: Transcribe handwritten notes to LaTeX format...
+                </div>
+            </div>
+
+            <div id="linear-algebra" style="background: #f8fafc; border: 2px dashed #cbd5e1; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; opacity: 0.8;">
+                <h2 style="color: #64748b; margin-top: 0; margin-bottom: 1rem;">Linear Algebra</h2>
+                <div style="background: #e2e8f0; color: #475569; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.95rem;">
+                    > TODO: Add theoretical frameworks and derivations...
+                </div>
+            </div>
+
+            <div id="real-analysis" style="background: #f8fafc; border: 2px dashed #cbd5e1; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; opacity: 0.8;">
+                <h2 style="color: #64748b; margin-top: 0; margin-bottom: 1rem;">Real & Complex Analysis</h2>
+                <div style="background: #e2e8f0; color: #475569; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.95rem;">
+                    > TODO: Upload theorems and proofs for this section...
+                </div>
+            </div>
+
+            <div id="programming" style="background: #f8fafc; border: 2px dashed #cbd5e1; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; opacity: 0.8;">
+                <h2 style="color: #64748b; margin-top: 0; margin-bottom: 1rem;">Python & Java Algorithms</h2>
+                <div style="background: #e2e8f0; color: #475569; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.95rem;">
+                    > TODO: Add code snippets and algorithmic complexities...
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

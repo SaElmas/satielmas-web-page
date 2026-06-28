@@ -58,3 +58,7 @@ exports.getCourseDetails = (req, res, next) => {
         course: courseInfo
     });
 };
+
+exports.getNotesPage = (req, res) => {
+    res.render('notes', { pageTitle: 'My Notes - Sait Elmas' });
+};

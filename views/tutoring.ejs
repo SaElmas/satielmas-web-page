@@ -8,112 +8,18 @@
 </head>
 <body>
     <%- include('partials/navbar') %>
-    <style>
-        /* Yatay Alt Menü (Sub-nav) Tasarımı */
-        .category-nav {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            margin: 0 auto 2rem auto;
-            max-width: 1200px;
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            position: relative;
-            z-index: 50; /* Açılır menünün kartların üstünde kalmasını sağlar */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .category-item {
-            position: relative;
-            flex: 1; /* Menüleri eşit genişlikte yayar */
-            text-align: center;
-        }
-
-        .category-item > a {
-            display: block;
-            padding: 1.2rem 2rem;
-            color: #0f172a;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-
-        .category-item:hover > a {
-            color: #3b82f6;
-            border-bottom: 3px solid #3b82f6;
-            background: #f8fafc;
-        }
-
-        /* Açılır Menü (Dropdown) */
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: #ffffff;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 8px 8px;
-            border: 1px solid #e2e8f0;
-            border-top: none;
-            padding: 0.5rem 0;
-            list-style: none;
-            text-align: left;
-        }
-
-        .category-item:hover .dropdown {
-            display: block;
-        }
-
-        .dropdown li a {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: #475569;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
-
-        .dropdown li a:hover {
-            background: #f8fafc;
-            color: #3b82f6;
-            padding-left: 2rem; /* Üzerine gelince metnin hafif sağa kayma efekti */
-        }
-
-        /* Sayfa Düzeni */
-        .tutoring-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /* Mobil Uyumluluk */
-        @media (max-width: 768px) {
-            .category-nav {
-                flex-direction: column;
-            }
-            .category-item {
-                border-bottom: 1px solid #e2e8f0;
-            }
-            .category-item:last-child {
-                border-bottom: none;
-            }
-            .dropdown {
-                position: static;
-                box-shadow: none;
-                border: none;
-                background: #f8fafc;
-                display: none;
-            }
-            /* Mobilde tıklanınca/fokuslanınca açılsın diye hover korundu, CSS destekler */
-        }
-    </style>
 
     <main class="tutoring-content">
-        <ul class="category-nav">
+        <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 1.5rem; margin-bottom: 2.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: #065f46; margin-top: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.3rem;">🌱</span> A Note on Giving Back
+            </h3>
+            <p style="color: #334155; margin-bottom: 0; line-height: 1.6; font-size: 1.05rem;">
+                I deeply believe that quality education should be accessible. Subject to my schedule and availability, I provide <strong>completely free tutoring sessions for orphaned students</strong>. If you or a student you know is in this situation, please do not hesitate to reach out—simply sending a message is enough.
+            </p>
+        </div>
+
+        <ul class="category-nav" style="margin-bottom: 3.5rem;">
             <li class="category-item">
                 <a href="#">High School ▾</a>
                 <ul class="dropdown">
@@ -150,12 +56,55 @@
             </li>
         </ul>
 
-        <section class="content">
-            <h2 style="margin-top: 0; text-align: center;">STEM Tutoring & Lecturing</h2>
-            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; text-align: center;">
+        <section style="margin-bottom: 4rem;">
+            <h2 style="color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; margin-bottom: 2rem;">Exam Preparation Programs</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #3b82f6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">🗓️ Flexible Formats</h3>
+                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                        Offering both <strong>1-on-1 individual</strong> and <strong>group sessions</strong>. Choose between an <strong>8-week accelerated</strong> crash course or a comprehensive <strong>16-week standard</strong> program tailored to your exam timeline.
+                    </p>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #10b981; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">📊 Mock Exams & Analysis</h3>
+                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                        Every student receives <strong>5 free mock exams</strong> simulating real test conditions, followed by comprehensive <strong>result evaluation reports</strong> to pinpoint areas for improvement.
+                    </p>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #f59e0b; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">🎯 Strategic Problem Solving</h3>
+                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                        Includes <strong>personalized homework</strong> and guided solving sessions. Students master the effective use of <strong>TI and Desmos calculators</strong>, saving crucial time during exams.
+                    </p>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #8b5cf6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: #1e293b; margin-top: 0; font-size: 1.1rem;">⭐ The Guarantee</h3>
+                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; line-height: 1.6;">
+                        Start with a completely <strong>Free Trial Lesson</strong> to experience the methodology firsthand. I stand by a strict <strong>Success Guarantee</strong> for students who complete the required program milestones.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ANA BAŞLIK: STEM Tutoring & Lecturing -->
+        <section style="text-align: center; margin: 0 auto 3rem auto; max-width: 800px;">
+            <h1 style="color: #0f172a; font-size: 2.5rem; margin-bottom: 1rem;">STEM Tutoring & Lecturing</h1>
+            
+            <p style="color: #475569; font-size: 1.1rem; line-height: 1.6; margin: 0 auto 1.5rem auto;">
                 I specialize in providing high-quality, structured tutoring for high school and university students across international curricula. My approach focuses on deep conceptual understanding and rigorous problem-solving.
             </p>
-            
+
+            <!-- Dil Yetkinliği Vurgusu -->
+            <div style="display: inline-block; background: #eff6ff; color: #1d4ed8; font-weight: 600; font-size: 0.95rem; padding: 0.5rem 1.2rem; border-radius: 999px; border: 1px solid #bfdbfe;">
+                🌍 Sessions can be conducted fluently in both English and Turkish.
+            </div>
+        </section>
+
+        <section class="content">
             <div class="curriculum-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                 
                 <div class="curriculum-box" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
@@ -206,107 +155,41 @@
         </section>
     </main>
 
-
-    <!-- Üniversiteler Metin Kayar Bant Başlangıcı -->
-    <style>
-        /* Slider kapsayıcısını baştan uca tam ekran yapıyoruz */
-        .university-slider-fullwidth {
-            width: 100%;
-            background-color: #ffffff;
-            border-top: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-        }
-
-        .slider-track {
-            display: flex;
-            /* 15 kart + 15 kopya = 30 kart. Kart genişliği (250px) + boşluk (1rem=16px) */
-            width: calc((250px + 16px) * 30); 
-            animation: scrollText 40s linear infinite;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .slider-track:hover {
-            animation-play-state: paused;
-        }
-
-        .text-card {
-            width: 250px;
-            height: 70px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-weight: 600;
-            color: #334155;
-            font-size: 0.95rem;
-            padding: 0 1rem;
-            transition: all 0.3s ease;
-            cursor: default;
-            box-sizing: border-box;
-        }
-
-        .text-card:hover {
-            background: #0f172a;
-            color: #ffffff;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border-color: #0f172a;
-        }
-
-        @keyframes scrollText {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc((-250px - 16px) * 15)); } 
-        }
-    </style>
-
     <div class="university-slider-fullwidth">
         <div class="slider-track">
-            <!-- Orijinal 15 Üniversite Kartı -->
-            <div class="text-card">Orta Doğu Teknik Üni. (ODTÜ)</div>
-            <div class="text-card">İstanbul Teknik Üni. (İTÜ)</div>
-            <div class="text-card">Boğaziçi Üniversitesi</div>
-            <div class="text-card">Bilkent Üniversitesi</div>
-            <div class="text-card">Koç Üniversitesi</div>
-            <div class="text-card">Sabancı Üniversitesi</div>
-            <div class="text-card">Yıldız Teknik Üni. (YTÜ)</div>
-            <div class="text-card">İzmir Yüksek Teknoloji (İYTE)</div>
-            <div class="text-card">Hacettepe Üniversitesi</div>
-            <div class="text-card">Galatasaray Üniversitesi</div>
-            <div class="text-card">Gebze Teknik Üni. (GTÜ)</div>
-            <div class="text-card">Ankara Üniversitesi</div>
-            <div class="text-card">Gazi Üniversitesi</div>
-            <div class="text-card">Ege Üniversitesi</div>
-            <div class="text-card">Marmara Üniversitesi</div>
+            <div class="text-card">Middle East Technical Univ. (METU)</div>
+            <div class="text-card">Istanbul Technical Univ. (ITU)</div>
+            <div class="text-card">Bogazici University</div>
+            <div class="text-card">Bilkent University</div>
+            <div class="text-card">Koc University</div>
+            <div class="text-card">Sabanci University</div>
+            <div class="text-card">Yildiz Technical Univ. (YTU)</div>
+            <div class="text-card">Izmir Inst. of Technology (IZTECH)</div>
+            <div class="text-card">Hacettepe University</div>
+            <div class="text-card">Galatasaray University</div>
+            <div class="text-card">Gebze Technical Univ. (GTU)</div>
+            <div class="text-card">Ankara University</div>
+            <div class="text-card">Gazi University</div>
+            <div class="text-card">Ege University</div>
+            <div class="text-card">Marmara University</div>
 
-            <!-- Animasyonun kesintisiz dönmesi için 15 kartı kopyalıyoruz -->
-            <div class="text-card">Orta Doğu Teknik Üni. (ODTÜ)</div>
-            <div class="text-card">İstanbul Teknik Üni. (İTÜ)</div>
-            <div class="text-card">Boğaziçi Üniversitesi</div>
-            <div class="text-card">Bilkent Üniversitesi</div>
-            <div class="text-card">Koç Üniversitesi</div>
-            <div class="text-card">Sabancı Üniversitesi</div>
-            <div class="text-card">Yıldız Teknik Üni. (YTÜ)</div>
-            <div class="text-card">İzmir Yüksek Teknoloji (İYTE)</div>
-            <div class="text-card">Hacettepe Üniversitesi</div>
-            <div class="text-card">Galatasaray Üniversitesi</div>
-            <div class="text-card">Gebze Teknik Üni. (GTÜ)</div>
-            <div class="text-card">Ankara Üniversitesi</div>
-            <div class="text-card">Gazi Üniversitesi</div>
-            <div class="text-card">Ege Üniversitesi</div>
-            <div class="text-card">Marmara Üniversitesi</div>
+            <div class="text-card">Middle East Technical Univ. (METU)</div>
+            <div class="text-card">Istanbul Technical Univ. (ITU)</div>
+            <div class="text-card">Bogazici University</div>
+            <div class="text-card">Bilkent University</div>
+            <div class="text-card">Koc University</div>
+            <div class="text-card">Sabanci University</div>
+            <div class="text-card">Yildiz Technical Univ. (YTU)</div>
+            <div class="text-card">Izmir Inst. of Technology (IZTECH)</div>
+            <div class="text-card">Hacettepe University</div>
+            <div class="text-card">Galatasaray University</div>
+            <div class="text-card">Gebze Technical Univ. (GTU)</div>
+            <div class="text-card">Ankara University</div>
+            <div class="text-card">Gazi University</div>
+            <div class="text-card">Ege University</div>
+            <div class="text-card">Marmara University</div>
         </div>
     </div>
-    <!-- Üniversiteler Metin Kayar Bant Bitişi -->
-
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 </body>
 </html>
