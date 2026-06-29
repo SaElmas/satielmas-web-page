@@ -1,0 +1,30 @@
+<section class="bookshelf-section">
+  <h2 class="section-header"><i class="fas fa-book"></i> The Reading List</h2>
+  <p class="section-subtitle">A catalog of texts that have shaped my thinking.</p>
+
+  <ul class="book-tags">
+    <li>The Way Of The Superior Man - David Deida</li>
+    <li>The Man Who Loved Only Numbers — Paul Hoffman</li>
+  </ul>
+</section>
+
+<section class="reflections-section">
+    <h2 class="section-header"><i class="fas fa-brain"></i> Summaries & Reflections</h2>
+
+    <% if (typeof readings !== 'undefined' && readings.length > 0) { %>
+        <% readings.forEach(function(book) { %>
+            <article class="review-card">
+                <div class="review-header">
+                    <h3><%= book.title %></h3>
+                    <span class="book-author">by <%= book.author %></span>
+                </div>
+                
+                <div class="review-body chapter-flow">
+                    <%- book.htmlBody %>
+                </div>
+            </article>
+        <% }); %>
+    <% } else { %>
+        <p>You haven't added any reading notes yet.</p>
+    <% } %>
+</section>

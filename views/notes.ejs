@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include('partials/head') %>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
+<head>
+  <%- include('partials/head') %>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
           delimiters: [
               {left: '$$', right: '$$', display: true},
               {left: '$', right: '$', display: false},
@@ -17,43 +17,52 @@
 </head>
 
 <body>
-    <%- include('partials/navbar') %>
+  <%- include('partials/navbar') %>
 
-    <div class="notes-layout">
-        
-        <aside class="notes-sidebar">
-            <h3>Subjects & Topics</h3>
-            <ul>
-                <li><a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>">Overview</a></li>
-                
-                <li><a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>">Hungerford Algebra</a></li>
-                <li><a href="/notes/abstract-algebra" class="<%= activeTopic === 'abstract-algebra' ? 'active' : '' %>">Abstract Algebra</a></li>
-                <li><a href="/notes/linear-algebra" class="<%= activeTopic === 'linear-algebra' ? 'active' : '' %>">Linear Algebra</a></li>
-                <li><a href="/notes/real-analysis" class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>">Real & Complex Analysis</a></li>
-                <li><a href="/notes/programming" class="<%= activeTopic === 'programming' ? 'active' : '' %>">Python & Java Algorithms</a></li>
-            </ul>
-        </aside>
+  <div class="notes-layout">
 
-        <main class="notes-content">
-            <h1 style="color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; margin-top: 0;">Academic Notes</h1>
-            
-            <% if (activeTopic === 'index') { %>
-                <%- include('topics/index') %>
+    <aside class="notes-sidebar">
+      <h3>Subjects & Topics</h3>
+      <ul>
+        <li><a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>">Overview</a></li>
 
-            <% } else if (activeTopic === 'hungerford-algebra') { %>
-                <%- include('topics/hungerford-algebra') %>
+        <li><a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>">Hungerford Algebra</a></li>
+        <li><a href="/notes/abstract-algebra" class="<%= activeTopic === 'abstract-algebra' ? 'active' : '' %>">Abstract Algebra</a></li>
+        <li><a href="/notes/linear-algebra" class="<%= activeTopic === 'linear-algebra' ? 'active' : '' %>">Linear Algebra</a></li>
+        <li><a href="/notes/real-analysis" class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>">Real & Complex Analysis</a></li>
+        <li><a href="/notes/programming" class="<%= activeTopic === 'programming' ? 'active' : '' %>">Python & Java Algorithms</a></li>
+        <li><a href="/notes/my-readings" class="<%= activeTopic === 'my-readings' ? 'active' : ''%>">My Readings</a></li>
+      </ul>
+    </aside>
 
-            <% } else { %>
-                <div style="background: #fef2f2; border: 1px solid #fca5a5; padding: 2rem; border-radius: 8px; color: #991b1b;">
-                    <h2 style="margin-top: 0;">Topic Not Found</h2>
-                    <p>The academic notes for this topic could not be found or are still being structured.</p>
-                </div>
-            <% } %>
+    <main class="notes-content">
+      <% if (activeTopic !== 'my-readings') { %>
+      <h1 style="color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; margin-bottom: 2rem; margin-top:0">
+        Academic Notes
+      </h1>
+      <% } %>
 
-        </main>
+      <% if (activeTopic === 'index') { %>
+      <%- include('topics/index') %>
 
-    </div>
+      <% } else if (activeTopic === 'hungerford-algebra') { %>
+      <%- include('topics/hungerford-algebra') %>
 
-    <%- include('partials/footer') %>
+      <% } else if (activeTopic === 'my-readings') { %>
+      <%- include('topics/my-readings') %>
+
+      <% } else { %>
+      <div style="background: #fef2f2; border: 1px solid #fca5a5; padding: 2rem; border-radius: 8px; color: #991b1b;">
+        <h2 style="margin-top: 0;">Topic Not Found</h2>
+        <p>The academic notes for this topic could not be found or are still being structured.</p>
+      </div>
+      <% } %>
+
+    </main>
+
+  </div>
+
+  <%- include('partials/footer') %>
 </body>
+
 </html>

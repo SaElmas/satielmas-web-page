@@ -1,574 +1,587 @@
 body {
-    font-family: system-ui, -apple-system, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8fafc;
-    color: #1e293b;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin:0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 header {
-    background-color: #0f172a;
-    color: white;
-    padding: 2rem;
-    text-align: center;
+  background-color: #0f172a;
+  color: white;
+  padding: 2rem;
+  text-align: center;
 }
 main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    flex:1;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex: 1;
 }
 .card {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Navigation Bar Stilleri */
 .main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0f172a; /* Koyu lacivert/siyah arka plan */
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    position:relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a; /* Koyu lacivert/siyah arka plan */
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .nav-brand a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem; /* Linkler arası boşluk */
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* Linkler arası boşluk */
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #60a5fa; /* Üzerine gelince açık mavi olma efekti */
+  color: #60a5fa; /* Üzerine gelince açık mavi olma efekti */
 }
 
 /* --- Çarpı (X) Butonunun Çerçevesini Temizleme --- */
 .mobile-menu-btn {
-    display: none;
-    border: none;
-    outline: none; /* Tıklanınca çıkan varsayılan çerçeveyi siler */
-    background: transparent;
-    color: #ffffff;
-    font-size: 1.8rem; /* İkonu biraz büyütelim, daha şık dursun */
-    padding: 0;
+  display: none;
+  border: none;
+  outline: none; /* Tıklanınca çıkan varsayılan çerçeveyi siler */
+  background: transparent;
+  color: #ffffff;
+  font-size: 1.8rem; /* İkonu biraz büyütelim, daha şık dursun */
+  padding: 0;
 }
 
 .mobile-menu-btn:hover {
-    color: #60a5fa;
+  color: #60a5fa;
 }
 
 /* --- Responsive (Mobil Ekranlar) İçin Navbar Kuralları --- */
 @media (max-width: 768px) {
-    .mobile-menu-btn {
-        display: block; /* Ekranda yeri geldiğinde butonu göster */
-    }
+  .mobile-menu-btn {
+    display: block; /* Ekranda yeri geldiğinde butonu göster */
+  }
 
-    .nav-links {
-        /* Menüyü başlangıçta gizle ve mutlak pozisyonla aşağı sarkıt */
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #0f172a;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out; /* Yumuşak açılma efekti */
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        z-index: 100;
-    }
+  .nav-links {
+    /* Menüyü başlangıçta gizle ve mutlak pozisyonla aşağı sarkıt */
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0f172a;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* Yumuşak açılma efekti */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
 
-    .nav-links li {
-        width: 100%;
-        border-top: 1px solid #1e293b;
-        /* Buradaki display: flex; komutunu SİLDİK */
-    }
+  .nav-links li {
+    width: 100%;
+    border-top: 1px solid #1e293b;
+    /* Buradaki display: flex; komutunu SİLDİK */
+  }
 
-    .nav-links li a {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 1.5rem 0; /* Sadece alt ve üstten eşit boşluk bırakıyoruz */
-        /* display: flex, height ve line-height gibi zorlayıcı kuralların hepsini SİLDİK */
-    }
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 0; /* Sadece alt ve üstten eşit boşluk bırakıyoruz */
+    /* display: flex, height ve line-height gibi zorlayıcı kuralların hepsini SİLDİK */
+  }
 
-    /* JavaScript'in ekleyeceği "active" sınıfı */
-    .nav-links.active {
-        max-height: 400px; /* Menünün açıldığında alacağı maksimum yükseklik */
-    }
+  /* JavaScript'in ekleyeceği "active" sınıfı */
+  .nav-links.active {
+    max-height: 400px; /* Menünün açıldığında alacağı maksimum yükseklik */
+  }
 }
 
 /* =========================================
    TUTORING PAGE - DROPDOWN CATEGORY NAV
 ========================================= */
 .category-nav {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    margin: 0 auto 2rem auto;
-    max-width: 1200px;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    position: relative;
-    z-index: 50;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin: 0 auto 2rem auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  position: relative;
+  z-index: 50;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .category-item {
-    position: relative;
-    flex: 1;
-    text-align: center;
+  position: relative;
+  flex: 1;
+  text-align: center;
 }
 
 .category-item > a {
-    display: block;
-    padding: 1.2rem 2rem;
-    color: #0f172a;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-bottom: 3px solid transparent;
+  display: block;
+  padding: 1.2rem 2rem;
+  color: #0f172a;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
 }
 
 .category-item:hover > a {
-    color: #3b82f6;
-    border-bottom: 3px solid #3b82f6;
-    background: #f8fafc;
+  color: #3b82f6;
+  border-bottom: 3px solid #3b82f6;
+  background: #f8fafc;
 }
 
 .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 8px 8px;
-    border: 1px solid #e2e8f0;
-    border-top: none;
-    padding: 0.5rem 0;
-    list-style: none;
-    text-align: left;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  padding: 0.5rem 0;
+  list-style: none;
+  text-align: left;
 }
 
 .category-item:hover .dropdown {
-    display: block;
+  display: block;
 }
 
 .dropdown li a {
-    display: block;
-    padding: 0.75rem 1.5rem;
-    color: #475569;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: all 0.2s;
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s;
 }
 
 .dropdown li a:hover {
-    background: #f8fafc;
-    color: #3b82f6;
-    padding-left: 2rem;
+  background: #f8fafc;
+  color: #3b82f6;
+  padding-left: 2rem;
 }
 
 .tutoring-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 @media (max-width: 768px) {
-    .category-nav {
-        flex-direction: column;
-    }
-    .category-item {
-        border-bottom: 1px solid #e2e8f0;
-    }
-    .category-item:last-child {
-        border-bottom: none;
-    }
-    .dropdown {
-        position: static;
-        box-shadow: none;
-        border: none;
-        background: #f8fafc;
-        display: none;
-    }
+  .category-nav {
+    flex-direction: column;
+  }
+  .category-item {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .category-item:last-child {
+    border-bottom: none;
+  }
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: #f8fafc;
+    display: none;
+  }
 }
 
 /* =========================================
    INDEX PAGE - TESTIMONIALS SLIDER
 ========================================= */
 .testimonial-container {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    background-color: #f8fafc;
-    padding: 3rem 0;
-    overflow: hidden;
-    border-top: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #f8fafc;
+  padding: 3rem 0;
+  overflow: hidden;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .testimonial-track {
-    display: flex;
-    gap: 2rem;
-    width: calc((350px + 2rem) * 16);
-    animation: scrollTestimonials 60s linear infinite;
+  display: flex;
+  gap: 2rem;
+  width: calc((350px + 2rem) * 16);
+  animation: scrollTestimonials 60s linear infinite;
 }
 
 .testimonial-track:hover {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .testimonial-card {
-    width: 350px;
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    text-align: left;
-    border-left: 4px solid #3b82f6;
-    flex-shrink: 0;
+  width: 350px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  border-left: 4px solid #3b82f6;
+  flex-shrink: 0;
 }
 
 .quote-icon {
-    color: #93c5fd;
-    font-size: 2rem;
-    line-height: 1;
-    margin-bottom: 1rem;
+  color: #93c5fd;
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 1rem;
 }
 
 .student-text {
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.6;
-    font-style: italic;
-    margin-bottom: 1.5rem;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
 }
 
 .student-name {
-    color: #0f172a;
-    font-weight: bold;
-    font-size: 1.05rem;
+  color: #0f172a;
+  font-weight: bold;
+  font-size: 1.05rem;
 }
 
 .student-school {
-    color: #64748b;
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }
 
 @keyframes scrollTestimonials {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc((-350px - 2rem) * 8)); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc((-350px - 2rem) * 8));
+  }
 }
 
 /* =========================================
    TUTORING PAGE - UNIVERSITY SLIDER
 ========================================= */
 .university-slider-fullwidth {
-    width: 100%;
-    background-color: #ffffff;
-    border-top: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 2rem 0;
-    margin-top: 3rem;
-    overflow: hidden;
-    position: relative;
-    display: flex;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
 }
 
 .slider-track {
-    display: flex;
-    width: calc((250px + 16px) * 30);
-    animation: scrollText 40s linear infinite;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  width: calc((250px + 16px) * 30);
+  animation: scrollText 40s linear infinite;
+  align-items: center;
+  gap: 16px;
 }
 
 .slider-track:hover {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .text-card {
-    width: 250px;
-    height: 70px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: 600;
-    color: #334155;
-    font-size: 0.95rem;
-    padding: 0 1rem;
-    transition: all 0.3s ease;
-    cursor: default;
-    box-sizing: border-box;
+  width: 250px;
+  height: 70px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.95rem;
+  padding: 0 1rem;
+  transition: all 0.3s ease;
+  cursor: default;
+  box-sizing: border-box;
 }
 
 .text-card:hover {
-    background: #0f172a;
-    color: #ffffff;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    border-color: #0f172a;
+  background: #0f172a;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: #0f172a;
 }
 
 @keyframes scrollText {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc((-250px - 16px) * 15)); } 
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc((-250px - 16px) * 15));
+  }
 }
 
 /* =========================================
    NOTES PAGE - SIDEBAR & GRID LAYOUT
 ========================================= */
 .notes-layout {
-    max-width: 1200px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: 250px 1fr; /* Sol 250px, sağ taraf kalanı kaplar */
-    gap: 2.5rem;
-    align-items: start;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sol 250px, sağ taraf kalanı kaplar */
+  gap: 2.5rem;
+  align-items: start;
 }
 
 .notes-sidebar {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    position: sticky;
-    top: 2rem; /* Ekranı kaydırırken sidebar'ı yukarıda sabitler */
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 2rem; /* Ekranı kaydırırken sidebar'ı yukarıda sabitler */
 }
 
 .notes-sidebar h3 {
-    margin-top: 0;
-    color: #0f172a;
-    font-size: 1.1rem;
-    border-bottom: 2px solid #cbd5e1;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+  margin-top: 0;
+  color: #0f172a;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #cbd5e1;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .notes-sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .notes-sidebar li {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .notes-sidebar a {
-    text-decoration: none;
-    color: #475569;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-    display: block;
-    padding: 0.4rem 0.5rem;
-    border-radius: 4px;
+  text-decoration: none;
+  color: #475569;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  display: block;
+  padding: 0.4rem 0.5rem;
+  border-radius: 4px;
 }
 
-.notes-sidebar a:hover, .notes-sidebar a.active {
-    color: #3b82f6;
-    background: #eff6ff;
-    font-weight: 600;
+.notes-sidebar a:hover,
+.notes-sidebar a.active {
+  color: #3b82f6;
+  background: #eff6ff;
+  font-weight: 600;
 }
 
 .notes-content {
-    min-height: 70vh;
+  min-height: 70vh;
 }
 
 /* Mobilde sidebar'ı üste alıp tam ekran yapmak için */
 @media (max-width: 768px) {
-    .notes-layout {
-        grid-template-columns: 1fr;
-    }
-    .notes-sidebar {
-        position: static;
-    }
+  .notes-layout {
+    grid-template-columns: 1fr;
+  }
+  .notes-sidebar {
+    position: static;
+  }
 }
 
 /* KaTeX font boyutunu metin ile uyumlu hale getirme */
 .katex {
-    font-size: 1.0em !important;
+  font-size: 1em !important;
 }
 
 /* Notlar için kapsayıcı */
 .note-container {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    margin-bottom: 2rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
 }
 
 /* Referans Kutusu */
 .reference-box {
-    background: #eff6ff;
-    border-left: 4px solid #3b82f6;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Egzersiz Başlığı / Kutusu */
 .exercise-box {
-    background: #f1f5f9;
-    padding: 1rem;
-    border-radius: 6px;
-    border-left: 4px solid #64748b;
-    margin-bottom: 1.5rem;
-    color: #334155;
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #64748b;
+  margin-bottom: 1.5rem;
+  color: #334155;
 }
 
 /* İspat Başlığı */
 .proof-title {
-    color: #10b981;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-style: italic;
+  color: #10b981;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-style: italic;
 }
 
 /* İspat Metni */
 .proof-text {
-    color: #334155;
-    line-height: 1.8;
+  color: #334155;
+  line-height: 1.8;
 }
 
 /* --- İletişim Sayfası Stilleri --- */
 
 .contact-intro {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .contact-card {
-    background: #f8fafc;
-    padding: 1.5rem;
-    border-radius: 8px;
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 .contact-info {
-    border-left: 4px solid #3b82f6;
+  border-left: 4px solid #3b82f6;
 }
 
 .contact-form {
-    border-left: 4px solid #10b981;
+  border-left: 4px solid #10b981;
 }
 
 .contact-card h3 {
-    color: #0f172a;
-    margin-top: 0;
+  color: #0f172a;
+  margin-top: 0;
 }
 
 .contact-list {
-    list-style: none;
-    padding: 0;
-    line-height: 2.5;
-    font-size: 1.05rem;
+  list-style: none;
+  padding: 0;
+  line-height: 2.5;
+  font-size: 1.05rem;
 }
 
 .contact-list a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
 }
 
 .contact-list a:hover {
-    color: #3b82f6;
+  color: #3b82f6;
 }
 
 .contact-icon {
-    width: 25px;
-    text-align: center;
+  width: 25px;
+  text-align: center;
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .form-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #0f172a;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
 }
 
 .form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 textarea.form-input {
-    resize: vertical;
+  resize: vertical;
 }
 
 .submit-btn {
-    background-color: #0f172a;
-    color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+  background-color: #0f172a;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
 .submit-btn:hover {
-    background-color: #1e293b;
+  background-color: #1e293b;
 }
-
 
 /* =========================================
    TUTORING PAGE - SPECIFIC STYLES
@@ -576,180 +589,231 @@ textarea.form-input {
 
 /* A Note on Giving Back Section */
 .giving-back-notice {
-    background: #f0fdf4;
-    border-left: 4px solid #10b981;
-    padding: 1.5rem;
-    margin-bottom: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .giving-back-title {
-    color: #065f46;
-    margin-top: 0;
-    font-size: 1.15rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  color: #065f46;
+  margin-top: 0;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .giving-back-text {
-    color: #334155;
-    margin-bottom: 0;
-    line-height: 1.6;
-    font-size: 1.05rem;
+  color: #334155;
+  margin-bottom: 0;
+  line-height: 1.6;
+  font-size: 1.05rem;
 }
 
 /* Exam Preparation Programs Section */
 .exam-programs-section {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .section-title {
-    color: #0f172a;
-    border-bottom: 2px solid #cbd5e1;
-    padding-bottom: 0.5rem;
-    margin-bottom: 2rem;
+  color: #0f172a;
+  border-bottom: 2px solid #cbd5e1;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .exam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .exam-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .exam-card h3 {
-    color: #1e293b;
-    margin-top: 0;
-    font-size: 1.1rem;
+  color: #1e293b;
+  margin-top: 0;
+  font-size: 1.1rem;
 }
 
 .exam-card p {
-    color: #475569;
-    font-size: 0.95rem;
-    margin-bottom: 0;
-    line-height: 1.6;
+  color: #475569;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  line-height: 1.6;
 }
 
 /* Exam Card Top Borders */
-.border-blue { border-top: 4px solid #3b82f6; }
-.border-green { border-top: 4px solid #10b981; }
-.border-orange { border-top: 4px solid #f59e0b; }
-.border-purple { border-top: 4px solid #8b5cf6; }
+.border-blue {
+  border-top: 4px solid #3b82f6;
+}
+.border-green {
+  border-top: 4px solid #10b981;
+}
+.border-orange {
+  border-top: 4px solid #f59e0b;
+}
+.border-purple {
+  border-top: 4px solid #8b5cf6;
+}
 
 /* STEM Tutoring Intro */
 .stem-intro {
-    text-align: center;
-    margin: 0 auto 3rem auto;
-    max-width: 800px;
+  text-align: center;
+  margin: 0 auto 3rem auto;
+  max-width: 800px;
 }
 
 .stem-intro h1 {
-    color: #0f172a;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  color: #0f172a;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .stem-intro p {
-    color: #475569;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin: 0 auto 1.5rem auto;
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 auto 1.5rem auto;
 }
 
 .language-badge {
-    display: inline-block;
-    background: #eff6ff;
-    color: #1d4ed8;
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.5rem 1.2rem;
-    border-radius: 999px;
-    border: 1px solid #bfdbfe;
+  display: inline-block;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
 }
 
 /* Curriculum Grid Variations */
 .curriculum-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .curriculum-box {
-    background: #f8fafc;
-    padding: 1.5rem;
-    border-radius: 8px;
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 .curriculum-box h3 {
-    color: #0f172a;
-    margin-top: 0;
+  color: #0f172a;
+  margin-top: 0;
 }
 
 .curriculum-box ul {
-    list-style-type: square;
-    margin-left: 1rem;
+  list-style-type: square;
+  margin-left: 1rem;
 }
 
-.border-left-blue { border-left: 4px solid #3b82f6; }
-.border-left-red { border-left: 4px solid #ef4444; }
-.border-left-orange { border-left: 4px solid #f59e0b; }
-.border-left-green { border-left: 4px solid #10b981; }
-.border-left-purple { border-left: 4px solid #8b5cf6; }
+.border-left-blue {
+  border-left: 4px solid #3b82f6;
+}
+.border-left-red {
+  border-left: 4px solid #ef4444;
+}
+.border-left-orange {
+  border-left: 4px solid #f59e0b;
+}
+.border-left-green {
+  border-left: 4px solid #10b981;
+}
+.border-left-purple {
+  border-left: 4px solid #8b5cf6;
+}
 
 /* --- Highlight Badges (Online, 90-Min, Language) --- */
 .highlight-badges {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
 .feature-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #f8fafc; /* Hafif gri/beyaz arka plan */
-    color: #0f172a;
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
-    border: 1px solid #cbd5e1;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8fafc; /* Hafif gri/beyaz arka plan */
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .feature-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================
    FOOTER STYLES
 ========================================= */
 .site-footer {
-    background-color: #0f172a;
-    color: #cbd5e1;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 4rem;
 }
 
 .site-footer p {
-    margin: 0; /* Paragrafların varsayılan boşluğunu sıfırlıyoruz */
+  margin: 0; /* Paragrafların varsayılan boşluğunu sıfırlıyoruz */
 }
 
 .site-footer .footer-location {
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* =========================================
+   MARKDOWN RENDER STYLES (Readings Page)
+========================================= */
+
+/* "The Summary" ve "My Thoughts" gibi ana bölüm başlıkları (###) */
+.review-body h3 {
+    color: #0f172a;
+    font-size: 1.25rem; /* Kitap başlığından (1.5rem) bariz şekilde küçük */
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid #e2e8f0; /* Konuları ayırmak için ince şık bir alt çizgi */
+    padding-bottom: 0.4rem;
+}
+
+/* "1. Stop Hoping..." gibi alt bölüm/chapter başlıkları (####) */
+.review-body h4 {
+    color: #10b981; /* Bölüm başlıklarına zümrüt yeşili bir vurgu verelim */
+    font-size: 1.05rem; /* Paragraf metninden sadece birazcık büyük */
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+/* Paragraf boşluklarını ve satır aralıklarını düzenleme */
+.review-body p {
+    color: #475569;
+    line-height: 1.7;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
 }
