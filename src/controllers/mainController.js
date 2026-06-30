@@ -81,14 +81,15 @@ exports.sendContactEmail = async (req, res) => {
 
   // 2. Mail içeriğini hazırla
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER, // Zorunlu Google kuralı: Kendi adresin olmalı
-      replyTo: email, // Sen maili yanıtlaya bastığında müşterinin adresi otomatik çıkar
-      to: process.env.EMAIL_USER,
-      subject: `Yeni İletişim Formu: ${name}`,
-      text: message,
-      html: `<p>Gönderen: ${name} (${email})</p><p>${message}</p>`,
-    });
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com", // Bu satır eksik veya hatalı olduğu için kendi içine dönüyordu
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
 
     // BAŞARILI DURUMU: Sayfayı 'successMessage' ile tekrar yükle
     res.render("contact", {
