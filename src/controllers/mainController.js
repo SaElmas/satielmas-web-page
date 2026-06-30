@@ -82,8 +82,9 @@ exports.sendContactEmail = async (req, res) => {
   // 2. Mail içeriğini hazırla
   try {
     await transporter.sendMail({
-      from: email,
-      to: process.env.EMAIL_USER, // veya kendi mail adresiniz
+      from: process.env.EMAIL_USER, // Zorunlu Google kuralı: Kendi adresin olmalı
+      replyTo: email, // Sen maili yanıtlaya bastığında müşterinin adresi otomatik çıkar
+      to: process.env.EMAIL_USER,
       subject: `Yeni İletişim Formu: ${name}`,
       text: message,
       html: `<p>Gönderen: ${name} (${email})</p><p>${message}</p>`,
