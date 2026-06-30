@@ -70,7 +70,9 @@ exports.sendContactEmail = async (req, res) => {
 
   // 1. Taşıyıcıyı (Transporter) yapılandır
   let transporter = nodemailer.createTransport({
-    service: "gmail", // veya 'outlook', 'yahoo'
+    service: "smtp.gmail.com",
+    port: 465,
+    secure: true, // 465 portu için true olmalıdır
     auth: {
       user: process.env.EMAIL_USER, // Maili gönderecek adres
       pass: process.env.EMAIL_PASS, // Gmail kullanıyorsan "Uygulama Şifresi" kullanmalısın
