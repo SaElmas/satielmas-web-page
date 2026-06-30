@@ -6,40 +6,42 @@
 <body>
     <%- include('partials/navbar') %>
 
-    <main style="max-width: 900px; margin: 2rem auto; padding: 0 1rem;">
-        <section class="card" style="border-top: 5px solid #3b82f6;">
-            <p style="color: #64748b; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;"><%= course.category %></p>
-            <h1 style="color: #0f172a; margin-top: 0; font-size: 2.5rem;"><%= course.title %></h1>
+    <main class="course-detail-main">
+        <section class="card course-card-section">
+            <p class="course-category-label"><%= course.category[currentLang] %></p>
+            <h1 class="course-title"><%= course.title[currentLang] %></h1>
             
-            <p style="font-size: 1.15rem; line-height: 1.8; color: #334155; margin-bottom: 2rem;">
-                <%= course.description %>
+            <p class="course-description">
+                <%- course.description[currentLang] %>
             </p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
-                    <h3 style="color: #0f172a; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Curriculum / Syllabus</h3>
-                    <ul style="line-height: 1.8; color: #475569; padding-left: 1.2rem;">
-                        <% course.syllabus.forEach(function(item) { %>
-                            <li><%= item %></li>
-                        <% }) %>
+            <div class="course-grid">
+                <div class="course-info-box">
+                    <h3 class="course-info-title"><%= __('course_detail.lbl_curriculum') %></h3>
+                    <ul class="course-syllabus-list">
+                        <% if (course.syllabus && course.syllabus[currentLang]) { %>
+                            <% course.syllabus[currentLang].forEach(function(item) { %>
+                                <li><%- item %></li>
+                            <% }) %>
+                        <% } %>
                     </ul>
                 </div>
 
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
-                    <h3 style="color: #0f172a; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Exam & Course Strategy</h3>
-                    <p style="line-height: 1.8; color: #475569;">
-                        <%= course.examInfo %>
+                <div class="course-info-box">
+                    <h3 class="course-info-title"><%= __('course_detail.lbl_strategy') %></h3>
+                    <p class="course-strategy-text">
+                        <%- course.examInfo[currentLang] %>
                     </p>
-                <div style="margin-top: 2rem; text-align: center;">
-                    <a href="/contact" style="display: inline-block; background: #0f172a; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s;">
-                        Book a Free Trial Lesson
+                <div class="course-btn-container">
+                    <a href="/contact" class="course-trial-btn">
+                        <%= __('course_detail.btn_trial') %>
                     </a>
                 </div>
                 </div>
             </div>
             
-            <div style="margin-top: 2rem;">
-                <a href="/tutoring" style="color: #3b82f6; text-decoration: none; font-weight: bold;">← Back to All Courses</a>
+            <div class="course-back-container">
+                <a href="/tutoring" class="course-back-link"><%= __('course_detail.link_back') %></a>
             </div>
         </section>
     </main>

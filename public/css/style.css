@@ -817,3 +817,364 @@ textarea.form-input {
     margin-top: 0;
     margin-bottom: 1.2rem;
 }
+
+/* =========================================
+   LANGUAGE DROPDOWN (Navbar)
+========================================= */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+
+.lang-btn {
+    background: transparent;
+    color: #cbd5e1; /* Navbar metin renginle aynı yapabilirsin */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Açılan Menü Kutusu */
+.lang-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px); /* Kutu butondan 8px aşağıda açılır */
+    right: 0;
+    background-color: #ffffff;
+    min-width: 140px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    z-index: 100;
+    overflow: hidden; 
+    /* margin-top satırını sildik! */
+}
+
+/* Fare için görünmez köprü (Dead Zone engelleyici) */
+.lang-dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+    height: 15px; /* Menüye kadar olan boşluğu kaplar */
+    background: transparent;
+}
+
+.lang-content a {
+    color: #1e293b;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.lang-content a:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+/* Hover durumunda menüyü göster */
+.lang-dropdown:hover .lang-content {
+    display: block;
+}
+
+/* =========================================
+   ACADEMIC REPOSITORY (topics/index.ejs)
+========================================= */
+.repo-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.repo-title {
+    color: #1e293b;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.repo-text {
+    color: #475569;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.repo-list {
+    color: #475569;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+}
+
+.repo-list li {
+    margin-bottom: 0.5rem; /* Maddeler arasına biraz nefes payı */
+}
+
+.repo-notice {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #10b981;
+    color: #334155;
+    font-style: italic;
+}
+
+/* =========================================
+   MAIN PAGE (index.ejs)
+========================================= */
+.main-container {
+    max-width: 1000px; 
+    margin: 3rem auto; 
+    padding: 0 1rem;
+}
+
+.hero-section {
+    text-align: center; 
+    margin-bottom: 4rem;
+}
+
+.hero-title {
+    font-size: 3rem; 
+    color: #0f172a; 
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem; 
+    color: #475569; 
+    max-width: 700px; 
+    margin: 0 auto; 
+    line-height: 1.6;
+}
+
+.grid-container {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 3rem;
+}
+
+.section-title-blue {
+    color: #3b82f6; 
+    border-bottom: 2px solid #cbd5e1; 
+    padding-bottom: 0.5rem;
+}
+
+.section-title-green {
+    color: #10b981; 
+    border-bottom: 2px solid #cbd5e1; 
+    padding-bottom: 0.5rem;
+}
+
+.content-text {
+    color: #334155; 
+    line-height: 1.8; 
+    font-size: 1.05rem;
+    margin-bottom: 1rem; /* EJS'deki p etiketlerinin altına boşluk */
+}
+
+.image-wrapper {
+    margin: 1.5rem 0; 
+    text-align: center;
+}
+
+.profile-image {
+    width: 100%; 
+    max-width: 350px; 
+    height: 350px; 
+    object-fit: cover; 
+    object-position: center 15%; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.testimonials-section {
+    margin-top: 5rem; 
+    text-align: center;
+}
+
+.testimonials-title {
+    color: #0f172a; 
+    font-size: 2rem; 
+    margin-bottom: 2rem;
+}
+
+/* =========================================
+   TUTORING PAGE (tutoring.ejs)
+========================================= */
+.giving-back-icon {
+    font-size: 1.3rem;
+}
+
+.category-nav-wrapper {
+    margin-bottom: 3.5rem;
+}
+
+.badge-blue {
+    background: #eff6ff; 
+    color: #1d4ed8; 
+    border-color: #bfdbfe;
+}
+
+.badge-green {
+    background: #f0fdf4; 
+    color: #15803d; 
+    border-color: #bbf7d0;
+}
+
+.badge-red {
+    background: #fef2f2; 
+    color: #b91c1c; 
+    border-color: #fecaca;
+}
+
+/* =========================================
+   NOTES PAGE (notes.ejs)
+========================================= */
+.notes-main-title {
+    color: #0f172a; 
+    border-bottom: 2px solid #cbd5e1; 
+    padding-bottom: 0.5rem; 
+    margin-bottom: 2rem; 
+    margin-top: 0;
+}
+
+.notes-error-box {
+    background: #fef2f2; 
+    border: 1px solid #fca5a5; 
+    padding: 2rem; 
+    border-radius: 8px; 
+    color: #991b1b;
+}
+
+.notes-error-title {
+    margin-top: 0;
+}
+
+/* =========================================
+   CONTACT PAGE (contact.ejs)
+========================================= */
+.icon-location { color: #ef4444; }
+.icon-email { color: #ea4335; }
+.icon-whatsapp { color: #25d366; }
+.icon-linkedin { color: #0a66c2; }
+.icon-instagram { color: #e1306c; }
+
+.alert-success {
+    background-color: #d1fae5; 
+    color: #065f46; 
+    padding: 1rem; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    border: 1px solid #10b981;
+}
+
+.alert-error {
+    background-color: #fee2e2; 
+    color: #991b1b; 
+    padding: 1rem; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    border: 1px solid #ef4444;
+}
+
+/* =========================================
+   COURSE DETAIL PAGE (course-detail.ejs)
+========================================= */
+.course-detail-main { 
+    max-width: 900px; 
+    margin: 2rem auto; 
+    padding: 0 1rem; 
+}
+.course-card-section { 
+    border-top: 5px solid #3b82f6; 
+}
+.course-category-label { 
+    color: #64748b; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    margin-bottom: 0.5rem; 
+}
+.course-title { 
+    color: #0f172a; 
+    margin-top: 0; 
+    font-size: 2.5rem; 
+}
+.course-description { 
+    font-size: 1.15rem; 
+    line-height: 1.8; 
+    color: #334155; 
+    margin-bottom: 2rem; 
+}
+.course-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 2rem; 
+}
+.course-info-box { 
+    background: #f8fafc; 
+    padding: 1.5rem; 
+    border-radius: 8px; 
+}
+.course-info-title { 
+    color: #0f172a; 
+    margin-top: 0; 
+    border-bottom: 2px solid #cbd5e1; 
+    padding-bottom: 0.5rem; 
+}
+.course-syllabus-list { 
+    line-height: 1.8; 
+    color: #475569; 
+    padding-left: 1.2rem; 
+}
+.course-strategy-text { 
+    line-height: 1.8; 
+    color: #475569; 
+}
+.course-btn-container { 
+    margin-top: 2rem; 
+    text-align: center; 
+}
+.course-trial-btn { 
+    display: inline-block; 
+    background: #0f172a; 
+    color: white; 
+    padding: 0.75rem 1.5rem; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    transition: background-color 0.3s; 
+}
+.course-trial-btn:hover {
+    background: #1e293b;
+}
+.course-back-container { 
+    margin-top: 2rem; 
+}
+.course-back-link { 
+    color: #3b82f6; 
+    text-decoration: none; 
+    font-weight: bold; 
+}
+.course-back-link:hover {
+    text-decoration: underline;
+}

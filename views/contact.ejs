@@ -8,74 +8,76 @@
 
     <main>
         <section class="card">
-            <h2>Get in Touch</h2>
+            <h2><%= __('contact_page.title') %></h2>
             <p class="contact-intro">
-                Whether you're looking for tutoring, academic collaboration, or just want to discuss mathematics and computer science, feel free to reach out.
+                <%= __('contact_page.intro') %>
             </p>
 
             <div class="contact-grid">
                 <div class="contact-card contact-info">
-                    <h3>Contact Information</h3>
+                    <h3><%= __('contact_page.info_title') %></h3>
                     <ul class="contact-list">
                         <li>
-                            <i class="fas fa-map-marker-alt contact-icon" style="color: #ef4444;"></i> 
-                            <strong>Location:</strong> Ankara, Türkiye
+                            <i class="fas fa-map-marker-alt contact-icon icon-location"></i> 
+                            <strong><%= __('contact_page.lbl_location') %></strong> <%= __('contact_page.val_location') %>
                         </li>
                         <li>
                             <a href="mailto:saitelmas@gmail.com">
-                                <i class="fas fa-envelope contact-icon" style="color: #ea4335;"></i> 
-                                <strong>Email:</strong> saitelmas@gmail.com
+                                <i class="fas fa-envelope contact-icon icon-email"></i> 
+                                <strong><%= __('contact_page.lbl_email') %></strong> saitelmas@gmail.com
                             </a>
                         </li>
                         <li>
                             <a href="https://wa.me/905309537225" target="_blank">
-                                <i class="fab fa-whatsapp contact-icon" style="color: #25d366;"></i> 
-                                <strong>WhatsApp:</strong> +90 530 953 7225
+                                <i class="fab fa-whatsapp contact-icon icon-whatsapp"></i> 
+                                <strong><%= __('contact_page.lbl_whatsapp') %></strong> +90 530 953 7225
                             </a>
                         </li>
                         <li>
                             <a href="https://linkedin.com/in/saitelmas" target="_blank">
-                                <i class="fab fa-linkedin contact-icon" style="color: #0a66c2;"></i> 
-                                <strong>LinkedIn:</strong> saitelmas
+                                <i class="fab fa-linkedin contact-icon icon-linkedin"></i> 
+                                <strong><%= __('contact_page.lbl_linkedin') %></strong> saitelmas
                             </a>
                         </li>
                         <li>
                             <a href="https://instagram.com/saitelmas_tutor" target="_blank">
-                                <i class="fab fa-instagram contact-icon" style="color: #e1306c;"></i> 
-                                <strong>Instagram:</strong> @saitelmas_tutor
+                                <i class="fab fa-instagram contact-icon icon-instagram"></i> 
+                                <strong><%= __('contact_page.lbl_instagram') %></strong> @saitelmas_tutor
                             </a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="contact-card contact-form">
-                    <h3>Send a Message</h3>
+                    <h3><%= __('contact_page.form_title') %></h3>
+                    
                     <% if (typeof successMessage !== 'undefined') { %>
-                    <div style="background-color: #d1fae5; color: #065f46; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #10b981;">
+                    <div class="alert-success">
                         <i class="fas fa-check-circle"></i> <%= successMessage %>
                     </div>
                     <% } %>
 
                     <% if (typeof errorMessage !== 'undefined') { %>
-                        <div style="background-color: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #ef4444;">
+                        <div class="alert-error">
                             <i class="fas fa-exclamation-circle"></i> <%= errorMessage %>
                         </div>
                     <% } %>
+                    
                     <form action="/contact" method="POST" class="form-container">
                         <div>
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" class="form-input" required>
+                            <label for="name" class="form-label"><%= __('contact_page.form_name') %></label>
+                            <input type="text" id="name" name="name" placeholder="<%= __('contact_page.ph_name') %>" class="form-input" required>
                         </div>
                         <div>
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your Email" class="form-input" required>
+                            <label for="email" class="form-label"><%= __('contact_page.form_email') %></label>
+                            <input type="email" id="email" name="email" placeholder="<%= __('contact_page.ph_email') %>" class="form-input" required>
                         </div>
                         <div>
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="How can I help you?" class="form-input" required></textarea>
+                            <label for="message" class="form-label"><%= __('contact_page.form_message') %></label>
+                            <textarea id="message" name="message" rows="4" placeholder="<%= __('contact_page.ph_message') %>" class="form-input" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">
-                            Send Message
+                            <%= __('contact_page.btn_submit') %>
                         </button>
                     </form>
                 </div>

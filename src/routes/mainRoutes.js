@@ -4,6 +4,8 @@ const mainController = require('../controllers/mainController');
 
 router.get('/', mainController.getHomePage);
 
+router.get('/change-lang/:lang', mainController.changeLanguage);
+
 // Buradaki isimler Controller'daki 'exports.isim' kısımlarıyla aynı olmalı!
 router.get('/tutoring', mainController.getTutoringPage);
 router.get('/tutoring/:courseName', mainController.getCourseDetails)

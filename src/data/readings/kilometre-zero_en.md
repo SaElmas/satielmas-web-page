@@ -8,7 +8,7 @@ The story follows Maëlle, a 35-year-old workaholic financial director living a 
 
 ### My Thoughts
 #### 1. Stop Hoping for a Completion of Anything in Life
-Sürekli bir bitiş çizgisi beklemek, anı yaşamanın önündeki en büyük engeldir. Matematikteki limit kavramı gibi, sonsuza yaklaşabiliriz ama asla "tamamlanmış" bir noktaya ulaşıp duramayız.
+Constantly waiting for a finish line is the biggest obstacle to living in the moment. Much like the concept of limits in mathematics, we can approach infinity, but we can never reach a "completed" point and come to a halt.
 
 #### 2. Live With an Open Heart
-Mantığın ve rasyonel düşüncenin bittiği yerde duygusal zekanın devreye girmesi harika bir mekanizma.
+It is a fascinating mechanism that emotional intelligence steps in exactly where logic and rational thinking end.

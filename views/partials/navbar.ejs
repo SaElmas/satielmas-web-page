@@ -8,9 +8,19 @@
   </button>
 
   <ul class="nav-links" id="navLinks">
-    <li><a href="/">About Me</a></li>
-    <li><a href="/tutoring">Tutoring</a></li>
-    <li><a href="/notes">My Notes</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <a href="/"><%= __('nav_about') %></a>
+    <a href="/tutoring"><%= __('nav_tutoring') %></a>
+    <a href="/notes"><%= __('nav_notes') %></a>
+    <a href="/contact"><%= __('nav_contact') %></a>
+    <div class="lang-dropdown">
+    <button class="lang-btn">
+        <i class="fas fa-globe"></i> <%= currentLang.toUpperCase() %>
+    </button>
+    <div class="lang-content">
+        <a href="/change-lang/en">🇬🇧 English</a>
+        <a href="/change-lang/tr">🇹🇷 Türkçe</a>
+        <a href="/change-lang/fr">🇫🇷 Français</a>
+    </div>
+</div>
   </ul>
 </nav>

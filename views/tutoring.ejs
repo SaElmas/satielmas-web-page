@@ -10,16 +10,16 @@
         
         <div class="giving-back-notice">
             <h3 class="giving-back-title">
-                <span style="font-size: 1.3rem;">🌱</span> A Note on Giving Back
+                <span class="giving-back-icon">🌱</span> <%= __('tutoring_page.giving_back_title') %>
             </h3>
             <p class="giving-back-text">
-                I deeply believe that quality education should be accessible. Subject to my schedule and availability, I provide <strong>completely free tutoring sessions for orphaned students</strong>. If you or a student you know is in this situation, please do not hesitate to reach out—simply sending a message is enough.
+                <%- __('tutoring_page.giving_back_text') %>
             </p>
         </div>
 
-        <ul class="category-nav" style="margin-bottom: 3.5rem;">
+        <ul class="category-nav category-nav-wrapper">
             <li class="category-item">
-                <a href="#">High School ▾</a>
+                <a href="#"><%= __('tutoring_page.nav_high_school') %></a>
                 <ul class="dropdown">
                     <li><a href="/tutoring/ap-calculus">AP Calculus AB & BC</a></li>
                     <li><a href="/tutoring/ap-statistics">AP Statistics</a></li>
@@ -31,7 +31,7 @@
                 </ul>
             </li>
             <li class="category-item">
-                <a href="#">University Math ▾</a>
+                <a href="#"><%= __('tutoring_page.nav_uni_math') %></a>
                 <ul class="dropdown">
                     <li><a href="/tutoring/calculus">Calculus I-II-III</a></li>
                     <li><a href="/tutoring/linear-algebra">Linear Algebra</a></li>
@@ -42,7 +42,7 @@
                 </ul>
             </li>
             <li class="category-item">
-                <a href="#">University CS ▾</a>
+                <a href="#"><%= __('tutoring_page.nav_uni_cs') %></a>
                 <ul class="dropdown">
                     <li><a href="/tutoring/programming-languages">Python, C/C++, Java</a></li>
                     <li><a href="/tutoring/data-structures">Data Structures</a></li>
@@ -55,54 +55,44 @@
         </ul>
 
         <section class="exam-programs-section">
-            <h2 class="section-title">Exam Preparation Programs</h2>
+            <h2 class="section-title"><%= __('tutoring_page.exam_prep_title') %></h2>
             
             <div class="exam-grid">
                 <div class="exam-card border-blue">
-                    <h3>🗓️ Flexible Formats</h3>
-                    <p>
-                        Offering both <strong>1-on-1 individual</strong> and <strong>group sessions</strong>. Choose between an <strong>8-week accelerated</strong> crash course or a comprehensive <strong>16-week standard</strong> program tailored to your exam timeline.
-                    </p>
+                    <h3><%= __('tutoring_page.exam_flexible_title') %></h3>
+                    <p><%- __('tutoring_page.exam_flexible_desc') %></p>
                 </div>
 
                 <div class="exam-card border-green">
-                    <h3>📊 Mock Exams & Analysis</h3>
-                    <p>
-                        Every student receives <strong>5 free mock exams</strong> simulating real test conditions, followed by comprehensive <strong>result evaluation reports</strong> to pinpoint areas for improvement.
-                    </p>
+                    <h3><%= __('tutoring_page.exam_mock_title') %></h3>
+                    <p><%- __('tutoring_page.exam_mock_desc') %></p>
                 </div>
 
                 <div class="exam-card border-orange">
-                    <h3>🎯 Strategic Problem Solving</h3>
-                    <p>
-                        Includes <strong>personalized homework</strong> and guided solving sessions. Students master the effective use of <strong>TI and Desmos calculators</strong>, saving crucial time during exams.
-                    </p>
+                    <h3><%= __('tutoring_page.exam_strategic_title') %></h3>
+                    <p><%- __('tutoring_page.exam_strategic_desc') %></p>
                 </div>
 
                 <div class="exam-card border-purple">
-                    <h3>⭐ The Guarantee</h3>
-                    <p>
-                        Start with a completely <strong>Free Trial Lesson</strong> to experience the methodology firsthand. I stand by a strict <strong>Success Guarantee</strong> for students who complete the required program milestones.
-                    </p>
+                    <h3><%= __('tutoring_page.exam_guarantee_title') %></h3>
+                    <p><%- __('tutoring_page.exam_guarantee_desc') %></p>
                 </div>
             </div>
         </section>
 
         <section class="stem-intro">
-            <h1>STEM Tutoring & Lecturing</h1>
-            <p>
-                I specialize in providing high-quality, structured tutoring for high school and university students across international curricula. My approach focuses on deep conceptual understanding and rigorous problem-solving.
-            </p>
+            <h1><%= __('tutoring_page.stem_intro_title') %></h1>
+            <p><%= __('tutoring_page.stem_intro_desc') %></p>
             
             <div class="highlight-badges">
-                <div class="feature-badge" style="background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe;">
-                    🌍 English & Turkish
+                <div class="feature-badge badge-blue">
+                    <%= __('tutoring_page.badge_language') %>
                 </div>
-                <div class="feature-badge" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">
-                    💻 100% Online
+                <div class="feature-badge badge-green">
+                    <%= __('tutoring_page.badge_online') %>
                 </div>
-                <div class="feature-badge" style="background: #fef2f2; color: #b91c1c; border-color: #fecaca;">
-                    ⏱️ 90-Minute Blocks
+                <div class="feature-badge badge-red">
+                    <%= __('tutoring_page.badge_duration') %>
                 </div>
             </div>
         </section>
@@ -111,46 +101,46 @@
             <div class="curriculum-grid">
                 
                 <div class="curriculum-box border-left-blue">
-                    <h3>AP (Advanced Placement)</h3>
+                    <h3><%= __('tutoring_page.box_ap_title') %></h3>
                     <ul>
-                        <li><strong>Mathematics:</strong> Calculus AB & BC, Statistics</li>
-                        <li><strong>Physics:</strong> Physics 1, 2, and Physics C (Mechanics & E&M)</li>
-                        <li><strong>Computer Science:</strong> Computer Science A, Computer Science Principles</li>
+                        <li><%- __('tutoring_page.box_ap_math') %></li>
+                        <li><%- __('tutoring_page.box_ap_physics') %></li>
+                        <li><%- __('tutoring_page.box_ap_cs') %></li>
                     </ul>
                 </div>
 
                 <div class="curriculum-box border-left-red">
-                    <h3>IB (International Baccalaureate)</h3>
+                    <h3><%= __('tutoring_page.box_ib_title') %></h3>
                     <ul>
-                        <li><strong>Mathematics:</strong> Analysis and Approaches (AA), Applications and Interpretation (AI) - HL & SL</li>
-                        <li><strong>Physics:</strong> Higher Level (HL) & Standard Level (SL)</li>
-                        <li><strong>Computer Science:</strong> Higher Level (HL) & Standard Level (SL)</li>
+                        <li><%- __('tutoring_page.box_ib_math') %></li>
+                        <li><%- __('tutoring_page.box_ib_physics') %></li>
+                        <li><%- __('tutoring_page.box_ib_cs') %></li>
                     </ul>
                 </div>
 
                 <div class="curriculum-box border-left-orange">
-                    <h3>SAT Preparation</h3>
+                    <h3><%= __('tutoring_page.box_sat_title') %></h3>
                     <ul>
-                        <li><strong>Mathematics:</strong> Comprehensive SAT Math preparation, advanced problem-solving, and timing strategies.</li>
+                        <li><%- __('tutoring_page.box_sat_math') %></li>
                     </ul>
                 </div>
 
                 <div class="curriculum-box border-left-green">
-                    <h3>University Math & Physics</h3>
+                    <h3><%= __('tutoring_page.box_uni_math_title') %></h3>
                     <ul>
-                        <li><strong>Core Calculus & Analysis:</strong> Calculus I-II-III (Multivariable), Advanced Calculus, Real Analysis, Complex Analysis</li>
-                        <li><strong>Algebra & Geometry:</strong> Linear Algebra, Abstract Algebra, Differential Geometry</li>
-                        <li><strong>Applied & Engineering Math:</strong> Ordinary & Partial Differential Equations (ODE & PDE), Numerical Analysis, Engineering Mathematics, Probability & Statistics</li>
-                        <li><strong>Physics:</strong> University General Physics (Mechanics & Electromagnetism)</li>
+                        <li><%- __('tutoring_page.box_uni_math_core') %></li>
+                        <li><%- __('tutoring_page.box_uni_math_algebra') %></li>
+                        <li><%- __('tutoring_page.box_uni_math_applied') %></li>
+                        <li><%- __('tutoring_page.box_uni_math_physics') %></li>
                     </ul>
                 </div>
 
                 <div class="curriculum-box border-left-purple">
-                    <h3>University Computer Science</h3>
+                    <h3><%= __('tutoring_page.box_uni_cs_title') %></h3>
                     <ul>
-                        <li><strong>Programming Languages:</strong> Python, C, C++, Java</li>
-                        <li><strong>Core CS & Theory:</strong> Data Structures, Algorithm Design, Automata Theory, Discrete Mathematics</li>
-                        <li><strong>Systems & Hardware:</strong> Database Systems, Computer Architecture, Circuit Design</li>
+                        <li><%- __('tutoring_page.box_uni_cs_prog') %></li>
+                        <li><%- __('tutoring_page.box_uni_cs_core') %></li>
+                        <li><%- __('tutoring_page.box_uni_cs_systems') %></li>
                     </ul>
                 </div>
 

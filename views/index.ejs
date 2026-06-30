@@ -8,87 +8,64 @@
 <body>
   <%- include('partials/navbar') %>
 
-  <main style="max-width: 1000px; margin: 3rem auto; padding: 0 1rem;">
+  <main class="main-container">
 
-    <!-- Hero Section -->
-    <section style="text-align: center; margin-bottom: 4rem;">
-      <h1 style="font-size: 3rem; color: #0f172a; margin-bottom: 1rem;">Mathematician. Engineer. Educator.</h1>
-      <p style="font-size: 1.25rem; color: #475569; max-width: 700px; margin: 0 auto; line-height: 1.6;">
-        Bridging the gap between pure mathematics, computer science, and real-world engineering to guide the next generation of analytical minds.
+    <section class="hero-section">
+      <h1 class="hero-title"><%= __('hero_title') %></h1>
+      <p class="hero-subtitle">
+        <%- __('hero_subtitle') %>
       </p>
     </section>
 
-    <!-- Grid Layout -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+    <div class="grid-container">
 
-      <!-- Left Column: Academic & Professional Journey -->
       <div>
-        <h2 style="color: #3b82f6; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">My Academic & Professional Journey</h2>
-
-        <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
-          My path to education is built on a foundation of rigorous engineering and pure science. After earning my degree in Shipbuilding Engineering from <strong>Istanbul Technical University (ITU)</strong>, I worked as a designer and engineer on <strong>dozens of yacht projects</strong> until 2016. Driven by a deep passion for fundamental sciences, I then pivoted my career toward academia.
-        </p>
-
-        <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
-          This drive led me to <strong>Middle East Technical University (METU)</strong>, where I completed a double major in <strong>Mathematics</strong> and <strong>Computer Engineering</strong>. I am currently continuing my academic journey there as a <strong>Ph.D.</strong> student in Mathematics.
-        </p>
-
-        <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
-          Since transitioning to education, I have had the privilege of guiding <strong>over 100 students</strong> in achieving top ranks and maximizing their academic potential. I bring this multifaceted engineering and theoretical perspective into every lesson I teach.
-        </p>
-
-        <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
-          Having served as an <strong>executive in corporate firms</strong> for many years and <strong>founded my own manufacturing and yacht design companies</strong>, my mission extends beyond academic success. I strive to mentor my students, equipping them with a <strong>broader vision and strategic mindset</strong> for their future professional lives. Underlying all my teaching is a deep commitment to cultivating a mindset aligned with <strong>positive global values</strong>.
-        </p>
+        <h2 class="section-title-blue"><%= __('about_page.journey_title') %></h2>
+        <p class="content-text"><%- __('about_page.journey_p1') %></p>
+        <p class="content-text"><%- __('about_page.journey_p2') %></p>
+        <p class="content-text"><%- __('about_page.journey_p3') %></p>
+        <p class="content-text"><%- __('about_page.journey_p4') %></p>
       </div>
 
-      <!-- Right Column: Beyond the Desk -->
       <div>
-        <h2 style="color: #10b981; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Beyond the Desk</h2>
+        <h2 class="section-title-green"><%= __('about_page.beyond_title') %></h2>
 
-        <!-- Modern, kırpılmış ve boyutlandırılmış fotoğraf -->
-        <div style="margin: 1.5rem 0; text-align: center;">
-          <img src="/img/sait-mentor.jpg" alt="Sait Elmas" style="width: 100%; max-width: 350px; height: 350px; object-fit: cover; object-position: center 15%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        <div class="image-wrapper">
+          <img src="/img/sait-mentor.jpg" alt="Sait Elmas" class="profile-image">
         </div>
 
-        <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
-          Currently based in Ankara, Türkiye, I also believe that a sharp mind requires a balanced life. When I am not tutoring or coding in Python and Java, I immerse myself in the world of social Latin dances, practicing <strong>Kizomba</strong> and <strong>Bachata</strong> regularly.
-        </p>
-
-        <p style="color: #334155; line-height: 1.8; font-size: 1.05rem;">
-          I am an avid reader of philosophy, particularly Stoicism, and hold a deep fascination for ancient history. Whether I am capturing moments through photography or exploring new ideas, I approach life with the same curiosity I bring to mathematics.
-        </p>
+        <p class="content-text"><%- __('about_page.beyond_p1') %></p>
+        <p class="content-text"><%- __('about_page.beyond_p2') %></p>
       </div>
     </div>
 
-    <!-- Testimonials / Öğrenci Yorumları Bölümü -->
-    <section style="margin-top: 5rem; text-align: center;">
-      <h2 style="color: #0f172a; font-size: 2rem; margin-bottom: 2rem;">What My Students Say</h2>
+    <section class="testimonials-section">
+      <h2 class="testimonials-title"><%= __('about_page.testimonials_title') %></h2>
 
       <div class="testimonial-container">
         <div class="testimonial-track">
 
-          <!-- 1. GRUP: 8 BENZERSİZ KART (Eski + Yeni) -->
-
-          <!-- Eski Kartlar -->
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">Sait teacher's engineering perspective made AP Calculus incredibly easy to understand. He doesn't just teach formulas; he teaches how to think. Thanks to him, I got a 5 on my exam.</p>
             <div class="student-name">Deniz K.</div>
             <div class="student-school">Admitted to Technical University of Munich</div>
           </div>
+          
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">The transition from high school math to university Linear Algebra was tough, but his clear, logical explanations saved my GPA. Highly recommended for any engineering student.</p>
             <div class="student-name">Can B.</div>
             <div class="student-school">Computer Engineering Student</div>
           </div>
+
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">I was struggling with IB Physics HL. His method of breaking down complex physical phenomena into simple mathematical models is truly unique.</p>
             <div class="student-name">Ayşe Y.</div>
             <div class="student-school">IB Diploma Graduate</div>
           </div>
+
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">He helped me structure my entire approach to Java and OOP. Beyond just passing my CS classes, he gave me the vision to actually enjoy coding and software design.</p>
@@ -96,51 +73,27 @@
             <div class="student-school">University CS Student</div>
           </div>
 
-          <!-- Yeni Gerçek Yorumlar -->
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">I am taking AP Calculus lessons, and he is a truly great teacher. The methods he teaches are memorable, and because he introduces new approaches, my perspective on solving questions has genuinely changed.</p>
             <div class="student-name">Elif V.</div>
             <div class="student-school">AP Calculus Student</div>
-          </div>
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text">I have been taking AP and IB lessons from Sait teacher for 2 years. He explains topics simply and clearly, patiently repeating parts I don't understand. His communication with students is excellent.</p>
-            <div class="student-name">Kaan B.</div>
-            <div class="student-school">AP & IB Computer Science Student</div>
-          </div>
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text">He is a very attentive and highly equipped instructor. He explains topics through logic rather than memorization. His simple explanations make even the hardest topics easily understandable.</p>
-            <div class="student-name">Edibe Ö.</div>
-            <div class="student-school">IB Mathematics Student</div>
-          </div>
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text">I requested support for my son studying Computer Engineering in the Netherlands. My son was incredibly satisfied, noting Sait teacher's excellent communication and profound expertise in computer science.</p>
-            <div class="student-name">Halil K.</div>
-            <div class="student-school">Parent of a University CS Student</div>
           </div>
 
-          <!-- Yeni Gerçek Yorumlar (Kopya) -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text">I am taking AP Calculus lessons, and he is a truly great teacher. The methods he teaches are memorable, and because he introduces new approaches, my perspective on solving questions has genuinely changed.</p>
-            <div class="student-name">Elif V.</div>
-            <div class="student-school">AP Calculus Student</div>
-          </div>
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">I have been taking AP and IB lessons from Sait teacher for 2 years. He explains topics simply and clearly, patiently repeating parts I don't understand. His communication with students is excellent.</p>
             <div class="student-name">Kaan B.</div>
             <div class="student-school">AP & IB Computer Science Student</div>
           </div>
+
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">He is a very attentive and highly equipped instructor. He explains topics through logic rather than memorization. His simple explanations make even the hardest topics easily understandable.</p>
             <div class="student-name">Edibe Ö.</div>
             <div class="student-school">IB Mathematics Student</div>
           </div>
+
           <div class="testimonial-card">
             <div class="quote-icon">"</div>
             <p class="student-text">I requested support for my son studying Computer Engineering in the Netherlands. My son was incredibly satisfied, noting Sait teacher's excellent communication and profound expertise in computer science.</p>
@@ -155,5 +108,4 @@
 
   <%- include('partials/footer') %>
 </body>
-
 </html>

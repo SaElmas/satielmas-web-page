@@ -22,23 +22,22 @@
   <div class="notes-layout">
 
     <aside class="notes-sidebar">
-      <h3>Subjects & Topics</h3>
+      <h3><%= __('notes_page.sidebar_title') %></h3>
       <ul>
-        <li><a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>">Overview</a></li>
-
-        <li><a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>">Hungerford Algebra</a></li>
-        <li><a href="/notes/abstract-algebra" class="<%= activeTopic === 'abstract-algebra' ? 'active' : '' %>">Abstract Algebra</a></li>
-        <li><a href="/notes/linear-algebra" class="<%= activeTopic === 'linear-algebra' ? 'active' : '' %>">Linear Algebra</a></li>
-        <li><a href="/notes/real-analysis" class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>">Real & Complex Analysis</a></li>
-        <li><a href="/notes/programming" class="<%= activeTopic === 'programming' ? 'active' : '' %>">Python & Java Algorithms</a></li>
-        <li><a href="/notes/my-readings" class="<%= activeTopic === 'my-readings' ? 'active' : ''%>">My Readings</a></li>
+        <li><a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>"><%= __('notes_page.sidebar_overview') %></a></li>
+        <li><a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>"><%= __('notes_page.sidebar_hungerford') %></a></li>
+        <li><a href="/notes/abstract-algebra" class="<%= activeTopic === 'abstract-algebra' ? 'active' : '' %>"><%= __('notes_page.sidebar_abstract') %></a></li>
+        <li><a href="/notes/linear-algebra" class="<%= activeTopic === 'linear-algebra' ? 'active' : '' %>"><%= __('notes_page.sidebar_linear') %></a></li>
+        <li><a href="/notes/real-analysis" class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>"><%= __('notes_page.sidebar_real_complex') %></a></li>
+        <li><a href="/notes/programming" class="<%= activeTopic === 'programming' ? 'active' : '' %>"><%= __('notes_page.sidebar_programming') %></a></li>
+        <li><a href="/notes/my-readings" class="<%= activeTopic === 'my-readings' ? 'active' : ''%>"><%= __('notes_page.sidebar_readings') %></a></li>
       </ul>
     </aside>
 
     <main class="notes-content">
       <% if (activeTopic !== 'my-readings') { %>
-      <h1 style="color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; margin-bottom: 2rem; margin-top:0">
-        Academic Notes
+      <h1 class="notes-main-title">
+        <%= __('notes_page.main_title') %>
       </h1>
       <% } %>
 
@@ -52,9 +51,9 @@
       <%- include('topics/my-readings') %>
 
       <% } else { %>
-      <div style="background: #fef2f2; border: 1px solid #fca5a5; padding: 2rem; border-radius: 8px; color: #991b1b;">
-        <h2 style="margin-top: 0;">Topic Not Found</h2>
-        <p>The academic notes for this topic could not be found or are still being structured.</p>
+      <div class="notes-error-box">
+        <h2 class="notes-error-title"><%= __('notes_page.error_title') %></h2>
+        <p><%= __('notes_page.error_desc') %></p>
       </div>
       <% } %>
 

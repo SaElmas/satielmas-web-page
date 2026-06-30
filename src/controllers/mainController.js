@@ -7,13 +7,11 @@ const matter = require("gray-matter");
 const { marked } = require("marked");
 
 exports.getHomePage = (req, res, next) => {
-  // 'index' dosyasını render et ve courses değişkenini sayfaya yolla
   res.render("index", {
     pageTitle: "Sait Elmas | Academic & Engineering",
   });
 };
 
-// YENİ EKLENENLER: İsimlerin tam olarak böyle yazıldığından emin olun
 exports.getTutoringPage = (req, res, next) => {
   res.render("tutoring", {
     pageTitle: "Tutoring Services | Sait Elmas",
@@ -26,27 +24,20 @@ exports.getContactPage = (req, res, next) => {
   });
 };
 
-// 2. Dinamik Ders Detay Fonksiyonu (EN ALTA EKLEYİN)
 exports.getCourseDetails = (req, res, next) => {
-  // URL'den gelen ders ismini (slug) yakala
   const courseSlug = req.params.courseName;
-
-  // Veritabanında bu ismi ara
   const courseInfo = coursesData[courseSlug];
 
-  // Eğer URL'ye yanlış bir ders ismi yazıldıysa, Tutoring sayfasına geri yolla
   if (!courseInfo) {
     return res.redirect("/tutoring");
   }
 
-  // Ders bulunduysa dinamik EJS'yi render et ve verileri gönder
   res.render("course-detail", {
-    pageTitle: `${courseInfo.title} | Tutoring`,
+    pageTitle: `Course Details | Tutoring`,
     course: courseInfo,
   });
 };
 
-// Kullanıcı sadece /notes yazarsa "Özet/Karşılama" sayfasını render et
 exports.getNotesIndex = (req, res) => {
   res.render("notes", {
     pageTitle: "Academic Notes - Sait Elmas",
@@ -54,7 +45,6 @@ exports.getNotesIndex = (req, res) => {
   });
 };
 
-// URL'den gelen konuya (:topic) göre sayfayı render et
 exports.getNoteByTopic = (req, res) => {
   const requestedTopic = req.params.topic;
 
@@ -64,25 +54,12 @@ exports.getNoteByTopic = (req, res) => {
   });
 };
 
-// iletişim formunun mail göndermesi için gerekli.
 exports.sendContactEmail = async (req, res) => {
   const { name, email, message } = req.body;
 
-  // 1. Taşıyıcıyı (Transporter) yapılandır
-  let transporter = nodemailer.createTransport({
-    service: "smtp.gmail.com",
-    port: 465,
-    secure: true, // 465 portu için true olmalıdır
-    auth: {
-      user: process.env.EMAIL_USER, // Maili gönderecek adres
-      pass: process.env.EMAIL_PASS, // Gmail kullanıyorsan "Uygulama Şifresi" kullanmalısın
-    },
-  });
-
-  // 2. Mail içeriğini hazırla
   try {
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com", // Bu satır eksik veya hatalı olduğu için kendi içine dönüyordu
+        host: "smtp.gmail.com",
         port: 465,
         secure: true,
         auth: {
@@ -91,7 +68,8 @@ exports.sendContactEmail = async (req, res) => {
         }
       });
 
-    // BAŞARILI DURUMU: Sayfayı 'successMessage' ile tekrar yükle
+    // Not: İleride mail gönderme işlemini aktifleştirmek için buraya transporter.sendMail(...) eklenecek
+
     res.render("contact", {
       pageTitle: "Contact - Sait Elmas",
       successMessage:
@@ -100,7 +78,6 @@ exports.sendContactEmail = async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    // HATA DURUMU: Sayfayı 'errorMessage' ile tekrar yükle
     res.render("contact", {
       pageTitle: "Contact - Sait Elmas",
       errorMessage:
@@ -109,42 +86,61 @@ exports.sendContactEmail = async (req, res) => {
   }
 };
 
+// ==========================================
+// DİNAMİK DİL FİLTRELİ OKUMALAR FONKSİYONU
+// ==========================================
 exports.getMyReadingsPage = (req, res) => {
-  // Markdown dosyalarının bulunduğu klasörün yolu
+  // 1. Kullanıcının aktif dilini çerezlerden (cookies) al, yoksa 'en' varsay
+  const currentLang = (req.cookies && req.cookies.lang) ? req.cookies.lang : 'en';
+  
   const readingsDir = path.join(__dirname, "../data/readings");
   let readingNotes = [];
 
   try {
-    // Klasördeki tüm dosyaları oku
-    const files = fs.readdirSync(readingsDir);
+    // 2. Klasördeki tüm dosyaları oku
+    const allFiles = fs.readdirSync(readingsDir);
 
-    files.forEach((file) => {
-      // Sadece .md uzantılı dosyaları işleme al
-      if (file.endsWith(".md")) {
-        const filePath = path.join(readingsDir, file);
-        const fileContent = fs.readFileSync(filePath, "utf-8");
+    // 3. SİHİRLİ FİLTRE: Sadece aktif dilin uzantısıyla biten dosyaları al (ör: _tr.md)
+    const targetFiles = allFiles.filter(file => file.endsWith(`_${currentLang}.md`));
 
-        // gray-matter ile meta veriyi (data) ve ana metni (content) ayır
-        const { data, content } = matter(fileContent);
+    // 4. Sadece filtrelenmiş dosyaları EJS'ye gönder
+    targetFiles.forEach((file) => {
+      const filePath = path.join(readingsDir, file);
+      const fileContent = fs.readFileSync(filePath, "utf-8");
 
-        // Markdown metnini HTML'e dönüştür
-        const htmlContent = marked.parse(content);
+      const { data, content } = matter(fileContent);
+      const htmlContent = marked.parse(content);
 
-        readingNotes.push({
-          title: data.title,
-          author: data.author,
-          htmlBody: htmlContent,
-        });
-      }
+      readingNotes.push({
+        title: data.title,
+        author: data.author,
+        htmlBody: htmlContent,
+      });
     });
   } catch (err) {
     console.error("Readings klasörü okunamadı:", err);
   }
 
-  // Verileri EJS'ye gönder
   res.render("notes", {
     pageTitle: "My Readings | Sait Elmas",
     activeTopic: "my-readings",
     readings: readingNotes,
   });
+};
+
+exports.changeLanguage = (req, res) => {
+    const selectedLang = req.params.lang;
+    const supportedLanguages = ['en', 'tr', 'fr'];
+
+    if (supportedLanguages.includes(selectedLang)) {
+        res.cookie('lang', selectedLang, { maxAge: 31536000000, httpOnly: true });
+    }
+
+    const previousUrl = req.get('Referrer') || '/';
+
+    if (previousUrl.includes('/change-lang')) {
+        return res.redirect('/');
+    }
+
+    res.redirect(previousUrl);
 };

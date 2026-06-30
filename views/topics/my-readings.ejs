@@ -1,30 +1,33 @@
 <section class="bookshelf-section">
-  <h2 class="section-header"><i class="fas fa-book"></i> The Reading List</h2>
-  <p class="section-subtitle">A catalog of texts that have shaped my thinking.</p>
+  <h2 class="section-header"><i class="fas fa-book"></i> <%= __('readings_page.list_title') %></h2>
+  <p class="section-subtitle"><%= __('readings_page.list_subtitle') %></p>
 
   <ul class="book-tags">
+    <!-- Kitap isimleri orijinal dilinde, marka bütünlüğü için sabit bırakıldı -->
+    <li>Kilometre Zero — Maud Ankoaua</li>
     <li>The Way Of The Superior Man - David Deida</li>
-    <li>The Man Who Loved Only Numbers — Paul Hoffman</li>
   </ul>
 </section>
 
 <section class="reflections-section">
-    <h2 class="section-header"><i class="fas fa-brain"></i> Summaries & Reflections</h2>
+    <h2 class="section-header"><i class="fas fa-brain"></i> <%= __('readings_page.reflections_title') %></h2>
 
     <% if (typeof readings !== 'undefined' && readings.length > 0) { %>
         <% readings.forEach(function(book) { %>
             <article class="review-card">
                 <div class="review-header">
+                    <!-- Başlık ve yazar bilgisi dinamik geldiği için __('...') KULLANILMAZ -->
                     <h3><%= book.title %></h3>
-                    <span class="book-author">by <%= book.author %></span>
+                    <span class="book-author"><%= __('readings_page.lbl_by') %> <%= book.author %></span>
                 </div>
                 
                 <div class="review-body chapter-flow">
+                    <!-- Markdown parse edilmiş içerik HTML olarak buraya basılır -->
                     <%- book.htmlBody %>
                 </div>
             </article>
         <% }); %>
     <% } else { %>
-        <p>You haven't added any reading notes yet.</p>
+        <p><%= __('readings_page.no_notes') %></p>
     <% } %>
 </section>
