@@ -899,12 +899,10 @@ textarea.form-input {
     }
 }
 
-/* Mobilde (telefonlarda) hover'ı devre dışı bırak.
-   Açılma işlemini tamamen yazdığımız JavaScript koduna (tıklamaya) bırakalım. */
-@media (max-width: 768px) {
-    .lang-dropdown:hover .lang-content {
-        display: none; 
-    }
+/* JavaScript'in ekleyeceği 'show' sınıfı. 
+   !important etiketi sayesinde mobilde hiçbir CSS kuralı buna engel olamaz. */
+.lang-content.show {
+    display: block !important;
 }
 
 /* =========================================

@@ -1,19 +1,16 @@
 // public/js/main.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // ==========================================
     // 1. MOBİL HAMBURGER MENÜ MANTIĞI
     // ==========================================
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
 
-    // Butona tıklandığında menüye 'active' sınıfını ekle/çıkar
     if (mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
 
-            // İkonu Hamburger'den X (çarpı) işaretine değiştirme
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) {
                 if (navLinks.classList.contains('active')) {
@@ -28,23 +25,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 2. MOBİL DİL SEÇİM (DROPDOWN) MANTIĞI
+    // 2. MOBİL DİL SEÇİM (DROPDOWN) MANTIĞI - KESİN ÇÖZÜM
     // ==========================================
     const langBtn = document.querySelector('.lang-btn');
     const langContent = document.querySelector('.lang-content');
 
     if (langBtn && langContent) {
+        // Butona tıklandığında/dokunulduğunda
         langBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Menünün tıklandığı an kapanmasını engeller
+            e.preventDefault(); // Etiketin varsayılan zıplama davranışını durdurur
+            e.stopPropagation(); // Olayın yayılıp document'ı tetiklemesini engeller
             
-            // Eğer menü açıksa kapat, kapalıysa aç
-            const isVisible = langContent.style.display === 'block';
-            langContent.style.display = isVisible ? 'none' : 'block';
+            // "show" sınıfını açıp kapatıyoruz
+            langContent.classList.toggle('show'); 
         });
 
-        // Kullanıcı menü dışında bir yere tıkladığında dil menüsünü kapat
-        document.addEventListener('click', () => {
-            langContent.style.display = 'none';
+        // Menünün veya butonun DIŞINDA bir yere dokunulursa kapat
+        document.addEventListener('click', (e) => {
+            if (!langContent.contains(e.target) && !langBtn.contains(e.target)) {
+                langContent.classList.remove('show');
+            }
         });
     }
 });
