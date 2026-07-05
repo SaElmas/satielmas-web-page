@@ -888,9 +888,23 @@ textarea.form-input {
     color: #0f172a;
 }
 
-/* Hover durumunda menüyü göster */
-.lang-dropdown:hover .lang-content {
-    display: block;
+/* =========================================
+   LANGUAGE DROPDOWN (HOVER VE TIKLAMA AYARLARI)
+========================================= */
+
+/* Masaüstünde (geniş ekranlarda) fare ile üzerine gelince (hover) açılsın */
+@media (min-width: 769px) {
+    .lang-dropdown:hover .lang-content {
+        display: block;
+    }
+}
+
+/* Mobilde (telefonlarda) hover'ı devre dışı bırak.
+   Açılma işlemini tamamen yazdığımız JavaScript koduna (tıklamaya) bırakalım. */
+@media (max-width: 768px) {
+    .lang-dropdown:hover .lang-content {
+        display: none; 
+    }
 }
 
 /* =========================================
