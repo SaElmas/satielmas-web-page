@@ -1,8 +1,5 @@
 body {
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f8fafc;
@@ -10,7 +7,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
 }
 header {
   background-color: #0f172a;
@@ -31,12 +27,14 @@ main {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation Bar Stilleri */
+/* =========================================
+   NAVIGATION BAR (MASAÜSTÜ)
+========================================= */
 .main-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Menüyü sağa yaslar */
   align-items: center;
-  background-color: #0f172a; /* Koyu lacivert/siyah arka plan */
+  background-color: #0f172a;
   padding: 1rem 2rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -53,9 +51,10 @@ main {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem; /* Linkler arası boşluk */
+  gap: 2rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links a {
@@ -66,32 +65,106 @@ main {
 }
 
 .nav-links a:hover {
-  color: #60a5fa; /* Üzerine gelince açık mavi olma efekti */
+  color: #60a5fa;
 }
 
-/* --- Çarpı (X) Butonunun Çerçevesini Temizleme --- */
 .mobile-menu-btn {
   display: none;
   border: none;
-  outline: none; /* Tıklanınca çıkan varsayılan çerçeveyi siler */
+  outline: none;
   background: transparent;
   color: #ffffff;
-  font-size: 1.8rem; /* İkonu biraz büyütelim, daha şık dursun */
+  font-size: 1.8rem;
   padding: 0;
+  cursor: pointer;
 }
 
 .mobile-menu-btn:hover {
   color: #60a5fa;
 }
 
-/* --- Responsive (Mobil Ekranlar) İçin Navbar Kuralları --- */
+/* =========================================
+   LANGUAGE DROPDOWN (GENEL)
+========================================= */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-btn {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.lang-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: #ffffff;
+  min-width: 140px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.lang-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: transparent;
+}
+
+.lang-content a {
+  color: #1e293b;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.lang-content a:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Masaüstünde (geniş ekranlarda) fare ile üzerine gelince (hover) açılsın */
+@media (min-width: 769px) {
+  .lang-dropdown:hover .lang-content {
+    display: block;
+  }
+}
+
+/* =========================================
+   MOBILE NAVBAR KONTROLLERİ (TEK MERKEZ)
+========================================= */
 @media (max-width: 768px) {
   .mobile-menu-btn {
-    display: block; /* Ekranda yeri geldiğinde butonu göster */
+    display: block;
   }
 
   .nav-links {
-    /* Menüyü başlangıçta gizle ve mutlak pozisyonla aşağı sarkıt */
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -102,28 +175,70 @@ main {
     padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out; /* Yumuşak açılma efekti */
+    transition: max-height 0.4s ease-out;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     z-index: 100;
   }
 
+  .nav-links.active {
+    max-height: 100vh !important;
+    padding-bottom: 1rem;
+  }
+
+  /* Mobil Menü Metinleri Milimetrik Ortalama */
   .nav-links li {
     width: 100%;
     border-top: 1px solid #1e293b;
-    /* Buradaki display: flex; komutunu SİLDİK */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .nav-links li a {
     display: block;
     width: 100%;
-    text-align: center;
-    padding: 1.5rem 0; /* Sadece alt ve üstten eşit boşluk bırakıyoruz */
-    /* display: flex, height ve line-height gibi zorlayıcı kuralların hepsini SİLDİK */
+    text-align: center !important;
+    padding: 1.5rem 0;
   }
 
-  /* JavaScript'in ekleyeceği "active" sınıfı */
-  .nav-links.active {
-    max-height: 400px; /* Menünün açıldığında alacağı maksimum yükseklik */
+  /* Mobil Dil Butonu Ortalaması */
+  .lang-dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 1.5rem 0;
+  }
+
+  .lang-btn {
+    justify-content: center;
+    width: auto;
+  }
+
+  /* Mobil Akordeon Dil Menüsü */
+  .lang-content {
+    position: static !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .lang-content.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lang-content a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 0.8rem 0;
+    color: #94a3b8 !important;
+    font-size: 0.95rem;
   }
 }
 
@@ -893,10 +1008,89 @@ textarea.form-input {
 ========================================= */
 
 /* Masaüstünde (geniş ekranlarda) fare ile üzerine gelince (hover) açılsın */
-@media (min-width: 769px) {
-    .lang-dropdown:hover .lang-content {
-        display: block;
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0f172a;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+
+  /* Mobil Menü Taşıyıcısı */
+  .nav-links.active {
+    max-height: 100vh !important;
+    padding-bottom: 1rem;
+  }
+
+  /* Menü Elemanlarının Milimetrik Ortalanması */
+  .nav-links li {
+      width: 100%;
+      border-top: 1px solid #1e293b;
+      display: flex; /* Sola dayalı kalmayı engellemek için eklendi */
+      justify-content: center; /* Yatayda tam merkez */
+      align-items: center; /* Dikeyde tam merkez */
     }
+
+  .nav-links li a {
+      display: block;
+      width: 100%;
+      text-align: center !important; /* !important ile sola çeken gizli kuralları eziyoruz */
+      padding: 1.5rem 0;
+    }
+
+  /* Mobil Dil Butonu Düzenlemesi */
+  .lang-dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 1.5rem 0;
+  }
+
+  .lang-btn {
+    justify-content: center;
+    width: auto;
+  }
+
+  /* Dropdown Kutusunun Akordeon Yapısı */
+  .lang-content {
+    position: static !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .lang-content.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Alt Dillerin (GB English vb.) Milimetrik Ortalanması */
+  .lang-content a {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Metni tam merkeze iter */
+    text-align: center;
+    padding: 0.8rem 0;
+    color: #94a3b8 !important; /* Ana linklerden ayırt edilmesi için hafif soluk */
+    font-size: 0.95rem;
+  }
 }
 
 /* JavaScript'in ekleyeceği 'show' sınıfı. 
