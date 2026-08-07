@@ -1409,3 +1409,40 @@ textarea.form-input {
     font-size: 1rem; /* Sitenizin standart paragraf boyutu */
     margin-bottom: 0.75rem;
 }
+
+/* ==================================================
+   MOBİL TAŞMA ÖNLEME & RESPONSIVE KATEX / TABLE FIX
+   ================================================== */
+
+/* 1. Tüm Markdown kapsayıcısının dışarı taşmasını engelle */
+.markdown-body {
+    max-width: 100%;
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
+/* 2. KaTeX Uzun Formüllerini Mobilde Kendi İçinde Sağa-Sola Kaydırılabilir Yap */
+.katex-display {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    max-width: 100% !important;
+    padding: 0.5rem 0;
+    -webkit-overflow-scrolling: touch; /* iOS'ta akıcı kaydırma */
+}
+
+/* 3. Tabloların Mobilde Sayfayı Sağa Genişletmesini Önle */
+.markdown-body table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 4. Uzun Kod Blokları veya Metinlerin Kırılması */
+.markdown-body pre, 
+.markdown-body code {
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-width: 100%;
+}
