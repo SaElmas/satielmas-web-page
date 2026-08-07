@@ -24,31 +24,34 @@
     <aside class="notes-sidebar">
       <h3><%= __('notes_page.sidebar_title') %></h3>
       <ul>
-        <li><a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>"><%= __('notes_page.sidebar_overview') %></a></li>
-        <li><a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>"><%= __('notes_page.sidebar_hungerford') %></a></li>
-        <li><a href="/notes/abstract-algebra" class="<%= activeTopic === 'abstract-algebra' ? 'active' : '' %>"><%= __('notes_page.sidebar_abstract') %></a></li>
-        <li><a href="/notes/linear-algebra" class="<%= activeTopic === 'linear-algebra' ? 'active' : '' %>"><%= __('notes_page.sidebar_linear') %></a></li>
-        <li><a href="/notes/real-analysis" class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>"><%= __('notes_page.sidebar_real_complex') %></a></li>
-        <li><a href="/notes/programming" class="<%= activeTopic === 'programming' ? 'active' : '' %>"><%= __('notes_page.sidebar_programming') %></a></li>
-        <li><a href="/notes/my-readings" class="<%= activeTopic === 'my-readings' ? 'active' : ''%>"><%= __('notes_page.sidebar_readings') %></a></li>
+        <li>
+          <a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>">
+            <%= __('notes_page.sidebar_overview') %>
+          </a>
+        </li>
+        <li>
+          <a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>">
+            <%= __('notes_page.sidebar_hungerford') %>
+          </a>
+        </li>
+        <li class="<%= activeTopic === 'ap-computer-science-a' ? 'active' : '' %>">
+          <a href="/notes/ap-computer-science-a">AP Computer Science A</a>
+        </li>
       </ul>
     </aside>
 
     <main class="notes-content">
-      <% if (activeTopic !== 'my-readings') { %>
-      <h1 class="notes-main-title">
-        <%= __('notes_page.main_title') %>
-      </h1>
-      <% } %>
 
-      <% if (activeTopic === 'index') { %>
+      <% if (locals.noteData) { %>
+      <div class="markdown-body">
+        <%- noteData.htmlBody %>
+      </div>
+
+      <% } else if (activeTopic === 'index') { %>
       <%- include('topics/index') %>
 
       <% } else if (activeTopic === 'hungerford-algebra') { %>
       <%- include('topics/hungerford-algebra') %>
-
-      <% } else if (activeTopic === 'my-readings') { %>
-      <%- include('topics/my-readings') %>
 
       <% } else { %>
       <div class="notes-error-box">

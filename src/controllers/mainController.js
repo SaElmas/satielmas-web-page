@@ -42,31 +42,56 @@ exports.getNotesIndex = (req, res) => {
   res.render("notes", {
     pageTitle: "Academic Notes - Sait Elmas",
     activeTopic: "index",
+    nodeData: null
   });
 };
 
 exports.getNoteByTopic = (req, res) => {
-  const requestedTopic = req.params.topic;
+  const requestedTopic = req.params.topic; // Örn: 'ap-computer-science-a'
 
+  // Sadece İngilizce (_en.md) dosyasını okuyacak yol
+  const notesDir = path.join(__dirname, "../data/notes");
+  const filePath = path.join(notesDir, `${requestedTopic}_en.md`);
+
+
+  let noteData = null;
+
+  // Dosya var mı kontrol edip okuyoruz
+  if (fs.existsSync(filePath)) {
+    try {
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      const { data, content } = matter(fileContent);
+      const htmlContent = marked.parse(content);
+
+      noteData = {
+        title: data.title || requestedTopic,
+        htmlBody: htmlContent,
+      };
+    } catch (err) {
+      console.error("Markdown dosya okuma hatası:", err);
+    }
+  }
+
+  // EJS şablonuna noteData'yı mutlaka gönderiyoruz
   res.render("notes", {
-    pageTitle: "Academic Notes - Sait Elmas",
+    pageTitle: `${noteData ? noteData.title : "Academic Notes"} - Sait Elmas`,
     activeTopic: requestedTopic,
+    noteData: noteData, // <-- ReferenceError hatasını önleyen kritik parametre
   });
 };
-
 exports.sendContactEmail = async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS
-        }
-      });
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
     // Not: İleride mail gönderme işlemini aktifleştirmek için buraya transporter.sendMail(...) eklenecek
 
@@ -91,8 +116,8 @@ exports.sendContactEmail = async (req, res) => {
 // ==========================================
 exports.getMyReadingsPage = (req, res) => {
   // 1. Kullanıcının aktif dilini çerezlerden (cookies) al, yoksa 'en' varsay
-  const currentLang = (req.cookies && req.cookies.lang) ? req.cookies.lang : 'en';
-  
+  const currentLang = req.cookies && req.cookies.lang ? req.cookies.lang : "en";
+
   const readingsDir = path.join(__dirname, "../data/readings");
   let readingNotes = [];
 
@@ -101,7 +126,9 @@ exports.getMyReadingsPage = (req, res) => {
     const allFiles = fs.readdirSync(readingsDir);
 
     // 3. SİHİRLİ FİLTRE: Sadece aktif dilin uzantısıyla biten dosyaları al (ör: _tr.md)
-    const targetFiles = allFiles.filter(file => file.endsWith(`_${currentLang}.md`));
+    const targetFiles = allFiles.filter((file) =>
+      file.endsWith(`_${currentLang}.md`),
+    );
 
     // 4. Sadece filtrelenmiş dosyaları EJS'ye gönder
     targetFiles.forEach((file) => {
@@ -125,22 +152,23 @@ exports.getMyReadingsPage = (req, res) => {
     pageTitle: "My Readings | Sait Elmas",
     activeTopic: "my-readings",
     readings: readingNotes,
+    noteData: null,
   });
 };
 
 exports.changeLanguage = (req, res) => {
-    const selectedLang = req.params.lang;
-    const supportedLanguages = ['en', 'tr', 'fr'];
+  const selectedLang = req.params.lang;
+  const supportedLanguages = ["en", "tr", "fr"];
 
-    if (supportedLanguages.includes(selectedLang)) {
-        res.cookie('lang', selectedLang, { maxAge: 31536000000, httpOnly: true });
-    }
+  if (supportedLanguages.includes(selectedLang)) {
+    res.cookie("lang", selectedLang, { maxAge: 31536000000, httpOnly: true });
+  }
 
-    const previousUrl = req.get('Referrer') || '/';
+  const previousUrl = req.get("Referrer") || "/";
 
-    if (previousUrl.includes('/change-lang')) {
-        return res.redirect('/');
-    }
+  if (previousUrl.includes("/change-lang")) {
+    return res.redirect("/");
+  }
 
-    res.redirect(previousUrl);
+  res.redirect(previousUrl);
 };

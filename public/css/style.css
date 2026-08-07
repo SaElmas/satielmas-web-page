@@ -1384,3 +1384,28 @@ textarea.form-input {
 .course-back-link:hover {
     text-decoration: underline;
 }
+
+/* Markdown Ders Notları Font Düzenlemesi */
+.markdown-body {
+    color: var(--text-color, #333);
+    line-height: 1.6;
+}
+
+.markdown-body h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.markdown-body h2 {
+    font-size: 1.35rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.markdown-body p, 
+.markdown-body li {
+    font-size: 1rem; /* Sitenizin standart paragraf boyutu */
+    margin-bottom: 0.75rem;
+}
