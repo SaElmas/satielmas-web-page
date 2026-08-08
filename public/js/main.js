@@ -1,4 +1,3 @@
-// public/js/main.js
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
@@ -11,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
 
+            // Menü açıldığında '☰' ikonu 'X' olsun, kapanınca tekrar '☰' olsun
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) {
                 if (navLinks.classList.contains('active')) {
@@ -25,22 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 2. MOBİL DİL SEÇİM (DROPDOWN) MANTIĞI - KESİN ÇÖZÜM
+    // 2. MOBİL DİL SEÇİM (DROPDOWN) MANTIĞI
     // ==========================================
     const langBtn = document.querySelector('.lang-btn');
     const langContent = document.querySelector('.lang-content');
 
     if (langBtn && langContent) {
-        // Butona tıklandığında/dokunulduğunda
         langBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Etiketin varsayılan zıplama davranışını durdurur
-            e.stopPropagation(); // Olayın yayılıp document'ı tetiklemesini engeller
-            
-            // "show" sınıfını açıp kapatıyoruz
+            e.preventDefault();
+            e.stopPropagation();
             langContent.classList.toggle('show'); 
         });
 
-        // Menünün veya butonun DIŞINDA bir yere dokunulursa kapat
         document.addEventListener('click', (e) => {
             if (!langContent.contains(e.target) && !langBtn.contains(e.target)) {
                 langContent.classList.remove('show');

@@ -1,3 +1,6 @@
+/* =========================================
+   1. GENEL AYARLAR VE YAPISAL ELEMANLAR
+========================================= */
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
@@ -8,20 +11,20 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
 header {
   background-color: #0f172a;
   color: white;
   padding: 2rem;
   text-align: center;
 }
+
 main {
   max-width: 800px;
   margin: 2rem auto;
   padding: 0 1rem;
   flex: 1;
-  /* SİHİRLİ KODLAR BURADAN BAŞLIYOR */
-  min-width: 0; 
-  overflow-x: hidden;
+  min-width: 0; /* Flexbox taşmasını engeller */
 }
 
 .card {
@@ -29,7 +32,6 @@ main {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  /* KUTU PATLAMASINI ENGELLEYEN KODLAR */
   min-width: 0;
   max-width: 100%;
   overflow-wrap: break-word;
@@ -37,11 +39,11 @@ main {
 }
 
 /* =========================================
-   NAVIGATION BAR (MASAÜSTÜ)
+   2. NAVBAR & MOBİL MENÜ (MASAÜSTÜ)
 ========================================= */
-.main-nav {
+.navbar, .main-nav {
   display: flex;
-  justify-content: space-between; /* Menüyü sağa yaslar */
+  justify-content: space-between;
   align-items: center;
   background-color: #0f172a;
   padding: 1rem 2rem;
@@ -49,15 +51,24 @@ main {
   position: relative;
 }
 
-.nav-brand a {
+.logo, .nav-brand a {
   color: #ffffff;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
 }
 
-.nav-links {
+.navbar-logo {
+  height: 32px;
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.nav-menu, .nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
@@ -66,38 +77,34 @@ main {
   align-items: center;
 }
 
-.nav-links a {
+.nav-menu a, .nav-links a {
   color: #cbd5e1;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
+.nav-menu a:hover, .nav-links a:hover {
   color: #60a5fa;
 }
 
-.mobile-menu-btn {
+/* Hamburger Butonu Varsayılanı (Masaüstünde Gizli) */
+.nav-toggle, .mobile-menu-btn {
   display: none;
-  border: none;
-  outline: none;
   background: transparent;
-  color: #ffffff;
-  font-size: 1.8rem;
-  padding: 0;
+  border: none;
   cursor: pointer;
-}
-
-.mobile-menu-btn:hover {
-  color: #60a5fa;
+  padding: 0.5rem;
+  z-index: 1001;
 }
 
 /* =========================================
-   LANGUAGE DROPDOWN (GENEL)
+   3. LANGUAGE DROPDOWN (DİL SEÇENEKLERİ)
 ========================================= */
 .lang-dropdown {
   position: relative;
   display: inline-block;
+  margin-left: 1.5rem;
 }
 
 .lang-btn {
@@ -133,6 +140,7 @@ main {
   overflow: hidden;
 }
 
+/* Hover köprüsü */
 .lang-dropdown::after {
   content: "";
   position: absolute;
@@ -158,7 +166,7 @@ main {
   color: #0f172a;
 }
 
-/* Masaüstünde (geniş ekranlarda) fare ile üzerine gelince (hover) açılsın */
+/* Masaüstü Hover */
 @media (min-width: 769px) {
   .lang-dropdown:hover .lang-content {
     display: block;
@@ -166,51 +174,71 @@ main {
 }
 
 /* =========================================
-   MOBILE NAVBAR KONTROLLERİ (TEK MERKEZ)
+   4. MOBİL MENÜ VE KONTROLLER (MAX 768PX)
 ========================================= */
 @media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: block;
+  /* Hamburger Butonu Görünürlüğü */
+  .nav-toggle, .mobile-menu-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.8rem;
   }
 
-  .nav-links {
-    display: flex;
-    flex-direction: column;
+  /* HTML ile Gelen Hamburger Çizgileri */
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  .hamburger::before { top: -7px; }
+  .hamburger::after { top: 7px; }
+
+  /* Açılır Menü (Akordeon) Yapısı */
+  .nav-menu, .nav-links {
+    display: none; /* JS ile active eklendiğinde block olacak */
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background-color: #0f172a;
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    z-index: 1000;
+    flex-direction: column;
   }
 
-  .nav-links.active {
-    max-height: 100vh !important;
-    padding-bottom: 1rem;
+  /* JavaScript tetikleyici sınıf */
+  .nav-menu.active, .nav-links.active {
+    display: block !important;
   }
 
-  /* Mobil Menü Metinleri Milimetrik Ortalama */
-  .nav-links li {
-    width: 100%;
+  .nav-menu li, .nav-links li {
     border-top: 1px solid #1e293b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
   }
 
-  .nav-links li a {
+  .nav-menu li a, .nav-links li a {
     display: block;
     width: 100%;
-    text-align: center !important;
-    padding: 1.5rem 0;
+    text-align: center;
+    padding: 1.2rem 0;
   }
 
-  /* Mobil Dil Butonu Ortalaması */
+  /* Mobil Dil Butonu Düzenlemesi */
   .lang-dropdown {
     width: 100%;
     display: flex;
@@ -219,13 +247,10 @@ main {
     margin: 0;
     padding: 1.5rem 0;
   }
-
   .lang-btn {
     justify-content: center;
     width: auto;
   }
-
-  /* Mobil Akordeon Dil Menüsü */
   .lang-content {
     position: static !important;
     box-shadow: none !important;
@@ -233,13 +258,11 @@ main {
     width: 100%;
     margin-top: 0.5rem;
   }
-
   .lang-content.show {
     display: flex !important;
     flex-direction: column;
     align-items: center;
   }
-
   .lang-content a {
     width: 100%;
     display: flex;
@@ -252,8 +275,10 @@ main {
 }
 
 /* =========================================
-   TUTORING PAGE - DROPDOWN CATEGORY NAV
+   5. SAYFA BİLEŞENLERİ (TUTORING, INDEX, SLIDERS)
 ========================================= */
+
+/* Kategori Menüsü (Tutoring) */
 .category-nav {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -268,13 +293,11 @@ main {
   z-index: 50;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
-
 .category-item {
   position: relative;
   flex: 1;
   text-align: center;
 }
-
 .category-item > a {
   display: block;
   padding: 1.2rem 2rem;
@@ -284,13 +307,11 @@ main {
   transition: all 0.3s ease;
   border-bottom: 3px solid transparent;
 }
-
 .category-item:hover > a {
   color: #3b82f6;
   border-bottom: 3px solid #3b82f6;
   background: #f8fafc;
 }
-
 .dropdown {
   display: none;
   position: absolute;
@@ -306,11 +327,7 @@ main {
   list-style: none;
   text-align: left;
 }
-
-.category-item:hover .dropdown {
-  display: block;
-}
-
+.category-item:hover .dropdown { display: block; }
 .dropdown li a {
   display: block;
   padding: 0.75rem 1.5rem;
@@ -319,41 +336,63 @@ main {
   font-size: 0.95rem;
   transition: all 0.2s;
 }
-
 .dropdown li a:hover {
   background: #f8fafc;
   color: #3b82f6;
   padding-left: 2rem;
 }
-
-.tutoring-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
 @media (max-width: 768px) {
-  .category-nav {
+  /* Diğer mobil kurallarınız (örneğin buton ayarları) aynen kalabilir... */
+
+  /* 1. MOBİL MENÜ KAPSAYICISI */
+  .nav-links {
+    display: none !important; /* Başlangıçta kesin gizli */
+    flex-direction: column !important; /* ÖNEMLİ: Yan yana değil, alt alta diz! */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0f172a;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+  }
+
+  /* 2. BUTONA BASILDIĞINDA AÇILAN HALİ */
+  .nav-links.active {
+    display: flex !important; /* display: block yerine flex olmalı ki alt alta kalsın */
+  }
+
+  /* 3. LİSTE ELEMANLARININ MİLİMETRİK ORTALANMASI */
+  .nav-links li {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Yatayda tam merkez */
+    align-items: center;     /* Dikeyde tam merkez */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Şık, ince bir ayraç çizgisi */
+  }
+
+  /* 4. LİNKLERİN METİN ORTALAMASI */
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    text-align: center !important; /* Metni tam merkeze itiyoruz */
+    padding: 1.5rem 0; /* Dokunmatik ekran için geniş rahat basma alanı */
+    font-size: 1.1rem;
+  }
+
+  /* 5. DİL SEÇİM BUTONUNUN ORTALANMASI (Varsa) */
+  .lang-dropdown {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-  }
-  .category-item {
-    border-bottom: 1px solid #e2e8f0;
-  }
-  .category-item:last-child {
-    border-bottom: none;
-  }
-  .dropdown {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background: #f8fafc;
-    display: none;
+    align-items: center;
+    margin: 0 !important;
+    padding: 1.5rem 0;
   }
 }
 
-/* =========================================
-   INDEX PAGE - TESTIMONIALS SLIDER
-========================================= */
+/* Müşteri Yorumları (Testimonials) */
 .testimonial-container {
   width: 100vw;
   position: relative;
@@ -367,70 +406,33 @@ main {
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
 }
-
 .testimonial-track {
   display: flex;
   gap: 2rem;
   width: calc((350px + 2rem) * 16);
   animation: scrollTestimonials 60s linear infinite;
 }
-
-.testimonial-track:hover {
-  animation-play-state: paused;
-}
-
+.testimonial-track:hover { animation-play-state: paused; }
 .testimonial-card {
   width: 350px;
   background: #ffffff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  text-align: left;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #3b82f6;
   flex-shrink: 0;
 }
-
-.quote-icon {
-  color: #93c5fd;
-  font-size: 2rem;
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-
-.student-text {
-  color: #475569;
-  font-size: 1rem;
-  line-height: 1.6;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-
-.student-name {
-  color: #0f172a;
-  font-weight: bold;
-  font-size: 1.05rem;
-}
-
-.student-school {
-  color: #64748b;
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-}
+.quote-icon { color: #93c5fd; font-size: 2rem; margin-bottom: 1rem; }
+.student-text { color: #475569; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
+.student-name { color: #0f172a; font-weight: bold; font-size: 1.05rem; }
+.student-school { color: #64748b; font-size: 0.9rem; margin-top: 0.2rem; }
 
 @keyframes scrollTestimonials {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc((-350px - 2rem) * 8));
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc((-350px - 2rem) * 8)); }
 }
 
-/* =========================================
-   TUTORING PAGE - UNIVERSITY SLIDER
-========================================= */
+/* Üniversite Slider (Tutoring) */
 .university-slider-fullwidth {
   width: 100%;
   background-color: #ffffff;
@@ -442,7 +444,6 @@ main {
   position: relative;
   display: flex;
 }
-
 .slider-track {
   display: flex;
   width: calc((250px + 16px) * 30);
@@ -450,11 +451,7 @@ main {
   align-items: center;
   gap: 16px;
 }
-
-.slider-track:hover {
-  animation-play-state: paused;
-}
-
+.slider-track:hover { animation-play-state: paused; }
 .text-card {
   width: 250px;
   height: 70px;
@@ -464,1010 +461,172 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   font-weight: 600;
   color: #334155;
-  font-size: 0.95rem;
-  padding: 0 1rem;
   transition: all 0.3s ease;
-  cursor: default;
   box-sizing: border-box;
 }
-
 .text-card:hover {
   background: #0f172a;
   color: #ffffff;
   transform: translateY(-5px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-color: #0f172a;
 }
 
 @keyframes scrollText {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc((-250px - 16px) * 15));
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc((-250px - 16px) * 15)); }
 }
 
 /* =========================================
-   NOTES PAGE - SIDEBAR & GRID LAYOUT
+   6. SAYFA ÖZEL TASARIMLARI
 ========================================= */
+
+/* Notes Sayfası */
 .notes-layout {
   max-width: 1200px;
   margin: 3rem auto;
   padding: 0 1rem;
   display: grid;
-  grid-template-columns: 250px 1fr; /* Sol 250px, sağ taraf kalanı kaplar */
+  grid-template-columns: 250px 1fr;
   gap: 2.5rem;
   align-items: start;
 }
-
 .notes-sidebar {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   padding: 1.5rem;
   position: sticky;
-  top: 2rem; /* Ekranı kaydırırken sidebar'ı yukarıda sabitler */
+  top: 2rem;
 }
-
 .notes-sidebar h3 {
   margin-top: 0;
-  color: #0f172a;
-  font-size: 1.1rem;
   border-bottom: 2px solid #cbd5e1;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
 }
-
-.notes-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.notes-sidebar li {
-  margin-bottom: 0.5rem;
-}
-
+.notes-sidebar ul { list-style: none; padding: 0; margin: 0; }
+.notes-sidebar li { margin-bottom: 0.5rem; }
 .notes-sidebar a {
   text-decoration: none;
   color: #475569;
-  font-size: 0.95rem;
-  transition: all 0.2s;
   display: block;
   padding: 0.4rem 0.5rem;
   border-radius: 4px;
 }
-
-.notes-sidebar a:hover,
-.notes-sidebar a.active {
+.notes-sidebar a:hover, .notes-sidebar a.active {
   color: #3b82f6;
   background: #eff6ff;
   font-weight: 600;
 }
-
-.notes-content {
-  min-height: 70vh;
-}
-
-/* Mobilde sidebar'ı üste alıp tam ekran yapmak için */
+.notes-content { min-height: 70vh; }
 @media (max-width: 768px) {
-  .notes-layout {
-    grid-template-columns: 1fr;
-  }
-  .notes-sidebar {
-    position: static;
-  }
+  .notes-layout { grid-template-columns: 1fr; }
+  .notes-sidebar { position: static; }
 }
 
-/* KaTeX font boyutunu metin ile uyumlu hale getirme */
+/* Çeşitli Kutu Stilleri */
+.note-container { background: #ffffff; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; }
+.reference-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; }
+.exercise-box { background: #f1f5f9; padding: 1rem; border-radius: 6px; border-left: 4px solid #64748b; margin-bottom: 1.5rem; }
+.proof-title { color: #10b981; margin-bottom: 0.5rem; font-style: italic; }
+.proof-text { color: #334155; line-height: 1.8; }
+
+/* Contact Sayfası */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.contact-card { background: #f8fafc; padding: 1.5rem; border-radius: 8px; }
+.contact-info { border-left: 4px solid #3b82f6; }
+.contact-form { border-left: 4px solid #10b981; }
+.contact-list { list-style: none; padding: 0; line-height: 2.5; }
+.contact-list a { text-decoration: none; color: inherit; transition: color 0.3s; }
+.contact-list a:hover { color: #3b82f6; }
+.form-container { display: flex; flex-direction: column; gap: 1rem; }
+.form-input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; }
+.submit-btn { background-color: #0f172a; color: white; padding: 0.75rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.submit-btn:hover { background-color: #1e293b; }
+
+/* Course Details & Tutoring Extras */
+.exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.exam-card { background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; }
+.border-blue { border-top: 4px solid #3b82f6; }
+.border-green { border-top: 4px solid #10b981; }
+.border-orange { border-top: 4px solid #f59e0b; }
+.border-purple { border-top: 4px solid #8b5cf6; }
+.curriculum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.curriculum-box { background: #f8fafc; padding: 1.5rem; border-radius: 8px; }
+.feature-badge { display: flex; align-items: center; gap: 0.5rem; background: #f8fafc; font-weight: 600; padding: 0.6rem 1.5rem; border-radius: 50px; border: 1px solid #cbd5e1; transition: transform 0.2s, box-shadow 0.2s; }
+.feature-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+/* Anasayfa & Repository */
+.main-container { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; }
+.hero-title { font-size: 3rem; color: #0f172a; margin-bottom: 1rem; }
+.repo-container { background: #ffffff; border: 1px solid #e2e8f0; padding: 2.5rem; border-radius: 8px; margin-bottom: 2rem; }
+
+
+/* =========================================
+   7. MARKDOWN, KATEX VE TAŞMA ENGELLERİ 
+========================================= */
+/* Genel Taşma Kilidi */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* KAPSAYICI TAŞMA KİLİDİ (Burası çok kritikti, geri eklendi) */
+.notes-content, .markdown-body, .review-body {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+.markdown-body h1 { font-size: 1.75rem; margin-bottom: 1rem; font-weight: 700; }
+.markdown-body h2 { font-size: 1.35rem; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; }
+.markdown-body h3, .review-body h3 { font-size: 1.25rem; margin-top: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem; }
+.markdown-body h4, .review-body h4 { color: #10b981; font-size: 1.05rem; font-weight: 600; }
+
+/* Metinlerin ve Kod Kutularının Sığdırılması (!important ile zorunlu hale getirildi) */
+.markdown-body p, 
+.markdown-body li {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
+  margin-bottom: 0.75rem;
+  max-width: 100%;
+}
+
+.markdown-body pre, 
+.markdown-body code {
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Tablo Koruması */
+.markdown-body table {
+  display: block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* KaTeX Matematik Formülü Taşma Koruması */
 .katex {
   font-size: 1em !important;
 }
 
-/* Notlar için kapsayıcı */
-.note-container {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
-}
-
-/* Referans Kutusu */
-.reference-box {
-  background: #eff6ff;
-  border-left: 4px solid #3b82f6;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Egzersiz Başlığı / Kutusu */
-.exercise-box {
-  background: #f1f5f9;
-  padding: 1rem;
-  border-radius: 6px;
-  border-left: 4px solid #64748b;
-  margin-bottom: 1.5rem;
-  color: #334155;
-}
-
-/* İspat Başlığı */
-.proof-title {
-  color: #10b981;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-style: italic;
-}
-
-/* İspat Metni */
-.proof-text {
-  color: #334155;
-  line-height: 1.8;
-}
-
-/* --- İletişim Sayfası Stilleri --- */
-
-.contact-intro {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.contact-card {
-  background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-.contact-info {
-  border-left: 4px solid #3b82f6;
-}
-
-.contact-form {
-  border-left: 4px solid #10b981;
-}
-
-.contact-card h3 {
-  color: #0f172a;
-  margin-top: 0;
-}
-
-.contact-list {
-  list-style: none;
-  padding: 0;
-  line-height: 2.5;
-  font-size: 1.05rem;
-}
-
-.contact-list a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s;
-}
-
-.contact-list a:hover {
-  color: #3b82f6;
-}
-
-.contact-icon {
-  width: 25px;
-  text-align: center;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.form-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #0f172a;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-textarea.form-input {
-  resize: vertical;
-}
-
-.submit-btn {
-  background-color: #0f172a;
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
-  background-color: #1e293b;
-}
-
-/* =========================================
-   TUTORING PAGE - SPECIFIC STYLES
-========================================= */
-
-/* A Note on Giving Back Section */
-.giving-back-notice {
-  background: #f0fdf4;
-  border-left: 4px solid #10b981;
-  padding: 1.5rem;
-  margin-bottom: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.giving-back-title {
-  color: #065f46;
-  margin-top: 0;
-  font-size: 1.15rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.giving-back-text {
-  color: #334155;
-  margin-bottom: 0;
-  line-height: 1.6;
-  font-size: 1.05rem;
-}
-
-/* Exam Preparation Programs Section */
-.exam-programs-section {
-  margin-bottom: 4rem;
-}
-
-.section-title {
-  color: #0f172a;
-  border-bottom: 2px solid #cbd5e1;
-  padding-bottom: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.exam-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.exam-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.exam-card h3 {
-  color: #1e293b;
-  margin-top: 0;
-  font-size: 1.1rem;
-}
-
-.exam-card p {
-  color: #475569;
-  font-size: 0.95rem;
-  margin-bottom: 0;
-  line-height: 1.6;
-}
-
-/* Exam Card Top Borders */
-.border-blue {
-  border-top: 4px solid #3b82f6;
-}
-.border-green {
-  border-top: 4px solid #10b981;
-}
-.border-orange {
-  border-top: 4px solid #f59e0b;
-}
-.border-purple {
-  border-top: 4px solid #8b5cf6;
-}
-
-/* STEM Tutoring Intro */
-.stem-intro {
-  text-align: center;
-  margin: 0 auto 3rem auto;
-  max-width: 800px;
-}
-
-.stem-intro h1 {
-  color: #0f172a;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.stem-intro p {
-  color: #475569;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0 auto 1.5rem auto;
-}
-
-.language-badge {
-  display: inline-block;
-  background: #eff6ff;
-  color: #1d4ed8;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.5rem 1.2rem;
-  border-radius: 999px;
-  border: 1px solid #bfdbfe;
-}
-
-/* Curriculum Grid Variations */
-.curriculum-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.curriculum-box {
-  background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-.curriculum-box h3 {
-  color: #0f172a;
-  margin-top: 0;
-}
-
-.curriculum-box ul {
-  list-style-type: square;
-  margin-left: 1rem;
-}
-
-.border-left-blue {
-  border-left: 4px solid #3b82f6;
-}
-.border-left-red {
-  border-left: 4px solid #ef4444;
-}
-.border-left-orange {
-  border-left: 4px solid #f59e0b;
-}
-.border-left-green {
-  border-left: 4px solid #10b981;
-}
-.border-left-purple {
-  border-left: 4px solid #8b5cf6;
-}
-
-/* --- Highlight Badges (Online, 90-Min, Language) --- */
-.highlight-badges {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-
-.feature-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #f8fafc; /* Hafif gri/beyaz arka plan */
-  color: #0f172a;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.6rem 1.5rem;
-  border-radius: 50px;
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-
-.feature-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* =========================================
-   FOOTER STYLES
-========================================= */
-.site-footer {
-  background-color: #0f172a;
-  color: #cbd5e1;
-  text-align: center;
-  padding: 2rem;
-  margin-top: 4rem;
-}
-
-.site-footer p {
-  margin: 0; /* Paragrafların varsayılan boşluğunu sıfırlıyoruz */
-}
-
-.site-footer .footer-location {
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-}
-
-/* =========================================
-   MARKDOWN RENDER STYLES (Readings Page)
-========================================= */
-
-/* "The Summary" ve "My Thoughts" gibi ana bölüm başlıkları (###) */
-.review-body h3 {
-    color: #0f172a;
-    font-size: 1.25rem; /* Kitap başlığından (1.5rem) bariz şekilde küçük */
-    margin-top: 2rem;
-    margin-bottom: 0.8rem;
-    border-bottom: 1px solid #e2e8f0; /* Konuları ayırmak için ince şık bir alt çizgi */
-    padding-bottom: 0.4rem;
-}
-
-/* "1. Stop Hoping..." gibi alt bölüm/chapter başlıkları (####) */
-.review-body h4 {
-    color: #10b981; /* Bölüm başlıklarına zümrüt yeşili bir vurgu verelim */
-    font-size: 1.05rem; /* Paragraf metninden sadece birazcık büyük */
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-/* Paragraf boşluklarını ve satır aralıklarını düzenleme */
-.review-body p {
-    color: #475569;
-    line-height: 1.7;
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-}
-
-/* =========================================
-   LANGUAGE DROPDOWN (Navbar)
-========================================= */
-.lang-dropdown {
-    position: relative;
-    display: inline-block;
-    margin-left: 1.5rem;
-}
-
-.lang-btn {
-    background: transparent;
-    color: #cbd5e1; /* Navbar metin renginle aynı yapabilirsin */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-}
-
-.lang-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-
-/* Açılan Menü Kutusu */
-.lang-content {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px); /* Kutu butondan 8px aşağıda açılır */
-    right: 0;
-    background-color: #ffffff;
-    min-width: 140px;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    z-index: 100;
-    overflow: hidden; 
-    /* margin-top satırını sildik! */
-}
-
-/* Fare için görünmez köprü (Dead Zone engelleyici) */
-.lang-dropdown::after {
-    content: "";
-    position: absolute;
-    top: 100%; 
-    left: 0;
-    right: 0;
-    height: 15px; /* Menüye kadar olan boşluğu kaplar */
-    background: transparent;
-}
-
-.lang-content a {
-    color: #1e293b;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-.lang-content a:hover {
-    background-color: #f1f5f9;
-    color: #0f172a;
-}
-
-/* =========================================
-   LANGUAGE DROPDOWN (HOVER VE TIKLAMA AYARLARI)
-========================================= */
-
-/* Masaüstünde (geniş ekranlarda) fare ile üzerine gelince (hover) açılsın */
-@media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #0f172a;
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-  }
-
-  /* Mobil Menü Taşıyıcısı */
-  .nav-links.active {
-    max-height: 100vh !important;
-    padding-bottom: 1rem;
-  }
-
-  /* Menü Elemanlarının Milimetrik Ortalanması */
-  .nav-links li {
-      width: 100%;
-      border-top: 1px solid #1e293b;
-      display: flex; /* Sola dayalı kalmayı engellemek için eklendi */
-      justify-content: center; /* Yatayda tam merkez */
-      align-items: center; /* Dikeyde tam merkez */
-    }
-
-  .nav-links li a {
-      display: block;
-      width: 100%;
-      text-align: center !important; /* !important ile sola çeken gizli kuralları eziyoruz */
-      padding: 1.5rem 0;
-    }
-
-  /* Mobil Dil Butonu Düzenlemesi */
-  .lang-dropdown {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 1.5rem 0;
-  }
-
-  .lang-btn {
-    justify-content: center;
-    width: auto;
-  }
-
-  /* Dropdown Kutusunun Akordeon Yapısı */
-  .lang-content {
-    position: static !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  .lang-content.show {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Alt Dillerin (GB English vb.) Milimetrik Ortalanması */
-  .lang-content a {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Metni tam merkeze iter */
-    text-align: center;
-    padding: 0.8rem 0;
-    color: #94a3b8 !important; /* Ana linklerden ayırt edilmesi için hafif soluk */
-    font-size: 0.95rem;
-  }
-}
-
-/* JavaScript'in ekleyeceği 'show' sınıfı. 
-   !important etiketi sayesinde mobilde hiçbir CSS kuralı buna engel olamaz. */
-.lang-content.show {
-    display: block !important;
-}
-
-/* =========================================
-   ACADEMIC REPOSITORY (topics/index.ejs)
-========================================= */
-.repo-container {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    margin-bottom: 2rem;
-}
-
-.repo-title {
-    color: #1e293b;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.repo-text {
-    color: #475569;
-    line-height: 1.8;
-    font-size: 1.05rem;
-}
-
-.repo-list {
-    color: #475569;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    margin-bottom: 1.5rem;
-}
-
-.repo-list li {
-    margin-bottom: 0.5rem; /* Maddeler arasına biraz nefes payı */
-}
-
-.repo-notice {
-    background: #f8fafc;
-    padding: 1rem;
-    border-radius: 6px;
-    border-left: 3px solid #10b981;
-    color: #334155;
-    font-style: italic;
-}
-
-/* =========================================
-   MAIN PAGE (index.ejs)
-========================================= */
-.main-container {
-    max-width: 1000px; 
-    margin: 3rem auto; 
-    padding: 0 1rem;
-}
-
-.hero-section {
-    text-align: center; 
-    margin-bottom: 4rem;
-}
-
-.hero-title {
-    font-size: 3rem; 
-    color: #0f172a; 
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem; 
-    color: #475569; 
-    max-width: 700px; 
-    margin: 0 auto; 
-    line-height: 1.6;
-}
-
-.grid-container {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 3rem;
-}
-
-.section-title-blue {
-    color: #3b82f6; 
-    border-bottom: 2px solid #cbd5e1; 
-    padding-bottom: 0.5rem;
-}
-
-.section-title-green {
-    color: #10b981; 
-    border-bottom: 2px solid #cbd5e1; 
-    padding-bottom: 0.5rem;
-}
-
-.content-text {
-    color: #334155; 
-    line-height: 1.8; 
-    font-size: 1.05rem;
-    margin-bottom: 1rem; /* EJS'deki p etiketlerinin altına boşluk */
-}
-
-.image-wrapper {
-    margin: 1.5rem 0; 
-    text-align: center;
-}
-
-.profile-image {
-    width: 100%; 
-    max-width: 350px; 
-    height: 350px; 
-    object-fit: cover; 
-    object-position: center 15%; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.testimonials-section {
-    margin-top: 5rem; 
-    text-align: center;
-}
-
-.testimonials-title {
-    color: #0f172a; 
-    font-size: 2rem; 
-    margin-bottom: 2rem;
-}
-
-/* =========================================
-   TUTORING PAGE (tutoring.ejs)
-========================================= */
-.giving-back-icon {
-    font-size: 1.3rem;
-}
-
-.category-nav-wrapper {
-    margin-bottom: 3.5rem;
-}
-
-.badge-blue {
-    background: #eff6ff; 
-    color: #1d4ed8; 
-    border-color: #bfdbfe;
-}
-
-.badge-green {
-    background: #f0fdf4; 
-    color: #15803d; 
-    border-color: #bbf7d0;
-}
-
-.badge-red {
-    background: #fef2f2; 
-    color: #b91c1c; 
-    border-color: #fecaca;
-}
-
-/* =========================================
-   NOTES PAGE (notes.ejs)
-========================================= */
-.notes-main-title {
-    color: #0f172a; 
-    border-bottom: 2px solid #cbd5e1; 
-    padding-bottom: 0.5rem; 
-    margin-bottom: 2rem; 
-    margin-top: 0;
-}
-
-.notes-error-box {
-    background: #fef2f2; 
-    border: 1px solid #fca5a5; 
-    padding: 2rem; 
-    border-radius: 8px; 
-    color: #991b1b;
-}
-
-.notes-error-title {
-    margin-top: 0;
-}
-
-/* =========================================
-   CONTACT PAGE (contact.ejs)
-========================================= */
-.icon-location { color: #ef4444; }
-.icon-email { color: #ea4335; }
-.icon-whatsapp { color: #25d366; }
-.icon-linkedin { color: #0a66c2; }
-.icon-instagram { color: #e1306c; }
-
-.alert-success {
-    background-color: #d1fae5; 
-    color: #065f46; 
-    padding: 1rem; 
-    border-radius: 4px; 
-    margin-bottom: 1rem; 
-    border: 1px solid #10b981;
-}
-
-.alert-error {
-    background-color: #fee2e2; 
-    color: #991b1b; 
-    padding: 1rem; 
-    border-radius: 4px; 
-    margin-bottom: 1rem; 
-    border: 1px solid #ef4444;
-}
-
-/* =========================================
-   COURSE DETAIL PAGE (course-detail.ejs)
-========================================= */
-.course-detail-main { 
-    max-width: 900px; 
-    margin: 2rem auto; 
-    padding: 0 1rem; 
-}
-.course-card-section { 
-    border-top: 5px solid #3b82f6; 
-}
-.course-category-label { 
-    color: #64748b; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    margin-bottom: 0.5rem; 
-}
-.course-title { 
-    color: #0f172a; 
-    margin-top: 0; 
-    font-size: 2.5rem; 
-}
-.course-description { 
-    font-size: 1.15rem; 
-    line-height: 1.8; 
-    color: #334155; 
-    margin-bottom: 2rem; 
-}
-.course-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 2rem; 
-}
-.course-info-box { 
-    background: #f8fafc; 
-    padding: 1.5rem; 
-    border-radius: 8px; 
-}
-.course-info-title { 
-    color: #0f172a; 
-    margin-top: 0; 
-    border-bottom: 2px solid #cbd5e1; 
-    padding-bottom: 0.5rem; 
-}
-.course-syllabus-list { 
-    line-height: 1.8; 
-    color: #475569; 
-    padding-left: 1.2rem; 
-}
-.course-strategy-text { 
-    line-height: 1.8; 
-    color: #475569; 
-}
-.course-btn-container { 
-    margin-top: 2rem; 
-    text-align: center; 
-}
-.course-trial-btn { 
-    display: inline-block; 
-    background: #0f172a; 
-    color: white; 
-    padding: 0.75rem 1.5rem; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    font-weight: bold; 
-    transition: background-color 0.3s; 
-}
-.course-trial-btn:hover {
-    background: #1e293b;
-}
-.course-back-container { 
-    margin-top: 2rem; 
-}
-.course-back-link { 
-    color: #3b82f6; 
-    text-decoration: none; 
-    font-weight: bold; 
-}
-.course-back-link:hover {
-    text-decoration: underline;
-}
-
-/* Markdown Ders Notları Font Düzenlemesi */
-.markdown-body {
-    color: var(--text-color, #333);
-    line-height: 1.6;
-}
-
-.markdown-body h1 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.markdown-body h2 {
-    font-size: 1.35rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
-
-.markdown-body p, 
-.markdown-body li {
-    font-size: 1rem; /* Sitenizin standart paragraf boyutu */
-    margin-bottom: 0.75rem;
-}
-
-/* ==================================================
-   MOBİL TAŞMA ÖNLEME (KATEX & TABLO KESİN ÇÖZÜM)
-   ================================================== */
-
-/* 1. Sayfanın genel esnemesini kilitliyoruz */
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-/* 2. İçerik kutusunun dışarı taşmasını yasaklıyoruz */
-.notes-content, .markdown-body {
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-/* 3. KaTeX Ana Kapsayıcı: Sadece bu alan kaydırılabilir olsun */
 .katex-display {
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    display: block !important;
-    padding: 10px 0;
-    -webkit-overflow-scrolling: touch;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  display: block !important;
+  padding: 10px 0;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* 4. SİHİRLİ DOKUNUŞ: KaTeX'in içindeki asıl formül yapısını ehlileştiriyoruz */
 .katex-display > .katex {
-    display: inline-block;
-    white-space: nowrap;
-}
-
-/* 5. Tabloların taşmasını engelleme */
-.markdown-body table {
-    display: block !important;
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Markdown İçindeki Tüm Metinlerin ve Gri Kutuların Alt Satıra Geçmeye Zorlanması */
-.markdown-body p,
-.markdown-body li,
-.markdown-body pre,
-.markdown-body code {
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    max-width: 100%;
+  display: inline-block;
+  white-space: nowrap;
 }
