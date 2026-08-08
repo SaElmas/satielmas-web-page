@@ -172,3 +172,9 @@ exports.changeLanguage = (req, res) => {
 
   res.redirect(previousUrl);
 };
+
+exports.getAboutPage = (req, res) => {
+  res.render("about", {
+    pageTitle: "About Me | Sait Elmas",
+  });
+};
