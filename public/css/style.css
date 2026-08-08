@@ -1411,38 +1411,43 @@ textarea.form-input {
 }
 
 /* ==================================================
-   MOBİL TAŞMA ÖNLEME & RESPONSIVE KATEX / TABLE FIX
+   MOBİL TAŞMA ÖNLEME (KATEX & TABLO KESİN ÇÖZÜM)
    ================================================== */
 
-/* 1. Tüm Markdown kapsayıcısının dışarı taşmasını engelle */
-.markdown-body {
+/* 1. Sayfanın genel esnemesini kilitliyoruz */
+html, body {
     max-width: 100%;
     overflow-x: hidden;
+}
+
+/* 2. İçerik kutusunun dışarı taşmasını yasaklıyoruz */
+.notes-content, .markdown-body {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
-/* 2. KaTeX Uzun Formüllerini Mobilde Kendi İçinde Sağa-Sola Kaydırılabilir Yap */
+/* 3. KaTeX Ana Kapsayıcı: Sadece bu alan kaydırılabilir olsun */
 .katex-display {
+    max-width: 100% !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
-    max-width: 100% !important;
-    padding: 0.5rem 0;
-    -webkit-overflow-scrolling: touch; /* iOS'ta akıcı kaydırma */
-}
-
-/* 3. Tabloların Mobilde Sayfayı Sağa Genişletmesini Önle */
-.markdown-body table {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
+    display: block !important;
+    padding: 10px 0;
     -webkit-overflow-scrolling: touch;
 }
 
-/* 4. Uzun Kod Blokları veya Metinlerin Kırılması */
-.markdown-body pre, 
-.markdown-body code {
-    white-space: pre-wrap;
-    word-break: break-word;
-    max-width: 100%;
+/* 4. SİHİRLİ DOKUNUŞ: KaTeX'in içindeki asıl formül yapısını ehlileştiriyoruz */
+.katex-display > .katex {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* 5. Tabloların taşmasını engelleme */
+.markdown-body table {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
 }

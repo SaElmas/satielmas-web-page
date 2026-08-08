@@ -8,6 +8,7 @@
 
     <main class="tutoring-content">
         
+        <% if (getLocale() === 'tr') { %>
         <div class="giving-back-notice">
             <h3 class="giving-back-title">
                 <span class="giving-back-icon">🌱</span> <%= __('tutoring_page.giving_back_title') %>
@@ -16,6 +17,7 @@
                 <%- __('tutoring_page.giving_back_text') %>
             </p>
         </div>
+        <% } %>
 
         <ul class="category-nav category-nav-wrapper">
             <li class="category-item">
