@@ -43,4 +43,43 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ==========================================
+    // 3. TUTORING KATEGORİ MENÜSÜ (AKORDEON & TOGGLE)
+    // ==========================================
+    const categoryLinks = document.querySelectorAll('.category-item > a');
+
+    if (categoryLinks.length > 0) {
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Sadece href="#" olan, yani sayfa yönlendirmesi yapmayan linklerde çalışsın
+                if(link.getAttribute('href') === '#') {
+                    e.preventDefault(); // Sayfanın en yukarı zıplamasını engeller
+                }
+                e.stopPropagation();
+
+                const parent = link.parentElement;
+
+                // Diğer açık olan kategorileri kapat (Akordeon mantığı)
+                document.querySelectorAll('.category-item').forEach(item => {
+                    if (item !== parent) {
+                        item.classList.remove('active');
+                    }
+                });
+
+                // Tıklanan menüyü Aç/Kapat (Toggle)
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Sayfada boş bir yere tıklandığında açık kategorileri kapat
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.category-nav')) {
+                document.querySelectorAll('.category-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
+    }
 });
+

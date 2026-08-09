@@ -317,14 +317,16 @@ main,
   list-style: none;
   padding: 0;
   position: relative;
-  z-index: 50;
+  z-index: 100 !important; /* Katman önceliği: İçeriklerin üstünde kalır */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
+
 .category-item {
   position: relative;
   flex: 1;
   text-align: center;
 }
+
 .category-item > a {
   display: block;
   padding: 1.2rem 2rem;
@@ -334,7 +336,9 @@ main,
   transition: all 0.3s ease;
   border-bottom: 3px solid transparent;
 }
-.category-item:hover > a {
+/* Hover'da VE Tıklamada rengi mavi yap */
+.category-item:hover > a,
+.category-item.active > a {
   color: #3b82f6;
   border-bottom: 3px solid #3b82f6;
   background: #f8fafc;
@@ -353,11 +357,14 @@ main,
   padding: 0.5rem 0;
   list-style: none;
   text-align: left;
+  z-index: 101 !important; /* Masaüstünde yazıların üstüne çıkar */
 }
-.category-item:hover .dropdown {
-  display: block;
+/* Hem fare ile üzerine gelindiğinde hem de JS ile tıklandığında menüyü göster */
+.category-item.active .dropdown {
+  display: block !important;
 }
 .dropdown li a {
+  text-align: center !important;
   display: block;
   padding: 0.75rem 1.5rem;
   color: #475569;
@@ -366,9 +373,27 @@ main,
   transition: all 0.2s;
 }
 .dropdown li a:hover {
+  padding-left: 1rem !important;
   background: #f8fafc;
   color: #3b82f6;
-  padding-left: 2rem;
+}
+
+/* Mobilde (768px ve altı) Menünün Yazılara Binmemesi İçin Akordeon Ayarı */
+@media (max-width: 768px) {
+  .category-nav {
+    flex-direction: column !important;
+  }
+  .category-item {
+    width: 100%;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .dropdown {
+    position: static !important; /* KRİTİK: Mobilde havada uçmasını iptal edip, metinleri güvenle aşağı iter! */
+    box-shadow: none !important;
+    border: none !important;
+    background: #f8fafc !important;
+    padding-left: 1rem !important;
+  }
 }
 
 /* Müşteri Yorumları (Testimonials) - TAM SAYFA BANT DÜZENİ */
