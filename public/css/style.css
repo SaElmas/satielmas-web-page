@@ -1,8 +1,18 @@
 /* =========================================
    1. GENEL AYARLAR VE YAPISAL ELEMANLAR
 ========================================= */
+/* Genel Taşma Kilidi (Sağa doğru boşluk/kaydırma oluşmasını KESİN engeller) */
+html,
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f8fafc;
@@ -19,12 +29,16 @@ header {
   text-align: center;
 }
 
-main {
-  max-width: 800px;
+/* TÜM SAYFALAR İÇİN STANDART GENİŞLİK (1100px) */
+main,
+.main-container {
+  max-width: 1100px !important;
   margin: 2rem auto;
   padding: 0 1rem;
   flex: 1;
-  min-width: 0; /* Flexbox taşmasını engeller */
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card {
@@ -41,7 +55,8 @@ main {
 /* =========================================
    2. NAVBAR & MOBİL MENÜ (MASAÜSTÜ)
 ========================================= */
-.navbar, .main-nav {
+.navbar,
+.main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,7 +66,8 @@ main {
   position: relative;
 }
 
-.logo, .nav-brand a {
+.logo,
+.nav-brand a {
   color: #ffffff;
   text-decoration: none;
   font-size: 1.5rem;
@@ -68,7 +84,8 @@ main {
   vertical-align: middle;
 }
 
-.nav-menu, .nav-links {
+.nav-menu,
+.nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
@@ -77,19 +94,21 @@ main {
   align-items: center;
 }
 
-.nav-menu a, .nav-links a {
+.nav-menu a,
+.nav-links a {
   color: #cbd5e1;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.nav-menu a:hover, .nav-links a:hover {
+.nav-menu a:hover,
+.nav-links a:hover {
   color: #60a5fa;
 }
 
-/* Hamburger Butonu Varsayılanı (Masaüstünde Gizli) */
-.nav-toggle, .mobile-menu-btn {
+.nav-toggle,
+.mobile-menu-btn {
   display: none;
   background: transparent;
   border: none;
@@ -140,7 +159,6 @@ main {
   overflow: hidden;
 }
 
-/* Hover köprüsü */
 .lang-dropdown::after {
   content: "";
   position: absolute;
@@ -166,7 +184,6 @@ main {
   color: #0f172a;
 }
 
-/* Masaüstü Hover */
 @media (min-width: 769px) {
   .lang-dropdown:hover .lang-content {
     display: block;
@@ -177,8 +194,8 @@ main {
    4. MOBİL MENÜ VE KONTROLLER (MAX 768PX)
 ========================================= */
 @media (max-width: 768px) {
-  /* Hamburger Butonu Görünürlüğü */
-  .nav-toggle, .mobile-menu-btn {
+  .nav-toggle,
+  .mobile-menu-btn {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -186,7 +203,6 @@ main {
     font-size: 1.8rem;
   }
 
-  /* HTML ile Gelen Hamburger Çizgileri */
   .hamburger,
   .hamburger::before,
   .hamburger::after {
@@ -198,53 +214,63 @@ main {
     position: relative;
     transition: all 0.3s ease;
   }
-
-  .hamburger::before, .hamburger::after {
-    content: '';
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
     position: absolute;
     left: 0;
   }
-  .hamburger::before { top: -7px; }
-  .hamburger::after { top: 7px; }
+  .hamburger::before {
+    top: -7px;
+  }
+  .hamburger::after {
+    top: 7px;
+  }
 
-  /* Açılır Menü (Akordeon) Yapısı */
-  .nav-menu, .nav-links {
-    display: none; /* JS ile active eklendiğinde block olacak */
+  .nav-menu,
+  .nav-links {
+    display: none !important;
+    flex-direction: column !important;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background-color: #0f172a;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem 0;
+    padding: 0;
+    margin: 0;
     z-index: 1000;
-    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  /* JavaScript tetikleyici sınıf */
-  .nav-menu.active, .nav-links.active {
-    display: block !important;
+  .nav-menu.active,
+  .nav-links.active {
+    display: flex !important;
   }
 
-  .nav-menu li, .nav-links li {
-    border-top: 1px solid #1e293b;
+  .nav-menu li,
+  .nav-links li {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  .nav-menu li a, .nav-links li a {
+  .nav-menu li a,
+  .nav-links li a {
     display: block;
     width: 100%;
-    text-align: center;
-    padding: 1.2rem 0;
+    text-align: center !important;
+    padding: 1.5rem 0;
+    font-size: 1.1rem;
   }
 
-  /* Mobil Dil Butonu Düzenlemesi */
   .lang-dropdown {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
+    margin: 0 !important;
     padding: 1.5rem 0;
   }
   .lang-btn {
@@ -284,9 +310,10 @@ main {
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   margin: 0 auto 2rem auto;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
+  max-width: 1100px !important;
+  display: flex !important;
+  justify-content: space-between;
+  width: 100%;
   list-style: none;
   padding: 0;
   position: relative;
@@ -327,7 +354,9 @@ main {
   list-style: none;
   text-align: left;
 }
-.category-item:hover .dropdown { display: block; }
+.category-item:hover .dropdown {
+  display: block;
+}
 .dropdown li a {
   display: block;
   padding: 0.75rem 1.5rem;
@@ -341,95 +370,74 @@ main {
   color: #3b82f6;
   padding-left: 2rem;
 }
-@media (max-width: 768px) {
-  /* Diğer mobil kurallarınız (örneğin buton ayarları) aynen kalabilir... */
 
-  /* 1. MOBİL MENÜ KAPSAYICISI */
-  .nav-links {
-    display: none !important; /* Başlangıçta kesin gizli */
-    flex-direction: column !important; /* ÖNEMLİ: Yan yana değil, alt alta diz! */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #0f172a;
-    padding: 0;
-    margin: 0;
-    z-index: 1000;
-  }
-
-  /* 2. BUTONA BASILDIĞINDA AÇILAN HALİ */
-  .nav-links.active {
-    display: flex !important; /* display: block yerine flex olmalı ki alt alta kalsın */
-  }
-
-  /* 3. LİSTE ELEMANLARININ MİLİMETRİK ORTALANMASI */
-  .nav-links li {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Yatayda tam merkez */
-    align-items: center;     /* Dikeyde tam merkez */
-    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Şık, ince bir ayraç çizgisi */
-  }
-
-  /* 4. LİNKLERİN METİN ORTALAMASI */
-  .nav-links li a {
-    display: block;
-    width: 100%;
-    text-align: center !important; /* Metni tam merkeze itiyoruz */
-    padding: 1.5rem 0; /* Dokunmatik ekran için geniş rahat basma alanı */
-    font-size: 1.1rem;
-  }
-
-  /* 5. DİL SEÇİM BUTONUNUN ORTALANMASI (Varsa) */
-  .lang-dropdown {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 !important;
-    padding: 1.5rem 0;
-  }
-}
-
-/* Müşteri Yorumları (Testimonials) */
+/* Müşteri Yorumları (Testimonials) - TAM SAYFA BANT DÜZENİ */
 .testimonial-container {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  background-color: #f8fafc;
-  padding: 3rem 0;
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  background-color: #ffffff;
+  padding: 0.8rem 0 !important; /* Üst/Alt boşluk minimuma indirildi */
   overflow: hidden;
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
+  margin-top: 2rem;
 }
+
 .testimonial-track {
   display: flex;
   gap: 2rem;
   width: calc((350px + 2rem) * 16);
   animation: scrollTestimonials 60s linear infinite;
 }
-.testimonial-track:hover { animation-play-state: paused; }
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
 .testimonial-card {
   width: 350px;
   background: #ffffff;
-  padding: 2rem;
+  padding: 1rem 1.25rem !important; /* Kartların iç boşluğu iyice daraltıldı */
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid #0f172a;
   flex-shrink: 0;
 }
-.quote-icon { color: #93c5fd; font-size: 2rem; margin-bottom: 1rem; }
-.student-text { color: #475569; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
-.student-name { color: #0f172a; font-weight: bold; font-size: 1.05rem; }
-.student-school { color: #64748b; font-size: 0.9rem; margin-top: 0.2rem; }
+
+/* Tırnak işaretini HTML'den silmeye gerek kalmadan CSS ile tamamen gizliyoruz */
+.quote-icon {
+  display: none !important;
+}
+
+.student-text {
+  color: #475569;
+  font-style: italic;
+  margin-bottom: 0.75rem !important; /* Yorum ile isim arasındaki boşluk azaltıldı */
+  margin-top: 0 !important;
+  line-height: 1.5;
+}
+
+.student-name {
+  color: #0f172a;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.student-school {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
 
 @keyframes scrollTestimonials {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc((-350px - 2rem) * 8)); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc((-350px - 2rem) * 8));
+  }
 }
 
 /* Üniversite Slider (Tutoring) */
@@ -451,7 +459,9 @@ main {
   align-items: center;
   gap: 16px;
 }
-.slider-track:hover { animation-play-state: paused; }
+.slider-track:hover {
+  animation-play-state: paused;
+}
 .text-card {
   width: 250px;
   height: 70px;
@@ -472,19 +482,168 @@ main {
   transform: translateY(-5px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-
 @keyframes scrollText {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc((-250px - 16px) * 15)); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc((-250px - 16px) * 15));
+  }
 }
 
 /* =========================================
    6. SAYFA ÖZEL TASARIMLARI
 ========================================= */
 
+/* Tutoring Sayfası - 3 Kutucuk (Badges) */
+.stem-intro {
+  text-align: center;
+  margin: 3rem 0 2rem 0;
+}
+.highlight-badges {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Yere basan, gölgeli ve şık çerçeveli özellik rozetleri */
+.feature-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.feature-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+/* Rozetlerin Renkleri */
+.badge-blue {
+  border-color: #3b82f6;
+  color: #1e40af;
+  background-color: #eff6ff;
+}
+.badge-green {
+  border-color: #10b981;
+  color: #065f46;
+  background-color: #ecfdf5;
+}
+.badge-red {
+  border-color: #ef4444;
+  color: #991b1b;
+  background-color: #fef2f2;
+}
+
+/* Tutoring: İçerik Kartları İçin 3'lü Grid Sistemi */
+.exam-grid,
+.curriculum-grid {
+  display: grid !important;
+  gap: 1.5rem;
+}
+@media (min-width: 769px) {
+  .exam-grid,
+  .curriculum-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 768px) {
+  .highlight-badges {
+    flex-direction: column !important;
+  }
+  .feature-badge {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .category-nav {
+    flex-direction: column !important;
+  }
+  .category-item {
+    width: 100%;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .exam-grid,
+  .curriculum-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================
+   TUTORING SAYFASI KARTLARI (ÇERÇEVE VE GÖLGE)
+========================================= */
+
+/* 1. Exam Prep (Sınav Hazırlık) Kutuları */
+.exam-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.exam-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Üst Çizgiler (Hepsi Kurumsal Siyah/Koyu Lacivert) */
+.border-blue {
+  border-top: 4px solid #0f172a !important;
+}
+.border-green {
+  border-top: 4px solid #0f172a !important;
+}
+.border-orange {
+  border-top: 4px solid #0f172a !important;
+}
+.border-purple {
+  border-top: 4px solid #0f172a !important;
+}
+
+/* 2. Curriculum (Müfredat) Kutuları */
+.curriculum-box {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.curriculum-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Sol Çizgiler (Hepsi Kurumsal Siyah/Koyu Lacivert) */
+.border-left-blue {
+  border-left: 4px solid #0f172a !important;
+}
+.border-left-red {
+  border-left: 4px solid #0f172a !important;
+}
+.border-left-orange {
+  border-left: 4px solid #0f172a !important;
+}
+.border-left-green {
+  border-left: 4px solid #0f172a !important;
+}
+.border-left-purple {
+  border-left: 4px solid #0f172a !important;
+}
+
 /* Notes Sayfası */
 .notes-layout {
-  max-width: 1200px;
+  max-width: 1100px !important;
   margin: 3rem auto;
   padding: 0 1rem;
   display: grid;
@@ -506,8 +665,14 @@ main {
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
 }
-.notes-sidebar ul { list-style: none; padding: 0; margin: 0; }
-.notes-sidebar li { margin-bottom: 0.5rem; }
+.notes-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.notes-sidebar li {
+  margin-bottom: 0.5rem;
+}
 .notes-sidebar a {
   text-decoration: none;
   color: #475569;
@@ -515,79 +680,162 @@ main {
   padding: 0.4rem 0.5rem;
   border-radius: 4px;
 }
-.notes-sidebar a:hover, .notes-sidebar a.active {
+.notes-sidebar a:hover,
+.notes-sidebar a.active {
   color: #3b82f6;
   background: #eff6ff;
   font-weight: 600;
 }
-.notes-content { min-height: 70vh; }
+.notes-content {
+  min-height: 70vh;
+}
 @media (max-width: 768px) {
-  .notes-layout { grid-template-columns: 1fr; }
-  .notes-sidebar { position: static; }
+  .notes-layout {
+    grid-template-columns: 1fr;
+  }
+  .notes-sidebar {
+    position: static;
+  }
 }
 
 /* Çeşitli Kutu Stilleri */
-.note-container { background: #ffffff; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; }
-.reference-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; }
-.exercise-box { background: #f1f5f9; padding: 1rem; border-radius: 6px; border-left: 4px solid #64748b; margin-bottom: 1.5rem; }
-.proof-title { color: #10b981; margin-bottom: 0.5rem; font-style: italic; }
-.proof-text { color: #334155; line-height: 1.8; }
+.note-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+.reference-box {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+.exercise-box {
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #64748b;
+  margin-bottom: 1.5rem;
+}
+.proof-title {
+  color: #10b981;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+.proof-text {
+  color: #334155;
+  line-height: 1.8;
+}
 
 /* Contact Sayfası */
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.contact-card { background: #f8fafc; padding: 1.5rem; border-radius: 8px; }
-.contact-info { border-left: 4px solid #3b82f6; }
-.contact-form { border-left: 4px solid #10b981; }
-.contact-list { list-style: none; padding: 0; line-height: 2.5; }
-.contact-list a { text-decoration: none; color: inherit; transition: color 0.3s; }
-.contact-list a:hover { color: #3b82f6; }
-.form-container { display: flex; flex-direction: column; gap: 1rem; }
-.form-input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; }
-.submit-btn { background-color: #0f172a; color: white; padding: 0.75rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-.submit-btn:hover { background-color: #1e293b; }
-
-/* Course Details & Tutoring Extras */
-.exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-.exam-card { background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; }
-.border-blue { border-top: 4px solid #3b82f6; }
-.border-green { border-top: 4px solid #10b981; }
-.border-orange { border-top: 4px solid #f59e0b; }
-.border-purple { border-top: 4px solid #8b5cf6; }
-.curriculum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.curriculum-box { background: #f8fafc; padding: 1.5rem; border-radius: 8px; }
-.feature-badge { display: flex; align-items: center; gap: 0.5rem; background: #f8fafc; font-weight: 600; padding: 0.6rem 1.5rem; border-radius: 50px; border: 1px solid #cbd5e1; transition: transform 0.2s, box-shadow 0.2s; }
-.feature-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.contact-card {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+.contact-info {
+  border-left: 4px solid #3b82f6;
+}
+.contact-form {
+  border-left: 4px solid #10b981;
+}
+.contact-list {
+  list-style: none;
+  padding: 0;
+  line-height: 2.5;
+}
+.contact-list a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+.contact-list a:hover {
+  color: #3b82f6;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+.submit-btn {
+  background-color: #0f172a;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.submit-btn:hover {
+  background-color: #1e293b;
+}
 
 /* Anasayfa & Repository */
-.main-container { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; }
-.hero-title { font-size: 3rem; color: #0f172a; margin-bottom: 1rem; }
-.repo-container { background: #ffffff; border: 1px solid #e2e8f0; padding: 2.5rem; border-radius: 8px; margin-bottom: 2rem; }
-
+.hero-title {
+  font-size: 3rem;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+.repo-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 2.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
 
 /* =========================================
    7. MARKDOWN, KATEX VE TAŞMA ENGELLERİ 
 ========================================= */
-/* Genel Taşma Kilidi */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* KAPSAYICI TAŞMA KİLİDİ (Burası çok kritikti, geri eklendi) */
-.notes-content, .markdown-body, .review-body {
+.notes-content,
+.markdown-body,
+.review-body {
   max-width: 100%;
   box-sizing: border-box;
   overflow-wrap: break-word !important;
   word-wrap: break-word !important;
 }
 
-.markdown-body h1 { font-size: 1.75rem; margin-bottom: 1rem; font-weight: 700; }
-.markdown-body h2 { font-size: 1.35rem; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; }
-.markdown-body h3, .review-body h3 { font-size: 1.25rem; margin-top: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem; }
-.markdown-body h4, .review-body h4 { color: #10b981; font-size: 1.05rem; font-weight: 600; }
+.markdown-body h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.markdown-body h2 {
+  font-size: 1.35rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.markdown-body h3,
+.review-body h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.4rem;
+}
+.markdown-body h4,
+.review-body h4 {
+  color: #10b981;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
 
-/* Metinlerin ve Kod Kutularının Sığdırılması (!important ile zorunlu hale getirildi) */
-.markdown-body p, 
+.markdown-body p,
 .markdown-body li {
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
@@ -596,7 +844,7 @@ html, body {
   max-width: 100%;
 }
 
-.markdown-body pre, 
+.markdown-body pre,
 .markdown-body code {
   white-space: pre-wrap !important;
   word-break: break-all !important;
@@ -604,7 +852,6 @@ html, body {
   overflow-x: auto;
 }
 
-/* Tablo Koruması */
 .markdown-body table {
   display: block !important;
   max-width: 100% !important;
@@ -612,7 +859,6 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* KaTeX Matematik Formülü Taşma Koruması */
 .katex {
   font-size: 1em !important;
 }
@@ -629,4 +875,122 @@ html, body {
 .katex-display > .katex {
   display: inline-block;
   white-space: nowrap;
+}
+
+/* =========================================
+   HAKKIMDA (ABOUT ME) & İKİ KOLONLU KUTU DÜZENİ
+========================================= */
+.about-container,
+.about-grid,
+.card,
+.main-container,
+.repo-container {
+  box-sizing: border-box !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.about-container p,
+.about-container li,
+.about-container h1,
+.about-container h2,
+.about-container h3,
+.card p,
+.card li,
+.repo-container p {
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+}
+
+@media (min-width: 769px) {
+  .about-container,
+  .about-grid,
+  .two-column-grid,
+  .about-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+    align-items: start;
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
+
+  .about-sidebar,
+  .about-content,
+  .grid-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container,
+  .about-grid,
+  .two-column-grid,
+  .about-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    padding: 0 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .about-sidebar,
+  .about-content,
+  .card,
+  .grid-card,
+  .repo-container {
+    padding: 1.25rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* =========================================
+   HAKKIMDA SAYFASI - PROFİL FOTOĞRAFI AYARI
+========================================= */
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 4px solid #ffffff;
+}
+
+/* =========================================
+   8. FOOTER ALANI (TEK VE TEMİZ)
+========================================= */
+footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  text-align: center;
+  padding: 0.4rem 1rem !important; /* Üst ve alt boşluk %70 daraltıldı */
+  margin-top: auto;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  font-size: 0.85rem; /* Yazı karakteri küçültüldü */
+  line-height: 1.2; /* Satırlar birbirine yaklaştırıldı */
+}
+
+/* Footer içindeki paragrafların kendi aralarındaki mesafeyi ezme */
+footer p {
+  margin: 0.3rem 0 !important;
+}
+
+footer a {
+  color: #cbd5e1;
+  text-decoration: none;
 }
