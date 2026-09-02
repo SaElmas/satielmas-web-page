@@ -22,41 +22,48 @@
   <div class="notes-layout">
 
     <aside class="notes-sidebar">
-      <h3><%= __('notes_page.sidebar_title') %></h3>
+      <h3>Topics & Notes</h3>
       <ul>
         <li>
           <a href="/notes" class="<%= activeTopic === 'index' ? 'active' : '' %>">
-            <%= __('notes_page.sidebar_overview') %>
+            Overview
           </a>
         </li>
         <li>
           <a href="/notes/hungerford-algebra" class="<%= activeTopic === 'hungerford-algebra' ? 'active' : '' %>">
-            <%= __('notes_page.sidebar_hungerford') %>
+            Hungerford Algebra
           </a>
         </li>
-        <li class="<%= activeTopic === 'ap-computer-science-a' ? 'active' : '' %>">
-          <a href="/notes/ap-computer-science-a">AP Computer Science A</a>
+        <li>
+          <a href="/notes/ap-computer-science-a" class="<%= activeTopic === 'ap-computer-science-a' ? 'active' : '' %>">
+            AP Computer Science A
+          </a>
+        </li>
+        <li>
+          <a href="/notes/real-analysis" class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>">
+            Real Analysis
+          </a>
         </li>
       </ul>
     </aside>
 
-    <main class="notes-content">
+<main class="notes-content">
 
       <% if (locals.noteData) { %>
+      <!-- Sadece Markdown Dosyası Varsa Burası Çalışır -->
       <div class="markdown-body">
         <%- noteData.htmlBody %>
       </div>
 
       <% } else if (activeTopic === 'index') { %>
-      <%- include('topics/index') %>
-
-      <% } else if (activeTopic === 'hungerford-algebra') { %>
-      <%- include('topics/hungerford-algebra') %>
+      <!-- YENİ EKLENEN KISIM: Ayrı dosyadan index'i çağırıyoruz -->
+      <%- include('notes-index') %>
 
       <% } else { %>
+      <!-- Dosya Bulunamazsa Çıkacak Hata -->
       <div class="notes-error-box">
-        <h2 class="notes-error-title"><%= __('notes_page.error_title') %></h2>
-        <p><%= __('notes_page.error_desc') %></p>
+        <h2 class="notes-error-title">Note Not Found</h2>
+        <p>The note you are looking for does not exist or has been moved.</p>
       </div>
       <% } %>
 
