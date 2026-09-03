@@ -1021,20 +1021,20 @@ footer a {
 }
 
 /* =========================================
-   9. MOBİL İÇİN YAZI TİPİ VE TAM EKRAN (EDGE-TO-EDGE) AYARLARI
-   Bu bölüm önceki mobil ayarların üzerine yazarak tam ekran uyumluluğu sağlar.
+   9. MOBİL İÇİN YAZI TİPİ VE YARI-TAM EKRAN AYARLARI
 ========================================= */
 @media (max-width: 768px) {
-  /* 9.1 Küçültülmüş ve Orantılı Yazı Tipleri */
+  /* 9.1 Küçültülmüş ve Orantılı Yazı Tipleri (0.85rem'e düşürüldü) */
   body, p, li, a {
     font-size: 0.85rem !important;
   }
   
-  h1 { font-size: 1.52rem !important; }
-  h2 { font-size: 1.30rem !important; }
-  h3 { font-size: 1.10rem !important; }
+  /* Başlıklar da yeni gövde boyutuna orantılı olarak biraz küçültüldü */
+  h1 { font-size: 1.5rem !important; }
+  h2 { font-size: 1.25rem !important; }
+  h3 { font-size: 1.1rem !important; }
 
-  /* 9.2 Ana Taşıyıcıların Sağ/Sol Boşluklarını Sıfırlama (Edge-to-Edge) */
+  /* 9.2 Ana Taşıyıcıların Sağ/Sol Boşlukları (Telefona değmemesi için ~4px pay) */
   main,
   .main-container,
   .notes-layout,
@@ -1042,14 +1042,15 @@ footer a {
   .about-grid,
   .two-column-grid,
   .about-wrapper {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0.25rem !important; /* ~4px breathing room */
+    padding-right: 0.25rem !important; /* ~4px breathing room */
     margin-left: 0 !important;
     margin-right: 0 !important;
     width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  /* 9.3 İçerik Kutularının Kenarlıklarını ve Dış Çerçevesini Silip Ekrana Yayma */
+  /* 9.3 İçerik Kutularının Kenarlıkları ve İç Boşlukları */
   .card,
   .note-container,
   .exam-card,
@@ -1058,11 +1059,9 @@ footer a {
   .about-content,
   .grid-card,
   .repo-container {
-    border-radius: 0 !important;
-    border-left: none !important;
-    border-right: none !important;
+    border-radius: 4px !important; /* Tiny rounded corners */
     width: 100% !important;
-    /* Metinlerin telefonun fiziksel kenarına değmemesi için iç boşluk */
+    /* İçerideki metnin kutu sınırına değmemesi için iç boşluk */
     padding-left: 1rem !important; 
     padding-right: 1rem !important;
     box-sizing: border-box !important;
