@@ -58,16 +58,18 @@ Since $X$ is written as a countable union of sets ($X \setminus E$ and all $\lbr
 
 ### Section 1.2 $\sigma$-Algebras
 
-**1.** A family of sets $\mathcal{R} \subset \mathcal{P}(X)$ is called a **ring** if it is closed under finite unions and differences (i.e., if $E_1,\ldots,E_n \in \mathcal{R}$, then $\bigcup_{j=1}^{n} E_j \in \mathcal{R}$, and if $E,F \in \mathcal{R}$, then $E \setminus F \in \mathcal{R}$). A ring that is closed under countable unions is called a **$\sigma$-ring**.
+**1.** A family of sets $\mathcal{R} \subset \mathcal{P}(X)$ is called a ring if it is closed under finite unions and differences (i.e., if $E_1,\ldots,E_n \in \mathcal{R}$, then $\bigcup_{j=1}^{n} E_j \in \mathcal{R}$, and if $E,F \in \mathcal{R}$, then $E \setminus F \in \mathcal{R}$). A ring that is closed under countable unions is called a $\sigma$-ring.
 
 - (a) Rings (resp. $\sigma$-rings) are closed under finite (resp. countable) intersections.
 - (b) If $\mathcal{R}$ is a ring (resp. $\sigma$-ring), then $\mathcal{R}$ is an algebra (resp. $\sigma$-algebra) iff $X \in \mathcal{R}$.
-- (c) If $\mathcal{R}$ is a $\sigma$-ring, then $\{E \subset X : E \in \mathcal{R} \text{ or } E^c \in \mathcal{R}\}$ is a $\sigma$-algebra.
-- (d) If $\mathcal{R}$ is a $\sigma$-ring, then $\{E \subset X : E \cap F \in \mathcal{R} \text{ for all } F \in \mathcal{R}\}$ is a $\sigma$-algebra.
+- (c) If $\mathcal{R}$ is a $\sigma$-ring, then $\lbrace E \subset X : E \in \mathcal{R} \text{ or } E^c \in \mathcal{R}\rbrace$ is a $\sigma$-algebra.
+- (d) If $\mathcal{R}$ is a $\sigma$-ring, then $\lbrace E \subset X : E \cap F \in \mathcal{R} \text{ for all } F \in \mathcal{R}\rbrace$ is a $\sigma$-algebra.
 
-**Solution** *For part (a) and (b) I will prove only $\sigma$-ring case, the countable case is very similar*
+**Solution** *For part (a) and (b) I will prove only $\sigma$-ring case, the finite case is very similar*
 
-(a) Since $\bigcap\limits_{1}^{\infty} E_j = E_1 \setminus  \bigcup\limits_{2}^{\infty} \big( E_1 \setminus E_j \big)$ both countable and finite intersection are satisfied.
+**(a)** Let $\mathcal{R}$ be a $\sigma$-ring and $\lbrace E_j \rbrace$ be a sequence of sets in $\mathcal{R}$. Since $\bigcap\limits_{1}^{\infty} E_j = E_1 \setminus  \bigcup\limits_{2}^{\infty} \big( E_1 \setminus E_j \big)$ and $\sigma$-ring is closed under countable union and differences the intersection is in the $\sigma$-ring. $\blacksquare$
+
+**(b)** Assume that $\mathcal{R}$ is a $\sigma$-ring and contains $X$. We just need to show that $\mathcal{R}$ is closed under complement. For any $E \in \mathcal{R}$ we have $E^c = X \setminus E$ and since a $\sigma$-ring is closed under set difference $\mathcal{R}$ is closed under complement, and we are done. For the other direction assume that $\mathcal{R}$ is a $\sigma$-algebra and $E,F \in \mathcal{R}$ two sets. Then we have $E \setminus F = E \cap F^c$ and since $\sigma$-algebra is closed under intersection and complement it is also closed in set difference. Moreover, for any $E \in \mathcal{R}$ we have $E \cup E^c = X$ and we are done. $\blacksquare$. 
 
 
 ### Section 1.3 Meaures

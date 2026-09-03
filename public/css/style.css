@@ -1019,3 +1019,52 @@ footer a {
   color: #cbd5e1;
   text-decoration: none;
 }
+
+/* =========================================
+   9. MOBİL İÇİN YAZI TİPİ VE TAM EKRAN (EDGE-TO-EDGE) AYARLARI
+   Bu bölüm önceki mobil ayarların üzerine yazarak tam ekran uyumluluğu sağlar.
+========================================= */
+@media (max-width: 768px) {
+  /* 9.1 Küçültülmüş ve Orantılı Yazı Tipleri */
+  body, p, li, a {
+    font-size: 0.9rem !important;
+  }
+  
+  h1 { font-size: 1.6rem !important; }
+  h2 { font-size: 1.35rem !important; }
+  h3 { font-size: 1.15rem !important; }
+
+  /* 9.2 Ana Taşıyıcıların Sağ/Sol Boşluklarını Sıfırlama (Edge-to-Edge) */
+  main,
+  .main-container,
+  .notes-layout,
+  .about-container,
+  .about-grid,
+  .two-column-grid,
+  .about-wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  /* 9.3 İçerik Kutularının Kenarlıklarını ve Dış Çerçevesini Silip Ekrana Yayma */
+  .card,
+  .note-container,
+  .exam-card,
+  .curriculum-box,
+  .about-sidebar,
+  .about-content,
+  .grid-card,
+  .repo-container {
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    width: 100% !important;
+    /* Metinlerin telefonun fiziksel kenarına değmemesi için iç boşluk */
+    padding-left: 1rem !important; 
+    padding-right: 1rem !important;
+    box-sizing: border-box !important;
+  }
+}
