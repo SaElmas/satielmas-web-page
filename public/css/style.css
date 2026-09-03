@@ -1027,12 +1027,12 @@ footer a {
 @media (max-width: 768px) {
   /* 9.1 Küçültülmüş ve Orantılı Yazı Tipleri */
   body, p, li, a {
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
   }
   
-  h1 { font-size: 1.6rem !important; }
-  h2 { font-size: 1.35rem !important; }
-  h3 { font-size: 1.15rem !important; }
+  h1 { font-size: 1.52rem !important; }
+  h2 { font-size: 1.30rem !important; }
+  h3 { font-size: 1.10rem !important; }
 
   /* 9.2 Ana Taşıyıcıların Sağ/Sol Boşluklarını Sıfırlama (Edge-to-Edge) */
   main,
