@@ -2,6 +2,34 @@
 title: Real Analysis
 ---
 
+**Theorem (Chain rule)** Let $I,J$ be intervals and $f,g$ be two functions on them respectively with $g(J) \sub I$. Suppose that $g$ is differentiable at a point $a$ and $f$ is differentiable at a point $b = g(a)$. Then the composition of the functions is differentiable at point $a$ and
+$$
+(f\circ g)'(a) = f'(g(a))g'(a)
+$$
+
+**Proof** Define the function
+
+$$
+\Phi(x) = \begin{cases}
+    \dfrac{f(y) -f(b)}{y -b} & \text{if } x \neq b \\\\
+    f'(b)   & \text{if } x = b
+\end{cases}
+$$
+
+This function is continious at $b$ because $lim_{x \to b} \Phi(x) =  \Phi(b) $ So for any $y \in I$ we have $ f(y) - f(b) = \Phi(y) (y-b) $. If we substitude $y=g(x)$ and divide the equality by $(x-a)$ by restriction $x \neq a$ we get
+
+$$
+\frac{f(g(x)) - f(g(a))}{x-a} = \Phi(g(x))\frac{g(x) - g(a)}{ x -a}
+$$
+
+Finaly if we get the limit as $x\to a$ we get
+
+$$
+(f\circ g)'(a) = f'(g(a))g'(a)
+$$
+$\blacksquare$
+
+---
 
 **Proposition** Every open set of $\mathbb{R}$ can be written as countable disjoint union of open intervals.
 
@@ -69,7 +97,23 @@ Since $X$ is written as a countable union of sets ($X \setminus E$ and all $\lbr
 
 **(a)** Let $\mathcal{R}$ be a $\sigma$-ring and $\lbrace E_j \rbrace$ be a sequence of sets in $\mathcal{R}$. Since $\bigcap\limits_{1}^{\infty} E_j = E_1 \setminus  \bigcup\limits_{2}^{\infty} \big( E_1 \setminus E_j \big)$ and $\sigma$-ring is closed under countable union and differences the intersection is in the $\sigma$-ring. $\blacksquare$
 
-**(b)** Assume that $\mathcal{R}$ is a $\sigma$-ring and contains $X$. We just need to show that $\mathcal{R}$ is closed under complement. For any $E \in \mathcal{R}$ we have $E^c = X \setminus E$ and since a $\sigma$-ring is closed under set difference $\mathcal{R}$ is closed under complement, and we are done. For the other direction assume that $\mathcal{R}$ is a $\sigma$-algebra and $E,F \in \mathcal{R}$ two sets. Then we have $E \setminus F = E \cap F^c$ and since $\sigma$-algebra is closed under intersection and complement it is also closed in set difference. Moreover, for any $E \in \mathcal{R}$ we have $E \cup E^c = X$ and we are done. $\blacksquare$. 
+**(b)** Assume that $\mathcal{R}$ is a $\sigma$-ring and contains $X$. We just need to show that $\mathcal{R}$ is closed under complement. For any $E \in \mathcal{R}$ we have $E^c = X \setminus E$ and since a $\sigma$-ring is closed under set difference $\mathcal{R}$ is closed under complement, and we are done. For the other direction assume that $\mathcal{R}$ is a $\sigma$-algebra and $E,F \in \mathcal{R}$ two sets. Then we have $E \setminus F = E \cap F^c$ and since $\sigma$-algebra is closed under intersection and complement it is also closed in set difference. Moreover, for any $E \in \mathcal{R}$ we have $E \cup E^c = X$ and we are done. $\blacksquare$.
+
+**(c)** We need to show that the given set is closed under complement and countable union. The firs one is trivial since it contains all the complements of its sets by definition. For the second one assume that $\lbrace E_i \rbrace$ is a family of subsets of the given set $\mathcal{A} = \lbrace E \subset X : E \in \mathcal{R} \text{ or } E^c \in \mathcal{R}\rbrace$. Decompose $\lbrace E_i \rbrace$ into two part indexed with $J$ $K$ there. $E_j$ and $E_k^c$ are in $\mathcal{R}$ for any $j,k$. Than we have,
+$$
+\bigcup_{i\in I} E_i = \left(\bigcup_{j \in J}E_j \right) \cup \left(\bigcup_{k \in K} E_k \right) \\
+$$
+if we get the complement of the lefthand side we get
+
+$$
+\left( \bigcup_{i\in I} E_i \right)^c = \left(\bigcup_{j \in J}E_j \right)^c \cap \left(\bigcup_{k \in K} E_k \right)^c = \left(\bigcup_{j \in J}E_j \right)^c \cap \left(\bigcap_{k \in K} E_k^c \right)
+$$
+
+And the last intersection can be written as set differences like follows.
+$$
+\left(\bigcap_{k \in K} E_k^c \right) \setminus  \left(\bigcup_{j \in j} E_j \right)
+$$
+Now we have intersections of sets of $\mathcal{R}$ set difference unions of sets of $\mathcal{R}$ and by part (a) and the difference is in $\mathcal{R}$ and we are done. $\blacksquare$
 
 
 ### Section 1.3 Meaures

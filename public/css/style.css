@@ -1042,8 +1042,8 @@ footer a {
   .about-grid,
   .two-column-grid,
   .about-wrapper {
-    padding-left: 0.25rem !important; /* ~4px breathing room */
-    padding-right: 0.25rem !important; /* ~4px breathing room */
+    padding-left: 0.12rem !important; /* ~4px breathing room */
+    padding-right: 0.12rem !important; /* ~4px breathing room */
     margin-left: 0 !important;
     margin-right: 0 !important;
     width: 100% !important;
