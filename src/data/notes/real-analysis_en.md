@@ -10,23 +10,24 @@ $$
 **Proof** Define the function
 
 $$
-\Phi(x) = \begin{cases}
-    \dfrac{f(y) -f(b)}{y -b} & \text{if } x \neq b \\\\
-    f'(b)   & \text{if } x = b
+\Phi(y) = \begin{cases} 
+\dfrac{f(y) - f(b)}{y - b} & \text{if } y \neq b \\\\ 
+f'(b) & \text{if } y = b 
 \end{cases}
 $$
 
-This function is continious at $b$ because $lim_{x \to b} \Phi(x) =  \Phi(b) $ So for any $y \in I$ we have $ f(y) - f(b) = \Phi(y) (y-b) $. If we substitude $y=g(x)$ and divide the equality by $(x-a)$ by restriction $x \neq a$ we get
+This function is continuous at $b$ because $\lim_{y \to b}\Phi(y) = \Phi(b)$. So for any $y \in I$, we have $f(y) - f(b) = \Phi(y)(y - b)$. If we substitute $y = g(x)$ and divide the equality by $(x - a)$ for $x \neq a$, we get
 
 $$
-\frac{f(g(x)) - f(g(a))}{x-a} = \Phi(g(x))\frac{g(x) - g(a)}{ x -a}
+\frac{f(g(x)) - f(g(a))}{x - a} = \Phi(g(x))\frac{g(x) - g(a)}{x - a}
 $$
 
-Finaly if we get the limit as $x\to a$ we get
+Finally, if we take the limit as $x \to a$, we get
 
 $$
-(f\circ g)'(a) = f'(g(a))g'(a)
+(f \circ g)'(a) = f'(g(a))g'(a)
 $$
+
 $\blacksquare$
 
 ---
