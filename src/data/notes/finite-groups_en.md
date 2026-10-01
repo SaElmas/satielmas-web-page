@@ -133,3 +133,90 @@ If $f$ is bijective, then $f$ is said to be a **$G$-isomorphism**, and $X$ and $
 **Theorem:** Let $X$ be a transitive $G$-set, $x \in X$, and $H = Stab_G(x)$. Then $X$ is $G$-isomorphic to the set of right cosets $\lbrace Hg \mid g \in G \rbrace$, where $G$ acts on the cosets by right multiplication.
 
 *(Note: Let $N \trianglelefteq G$ and $X$ be a $G$-set. Let $O_x = \lbrace xn \mid n \in N \rbrace$ be the $N$-orbit containing $x$. If $G$ acts transitively on $X$, then $G$ also acts transitively on the $N$-orbits via $O_x \cdot g = O_{xg}$).*
+
+---
+
+## Examples of Group Actions
+
+These examples complement the basic definitions of right group actions, orbits, stabilizers, faithful actions, transitive actions, and regular actions . Throughout, we use *right actions* . Thus, if a group $G$ acts on a set $X$, we write the action as $X \times G \to X$, $(x, g) \mapsto x \cdot g$, and the defining rule is $(x \cdot g) \cdot h = x \cdot (gh)$ .
+
+### Permutation Actions
+Let $H \le S_n$ . Then $H$ acts on the set $\Omega = \{1, 2, \dots, n\}$ by evaluation: $i \cdot \sigma = \sigma(i)$ for $i \in \Omega$, $\sigma \in H$ . This action is faithful, because if $\sigma \in H$ fixes every element of $\Omega$, then $\sigma = 1$ . 
+* In particular, $S_n$ acts faithfully and transitively on $\{1, \dots, n\}$ . 
+* **Example:** The subgroup $\langle (1 \, 2 \, \dots \, n) \rangle \cong C_n$ acts transitively on $\{1, \dots, n\}$, but it is not 2-transitive when $n > 2$ .
+
+### The Regular Action
+Every group $G$ acts on itself by right multiplication: $x \cdot g = xg$ for $x, g \in G$ . This action is called the *right regular action* .
+* It is *transitive*: given $x, y \in G$, choosing $g = x^{-1}y$ gives $x \cdot g = y$ .
+* It is *free*: if $x \cdot g = x$, then $xg = x$, so $g = 1$ . 
+Hence the action is *regular* . 
+* **Example:** The additive group $\mathbb{Z}_n$ acts regularly on the set $\mathbb{Z}_n$ by translations: $x \cdot a = x + a$ .
+
+### $k$-Transitive Actions
+Let $G$ act on a set $X$ . We say that the action is *$k$-transitive* if for any two ordered $k$-tuples $(x_1, \dots, x_k)$ and $(y_1, \dots, y_k)$ of elements of $X$ with $x_i \neq x_j$ and $y_i \neq y_j$ for $i \neq j$, there exists $g \in G$ such that $x_i \cdot g = y_i$ for $i = 1, \dots, k$ .
+* $S_n$ acts $n$-transitively on $\{1, \dots, n\}$ .
+* $A_n$ acts $(n-2)$-transitively on $\{1, \dots, n\}$ for $n \ge 4$ .
+* **Example:** The action of $PGL(2, q)$ on the projective line $\mathbb{P}^1(\mathbb{F}_q)$ is sharply 3-transitive . This is a classical and very important example .
+
+### A Subgroup Acting on the Group, and the Coset Action
+Let $H \le G$ .
+* **The subgroup $H$ acts on $G$ by right multiplication.** Define $x \cdot h = xh$ for $x \in G$, $h \in H$ . This action is faithful, and its orbits are the left cosets of $H$ in $G$ . Indeed, the orbit of $x \in G$ is $O_x = \{x \cdot h \mid h \in H\} = xH$ . Since right actions produce left cosets here, it is worth pointing this out explicitly .
+* **The group $G$ acts on the set of right cosets of $H$.** Let $\Omega = \{Hg \mid g \in G\}$ . Define $(Hg) \cdot x = Hgx$ for $Hg \in \Omega$, $x \in G$ . Then $G$ acts transitively on $\Omega$ . 
+  * The stabilizer of the point $Hg$ is $\text{Stab}_G(Hg) = \{x \in G \mid Hgx = Hg\} = g^{-1}Hg$ . Thus each point stabilizer is a conjugate of $H$ .
+  * The kernel of this action is $\bigcap_{g \in G} g^{-1}Hg = \text{Core}_G(H)$, which is the largest normal subgroup of $G$ contained in $H$ . 
+  * **Fact:** If $|G : H| = m$, then the coset action gives a homomorphism $G \to S_m$ with kernel $\text{Core}_G(H)$ . Hence $G / \text{Core}_G(H) \le S_m$, and therefore $|G : \text{Core}_G(H)|$ divides $m!$ .
+  * **Consequence:** If $G$ is simple and $H < G$ has index $m$, then $\text{Core}_G(H) = 1$, and so $|G|$ divides $m!$ .
+
+### Conjugation Actions
+* **$G$ acts on itself by conjugation.** Define $x \cdot g = g^{-1}xg$ for $x, g \in G$ . Then the orbit of $x$ is its conjugacy class, $x^G = \{g^{-1}xg \mid g \in G\}$, and the stabilizer of $x$ is its centralizer, $\text{Stab}_G(x) = C_G(x)$ . Hence the orbit-stabilizer theorem yields $|x^G| = |G : C_G(x)|$ . The kernel of this action is $\bigcap_{x \in G} C_G(x) = Z(G)$ . Thus the action is faithful if and only if $Z(G) = 1$ .
+* **$G$ acts on a normal subgroup $N \trianglelefteq G$ by conjugation.** This is just the restriction of the previous action, since $N$ is stable under conjugation .
+* **$G$ acts on $G/N$ by conjugation when $N \trianglelefteq G$.** Define $(Nx) \cdot g = N(g^{-1}xg)$ . This is well-defined because $N$ is normal .
+
+### The Action on the Set of Subgroups
+The group $G$ acts on the set of all subgroups of $G$ by conjugation: $H \cdot g = g^{-1}Hg$ . 
+* The fixed points of this action are exactly the normal subgroups of $G$ . 
+* For a subgroup $H \le G$, the orbit is $O_H = \{g^{-1}Hg \mid g \in G\}$, that is, the set of all conjugates of $H$, and the stabilizer is the normalizer: $\text{Stab}_G(H) = N_G(H)$ .
+* Therefore, $|O_H| = |G : N_G(H)|$, which is the number of distinct conjugates of $H$ .
+* **Important special case:** If $X = \text{Syl}_p(G)$, then $G$ acts on $X$ by conjugation . The orbit of any Sylow $p$-subgroup is all of $X$, so $|\text{Syl}_p(G)| = |G : N_G(P)|$ for each $P \in \text{Syl}_p(G)$ . This is one of the standard action-theoretic proofs in Sylow theory .
+
+### The Induced Action on the Power Set
+Let $X$ be a $G$-set . Then the power set $\mathcal{P}(X)$ becomes a $G$-set via $Y \cdot g = \{y \cdot g \mid y \in Y\}$ for $Y \subseteq X$, $g \in G$ . This is well-defined, and $|Y \cdot g| = |Y|$ .
+* **Examples:** If $G = S_n$ acts on $X = \{1, \dots, n\}$, then $G$ acts on the set of all $k$-subsets of $X$ . More generally, if $G$ acts on a graph by symmetries, then it acts on the set of vertices, the set of edges, and the set of subsets of vertices .
+
+### Permuting Coordinates
+Let $X$ be a set . Then $S_n$ acts on $X^n$ by permuting coordinates: $(x_1, \dots, x_n) \cdot \sigma = (x_{\sigma(1)}, \dots, x_{\sigma(n)})$ . This is a right action .
+* **Observation:** The diagonal subset $\Delta = \{(x, x, \dots, x) \mid x \in X\}$ is fixed pointwise by this action .
+* **Another useful invariant subset:** For any partition of $\{1, \dots, n\}$, one gets a corresponding subset of $X^n$ defined by equalities among coordinates, and such subsets are stabilized by suitable subgroups of $S_n$ .
+
+### Linear Actions
+The group $GL(n, \mathbb{R})$ acts naturally on $\mathbb{R}^n$ by right multiplication of row vectors: $x \cdot A = xA$ for $x \in \mathbb{R}^n, A \in GL(n, \mathbb{R})$ . Similarly, $GL(n, F)$ acts on $F^n$ for any field $F$ .
+* **Interesting variant:** The same group acts on the set of all subspaces of $F^n$ . In particular, it acts transitively on the set of $k$-dimensional subspaces . This is one of the basic examples behind projective geometry .
+
+### A Small but Instructive Action of $C_2$
+Let $C_2 = \{0, 1\}$ under addition mod 2 . Then $C_2$ acts on $\mathbb{R}^n$ by $x \cdot 0 = x$, $x \cdot 1 = -x$ . This is a very simple example of a nontrivial linear action . The fixed point set is $\{x \in \mathbb{R}^n \mid -x = x\} = \{0\}$ .
+
+### Automorphism Actions
+For any group $G$, the automorphism group $\text{Aut}(G)$ acts on the underlying set of $G$ by evaluation: $x \cdot \alpha = \alpha(x)$ for $x \in G, \alpha \in \text{Aut}(G)$ . It also acts on many naturally associated sets :
+* on the set of subgroups of $G$ ,
+* on the set of normal subgroups of $G$ ,
+* on the set of elements of a fixed order ,
+* on the set of conjugacy classes of $G$ .
+These actions are often very useful in finite group theory .
+
+### Dihedral Symmetry of a Polygon
+Let $D_{2n}$ be the dihedral group of order $2n$ . It acts on the set of vertices of a regular $n$-gon .
+* This action is faithful and transitive .
+* It is not regular, since reflections fix vertices (or edges, depending on the parity of $n$) .
+This is a good geometric example to compare with the regular action of a group on itself .
+
+### A Useful Action in Number Theory and Combinatorics
+Let $C_n = \langle r \rangle$ act on the set of vertices of a regular $n$-gon by rotation . Then the orbits of subsets under this action are the objects counted by Burnside's lemma and Pólya theory . This is a nice reminder that group actions are not only algebraic tools: they are also basic counting devices .
+
+> **Summary:** The most useful examples to keep in mind are:
+> * the regular action of a group on itself ,
+> * the action on cosets ,
+> * the conjugation action on elements and on subgroups ,
+> * permutation actions of $S_n$ and $A_n$ ,
+> * linear actions of matrix groups .
+>
+> These examples already cover most of the applications that appear early in finite group theory .
