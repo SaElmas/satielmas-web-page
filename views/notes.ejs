@@ -44,10 +44,17 @@
             Real Analysis
           </a>
         </li>
+        <li class="<%= activeTopic === 'real-analysis' ? 'active' : '' %>">
+          <a href="/notes/real-analysis">Real Analysis</a>
+        </li>
+        <!-- FINITE GROUPS EKLENDİ -->
+        <li class="<%= activeTopic === 'finite-groups' ? 'active' : '' %>">
+          <a href="/notes/finite-groups">Finite Groups</a>
+        </li>
       </ul>
     </aside>
 
-<main class="notes-content">
+    <main class="notes-content">
 
       <% if (locals.noteData) { %>
       <!-- Sadece Markdown Dosyası Varsa Burası Çalışır -->

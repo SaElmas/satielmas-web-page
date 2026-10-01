@@ -83,7 +83,61 @@ Since $X$ is written as a countable union of sets ($X \setminus E$ and all $\lbr
 ---
 
 
+## Principles of Mathematical Analysis (Baby Rudin)
+
+### The Real Field
+
+**Theorem 1.19** There exists an ordered field $\mathbb{R}$ which has the least-upper-bound property. Moreover, $\mathbb{R}$ contains $\mathbb{Q}$ as a subfield.
+
+**Proof Step 1** The members of $\mathbb{R}$ will be certain subsets of $\mathbb{Q}$, called *cuts*. A cut is defined as any set $\alpha \subset \mathbb{Q}$ such that:
+- (I) $\alpha \neq \emptyset$ and $\alpha \neq \mathbb{Q}$.
+- (II) If $p \in \alpha$, $q \in \mathbb{Q}$, and $q < p$, then $q \in \alpha$.
+- (III) If $p \in \alpha$, then $p < r$ for some $r \in \alpha$.
+
+**Proof Step 2** Define $\alpha < \beta$ as $\alpha \subsetneq \beta$. With this relation $\mathbb{R}$ is an ordered set.
+- (i) For $\alpha, \beta \in \mathbb{R}$, only one is true: $\alpha < \beta$, $\alpha = \beta$, or $\beta < \alpha$.
+- (ii) For $\alpha < \beta$ and $\beta < \gamma$, $\alpha < \gamma$.
+
+Hence $\mathbb{R}$ has an order relation.
+
+**Proof Step 3** The ordered set $\mathbb{R}$ has the least upper-bound property.
+Let $A$ be a subset of $\mathbb{R}$ and $\beta$ be an upper bound of $A$. That is, for any $\alpha \in A$, $\alpha \subset \beta$.
+Define $\gamma = \bigcup_{\alpha \in A} \alpha$. We will prove that $\sup A = \gamma$.
+1. $\gamma$ is an upper bound of $A$: Take any $\alpha \in A$, $\alpha \subset \gamma \Rightarrow \alpha \le \gamma$.
+2. Anything less than $\gamma$ is not an upper bound of $A$: Say $\beta < \gamma$, then there exists $p \in \gamma$ such that $p \notin \beta$. Since $p \in \gamma$, there is some $\alpha \in A$ with $p \in \alpha$. Thus $\alpha \not\subset \beta$, hence $\beta$ is not an upper bound.
+
+**Proof Step 4** If $\alpha \in \mathbb{R}$ and $\beta \in \mathbb{R}$ we define $\alpha + \beta$ to be the set of all sums $r + s$, where $r \in \alpha$ and $s \in \beta$.
+
+We define $0^* $ to be the set of all negative rational numbers. It is clear that $0^* $  is a cut. We verify that the axioms for addition hold in $\mathbb{R}$, with $0^*$ playing the role of $0$.
+
+- **(A1)** We have to show that $\alpha + \beta$ is a cut. It is clear that $\alpha + \beta$ is a nonempty subset of $\mathbb{Q}$. Take $r' \notin \alpha, s' \notin \beta$. Then $r' + s' > r + s$ for all choices of $r \in \alpha, s \in \beta$. Thus $r' + s' \notin \alpha + \beta$. It follows that $\alpha + \beta$ has property (I).
+  Pick $p \in \alpha + \beta$. Then $p = r + s$, with $r \in \alpha, s \in \beta$. If $q < p$, then $q - s < r$, so $q - s \in \alpha$, and $q = (q - s) + s \in \alpha + \beta$. Thus (II) holds. Choose $t \in \alpha$ so that $t > r$. Then $p < t + s$ and $t + s \in \alpha + \beta$. Thus (III) holds.
+- **(A2)** $\alpha + \beta$ is the set of all $r + s$, with $r \in \alpha, s \in \beta$. By the same definition, $\beta + \alpha$ is the set of all $s + r$. Since $r + s = s + r$ for all $r \in \mathbb{Q}, s \in \mathbb{Q}$, we have $\alpha + \beta = \beta + \alpha$.
+- **(A3)** As above, this follows from the associative law in $\mathbb{Q}$.
+- **(A4)** If $r \in \alpha$ and $s \in 0^*$, then $r + s < r$, hence $r + s \in \alpha$. Thus $\alpha + 0^* \subset \alpha$. To obtain the opposite inclusion, pick $p \in \alpha$, and pick $r \in \alpha, r > p$. Then $p - r \in 0^*$, and $p = r + (p - r) \in \alpha + 0^*$. Thus $\alpha \subset \alpha + 0^*$. We conclude that $\alpha + 0^* = \alpha$.
+- **(A5)** Fix $\alpha \in \mathbb{R}$. Let $\beta$ be the set of all $p$ with the following property:
+  There exists $r > 0$ such that $-p - r \notin \alpha$.
+  In other words, some rational number smaller than $-p$ fails to be in $\alpha$.
+  
+  We show that $\beta \in \mathbb{R}$ and that $\alpha + \beta = 0^*$.
+  If $s \notin \alpha$ and $p = -s - 1$, then $-p - 1 \notin \alpha$, hence $p \in \beta$. So $\beta$ is not empty. If $q \in \alpha$, then $-q \notin \beta$. So $\beta \neq \mathbb{Q}$. Hence $\beta$ satisfies (I).
+  Pick $p \in \beta$, and pick $r > 0$, so that $-p - r \notin \alpha$. If $q < p$, then $-q - r > -p - r$, hence $-q - r \notin \alpha$. Thus $q \in \beta$, and (II) holds. Put $t = p + (r/2)$. Then $t > p$, and $-t - (r/2) = -p - r \notin \alpha$, so that $t \in \beta$. Hence $\beta$ satisfies (III).
+  We have proved that $\beta \in \mathbb{R}$.
+  
+  If $r \in \alpha$ and $s \in \beta$, then $-s \notin \alpha$, hence $r < -s$, $r + s < 0$. Thus $\alpha + \beta \subset 0^*$.
+  To prove the opposite inclusion, pick $v \in 0^*$, put $w = -v/2$. Then $w > 0$, and there is an integer $n$ such that $nw \in \alpha$ but $(n + 1)w \notin \alpha$. (Note that this depends on the fact that $\mathbb{Q}$ has the archimedean property!) Put $p = -(n + 2)w$. Then $p \in \beta$, since $-p - w \notin \alpha$, and
+  $$v = nw + p \in \alpha + \beta.$$
+  Thus $0^* \subset \alpha + \beta$.
+  We conclude that $\alpha + \beta = 0^*$.
+  This $\beta$ will of course be denoted by $-\alpha$. $\blacksquare$
+
+
+
+
+---
+
 ## Gerald B. Folland Real Analysis Solutions
+
 
 ### Section 1.2 $\sigma$-Algebras
 
