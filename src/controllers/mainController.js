@@ -6,6 +6,19 @@ const path = require("path");
 const matter = require("gray-matter");
 const { marked } = require("marked");
 
+// Markdown, LaTeX içindeki "\{", "\\" gibi kaçışları yutuyor ve "_", "*" karakterlerini
+// vurgu sanabiliyor. Matematik bloklarında bunları marked'dan önce koruyoruz; kod blokları atlanır.
+const protectMath = (markdown) =>
+  markdown.replace(
+    /(```[\s\S]*?```|`[^`\n]*`)|\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g,
+    (segment, code) =>
+      code
+        ? segment
+        : segment.replace(/\\([!-\/:-@\[-`{-~])|([_*])/g, (m, escaped, emphasis) =>
+            escaped ? `\\\\\\${escaped}` : `\\${emphasis}`,
+          ),
+  );
+
 exports.getHomePage = (req, res, next) => {
   res.render("index", {
     pageTitle: "Sait Elmas | Academic & Engineering",
@@ -61,7 +74,7 @@ exports.getNoteByTopic = (req, res) => {
     try {
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = matter(fileContent);
-      const htmlContent = marked.parse(content);
+      const htmlContent = marked.parse(protectMath(content));
 
       noteData = {
         title: data.title || requestedTopic,
