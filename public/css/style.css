@@ -1448,3 +1448,11 @@ footer a {
   color: #475569;
   font-size: 0.9rem;
 }
+
+/* Menüdeki amblem */
+.nav-brand-logo {
+  width: 36px;
+  height: 36px;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+}
