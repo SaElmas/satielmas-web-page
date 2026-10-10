@@ -43,194 +43,24 @@
     <section class="testimonials-section">
       <h2 class="testimonials-title"><%= __('about_page.testimonials_title') %></h2>
 
+      <p class="testimonials-source">
+        <%= __('about_page.testimonials_source') %>
+        <a href="https://ankara.ozelders.com/ders-veren/gemi-insa-muhendisi-sait-e-324085" target="_blank" rel="noopener"><%= __('about_page.testimonials_source_link') %></a>
+      </p>
+
+      <%# ozelders.com profilindeki gerçek yorumlar; metinler locales/*.json içinde (t1..t13) %>
+      <% const reviewers = ["Elif V.","Kaan B.","Pınar D.","Cinar K.","Berkan Ö.","Edibe Ö.","Arhan T.","Zeynep A.","Mine T.","Emin K.","Muhammed Eren G.","Kaan C.","Halil K."]; %>
       <div class="testimonial-container">
         <div class="testimonial-track">
-
-          <!-- Kart 1 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t1_text') %></p>
-            <div class="student-name">Elif V.</div>
-            <div class="student-school"><%= __('testimonials.t1_school') %></div>
-          </div>
-
-          <!-- Kart 2 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t2_text') %></p>
-            <div class="student-name">Kaan B.</div>
-            <div class="student-school"><%= __('testimonials.t2_school') %></div>
-          </div>
-
-          <!-- Kart 3 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t3_text') %></p>
-            <div class="student-name">Pınar D.</div>
-            <div class="student-school"><%= __('testimonials.t3_school') %></div>
-          </div>
-
-          <!-- Kart 4 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t4_text') %></p>
-            <div class="student-name">Cinar K.</div>
-            <div class="student-school"><%= __('testimonials.t4_school') %></div>
-          </div>
-
-          <!-- Kart 5 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t5_text') %></p>
-            <div class="student-name">Berkan Ö.</div>
-            <div class="student-school"><%= __('testimonials.t5_school') %></div>
-          </div>
-
-          <!-- Kart 6 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t6_text') %></p>
-            <div class="student-name">Edibe Ö.</div>
-            <div class="student-school"><%= __('testimonials.t6_school') %></div>
-          </div>
-
-          <!-- Kart 7 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t7_text') %></p>
-            <div class="student-name">Arhan T.</div>
-            <div class="student-school"><%= __('testimonials.t7_school') %></div>
-          </div>
-
-          <!-- Kart 8 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t8_text') %></p>
-            <div class="student-name">Zeynep A.</div>
-            <div class="student-school"><%= __('testimonials.t8_school') %></div>
-          </div>
-
-          <!-- Kart 9 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t9_text') %></p>
-            <div class="student-name">Mine T.</div>
-            <div class="student-school"><%= __('testimonials.t9_school') %></div>
-          </div>
-
-          <!-- Kart 10 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t10_text') %></p>
-            <div class="student-name">Emin K.</div>
-            <div class="student-school"><%= __('testimonials.t10_school') %></div>
-          </div>
-
-          <!-- Kart 11 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t11_text') %></p>
-            <div class="student-name">Muhammed Eren G.</div>
-            <div class="student-school"><%= __('testimonials.t11_school') %></div>
-          </div>
-
-          <!-- Kart 12 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t12_text') %></p>
-            <div class="student-name">Kaan C.</div>
-            <div class="student-school"><%= __('testimonials.t12_school') %></div>
-          </div>
-
-          <!-- Kart 13 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t13_text') %></p>
-            <div class="student-name">Halil K.</div>
-            <div class="student-school"><%= __('testimonials.t13_school') %></div>
-          </div>
-
-          <!-- Kart 14 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t14_text') %></p>
-            <div class="student-name">Caner E.</div>
-            <div class="student-school"><%= __('testimonials.t14_school') %></div>
-          </div>
-
-          <!-- Kart 15 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t15_text') %></p>
-            <div class="student-name">Büşra Y.</div>
-            <div class="student-school"><%= __('testimonials.t15_school') %></div>
-          </div>
-
-          <!-- Kart 16 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t16_text') %></p>
-            <div class="student-name">Tolga S.</div>
-            <div class="student-school"><%= __('testimonials.t16_school') %></div>
-          </div>
-
-          <!-- Kart 17 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t17_text') %></p>
-            <div class="student-name">Selin M.</div>
-            <div class="student-school"><%= __('testimonials.t17_school') %></div>
-          </div>
-
-          <!-- Kart 18 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t18_text') %></p>
-            <div class="student-name">Kerem A.</div>
-            <div class="student-school"><%= __('testimonials.t18_school') %></div>
-          </div>
-
-          <!-- Kart 19 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t19_text') %></p>
-            <div class="student-name">Defne L.</div>
-            <div class="student-school"><%= __('testimonials.t19_school') %></div>
-          </div>
-
-          <!-- Kart 20 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t20_text') %></p>
-            <div class="student-name">Aylin H.</div>
-            <div class="student-school"><%= __('testimonials.t20_school') %></div>
-          </div>
-
-          <!-- Kart 21 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t21_text') %></p>
-            <div class="student-name">Ozan Ç.</div>
-            <div class="student-school"><%= __('testimonials.t21_school') %></div>
-          </div>
-
-          <!-- Kart 22 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t22_text') %></p>
-            <div class="student-name">Mert N.</div>
-            <div class="student-school"><%= __('testimonials.t22_school') %></div>
-          </div>
-
-          <!-- Kart 23 -->
-          <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <p class="student-text"><%= __('testimonials.t23_text') %></p>
-            <div class="student-name">Zeynep K.</div>
-            <div class="student-school"><%= __('testimonials.t23_school') %></div>
-          </div>
-
-
+          <% for (let copy = 0; copy < 2; copy++) { %>
+            <% reviewers.forEach(function(name, index) { %>
+              <div class="testimonial-card"<%- copy > 0 ? ' aria-hidden="true"' : '' %>>
+                <p class="student-text"><%= __('testimonials.t' + (index + 1) + '_text') %></p>
+                <div class="student-name"><%= name %></div>
+                <div class="student-school"><%= __('testimonials.t' + (index + 1) + '_subject') %></div>
+              </div>
+            <% }) %>
+          <% } %>
         </div>
       </div>
     </section>

@@ -76,15 +76,32 @@
                             <label for="message" class="form-label"><%= __('contact_page.form_message') %></label>
                             <textarea id="message" name="message" rows="4" placeholder="<%= __('contact_page.ph_message') %>" class="form-input" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">
-                            <%= __('contact_page.btn_submit') %>
-                        </button>
+                        <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-envelope"></i> <%= __('contact_page.btn_email') %>
+                            </button>
+                            <button type="button" class="submit-btn whatsapp-btn" id="whatsapp-send">
+                                <i class="fab fa-whatsapp"></i> <%= __('contact_page.btn_whatsapp') %>
+                            </button>
+                        </div>
+                        <p class="form-hint"><%= __('contact_page.hint_whatsapp') %></p>
                     </form>
                 </div>
             </div>
         </section>
     </main>
 
+    <script>
+      // WhatsApp butonu: formdaki isim ve mesajı hazır bir WhatsApp mesajına çevirir (sunucuya gitmez)
+      document.getElementById('whatsapp-send').addEventListener('click', function () {
+        var name = document.getElementById('name');
+        var message = document.getElementById('message');
+        if (!name.reportValidity() || !message.reportValidity()) return;
+        var text = message.value.trim() + '\n\n- ' + name.value.trim();
+        window.open('https://wa.me/905309537225?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      });
+    </script>
     <%- include('partials/footer') %>
 </body>
 </html>

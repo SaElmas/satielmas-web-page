@@ -108,10 +108,26 @@ exports.getNoteByTopic = (req, res) => {
   });
 };
 exports.sendContactEmail = async (req, res) => {
-  const { name, email, message } = req.body;
+  // Başlık (header) enjeksiyonuna karşı satır sonlarını temizleyip uzunlukları sınırlıyoruz
+  const clean = (value, max) => String(value || "").replace(/[\r\n]+/g, " ").trim().slice(0, max);
+  const name = clean(req.body.name, 100);
+  const email = clean(req.body.email, 200);
+  const message = String(req.body.message || "").trim().slice(0, 5000);
+
+  const renderContact = (result) =>
+    res.render("contact", { pageTitle: "Contact - Sait Elmas", ...result });
+
+  // Gizli "website" alanını yalnızca botlar doldurur; onlara mail atmadan başarı gösteriyoruz
+  if (req.body.website) {
+    return renderContact({ successMessage: res.__("contact_page.msg_success") });
+  }
+
+  if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return renderContact({ errorMessage: res.__("contact_page.msg_error") });
+  }
 
   try {
-    let transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true,
@@ -121,21 +137,19 @@ exports.sendContactEmail = async (req, res) => {
       },
     });
 
-    // Not: İleride mail gönderme işlemini aktifleştirmek için buraya transporter.sendMail(...) eklenecek
-
-    res.render("contact", {
-      pageTitle: "Contact - Sait Elmas",
-      successMessage:
-        "Your message has been sent successfully! I will get back to you as soon as possible.",
+    // Mail kendi adresimize gelir; "Yanıtla" denildiğinde ziyaretçiye gider
+    await transporter.sendMail({
+      from: `"saitelmas.com" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: { name, address: email },
+      subject: `Web sitesi mesajı: ${name}`,
+      text: `Gönderen: ${name} <${email}>\n\n${message}`,
     });
+
+    renderContact({ successMessage: res.__("contact_page.msg_success") });
   } catch (error) {
-    console.error(error);
-
-    res.render("contact", {
-      pageTitle: "Contact - Sait Elmas",
-      errorMessage:
-        "An error occurred while sending your message. Please try again or reach out via LinkedIn/WhatsApp.",
-    });
+    console.error("İletişim formu maili gönderilemedi:", error);
+    renderContact({ errorMessage: res.__("contact_page.msg_error") });
   }
 };
 
