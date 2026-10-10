@@ -2,6 +2,7 @@ const coursesData = require("../data/courses");
 const tutoringSlider = require("../data/tutoringSlider");
 const testimonials = require("../data/testimonials");
 const programData = require("../data/programs");
+const lessonPlanData = require("../data/lessonPlans");
 const nodemailer = require("nodemailer");
 const https = require("https");
 
@@ -92,6 +93,52 @@ exports.getContactPage = (req, res, next) => {
   });
 };
 
+// Ders planındaki "[Core 1 / Unit 1]" gibi etiketleri sayfanın diline çevirir
+const localizeLessonLabel = (label, lang) => {
+  if (lang !== "tr") return label;
+  return label
+    .replace(/\(BC only\)/g, "(yalnızca BC)")
+    .replace(/\(HL only\)/g, "(yalnızca HL)")
+    .replace(/^Patterns and Algorithms/, "Kalıplar ve Algoritmalar")
+    .replace(/^FRQ Practice/, "FRQ Çalışması")
+    .replace(/^Paper Practice/, "Paper Çalışması")
+    .replace(/^Practice/, "Çalışma")
+    .replace(/^Core/, "Konu")
+    .replace(/\/ Unit /, "/ Ünite ")
+    .replace(/\/ Topic /, "/ Konu Alanı ");
+};
+
+// Bir dersin ders ders müfredat planını şablonun doğrudan basabileceği hale getirir
+const buildLessonPlan = (courseSlug, lang) => {
+  const plan = lessonPlanData.plans[courseSlug];
+  if (!plan) return null;
+  const labels = lessonPlanData.labels[lang];
+  let number = 0;
+  const parts = plan.parts.map((part) => {
+    const first = number + 1;
+    const lessons = part.lessons.map((lesson) => {
+      number += 1;
+      return {
+        number,
+        label: lesson.unit ? localizeLessonLabel(lesson.unit, lang) : labels.tags[lesson.tag],
+        prefix: lesson.tag === "bootcamp" ? labels.tags.bootcamp + " " : "",
+        kind: lesson.tag,
+        text: lesson[lang],
+      };
+    });
+    return { title: part.title[lang], note: part.note[lang], range: `${first} - ${number}`, lessons };
+  });
+  return {
+    labels,
+    title: plan.title[lang],
+    intro: plan.intro[lang],
+    total: number,
+    minutes: plan.minutes,
+    flow: plan.flow.map((step) => ({ time: step.time, text: step[lang] })),
+    parts,
+  };
+};
+
 exports.getCourseDetails = (req, res, next) => {
   const courseSlug = req.params.courseName;
   const courseInfo = coursesData[courseSlug];
@@ -112,6 +159,7 @@ exports.getCourseDetails = (req, res, next) => {
     pageTitle: `${courseTitle} ${res.__("course_detail.title_suffix")} | Sait Elmas`,
     pageDescription: courseDescription,
     course: courseInfo,
+    lessonPlan: buildLessonPlan(courseSlug, lang),
     programUrl: programKey
       ? res.locals.localUrl(`/${programData.programs[programKey].slug[lang]}`)
       : null,

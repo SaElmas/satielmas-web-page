@@ -1522,9 +1522,12 @@ a.course-category-label:hover {
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.5rem;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #0f172a;
   border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   text-align: left;
 }
 .program-card h3 {
@@ -1532,7 +1535,7 @@ a.course-category-label:hover {
   font-size: 1.25rem;
 }
 .program-card h3 a {
-  color: #ffffff;
+  color: #0f172a;
   text-decoration: none;
 }
 .program-card h3 a:hover {
@@ -1549,7 +1552,7 @@ a.course-category-label:hover {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #64748b;
 }
 .program-chips {
   list-style: none;
@@ -1562,28 +1565,31 @@ a.course-category-label:hover {
 .program-chips a {
   display: block;
   padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   border-radius: 999px;
-  color: #ffffff;
+  color: #0f172a;
   font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .program-chips a:hover {
-  background: #ffffff;
-  color: #0f172a;
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
 }
 .program-card-also {
   margin: 0;
   font-size: 0.85rem;
   line-height: 1.5;
-  color: #cbd5e1;
+  color: #64748b;
 }
 .program-link-more {
   margin-top: auto;
   padding-top: 0.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
   text-decoration: none;
 }
 .program-link-more:hover {
@@ -1604,4 +1610,148 @@ a.course-category-label:hover {
 .exam-card-icon {
   margin-right: 0.6rem;
   color: #0f172a;
+}
+
+/* =========================================
+   DERS DERS MÜFREDAT PLANI (ders detay sayfası)
+========================================= */
+.lesson-plan {
+  padding: 0 2rem 2rem;
+}
+.lesson-plan-heading {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  color: #0f172a;
+}
+.lesson-plan-title {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #475569;
+}
+.lesson-plan-intro {
+  margin: 0 0 0.75rem;
+  line-height: 1.6;
+  color: #334155;
+}
+.lesson-plan-meta {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin: 1rem 0;
+  padding: 0;
+  color: #0f172a;
+}
+.lesson-plan-flow {
+  margin-bottom: 1.5rem;
+}
+.lesson-plan-flow ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lesson-plan-flow li {
+  padding: 0.35rem 0;
+  line-height: 1.5;
+  color: #334155;
+}
+.lesson-plan-time {
+  display: inline-block;
+  min-width: 6.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.lesson-plan-part {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  background: #ffffff;
+}
+.lesson-plan-part summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.9rem 1.1rem;
+  cursor: pointer;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+.lesson-plan-part[open] summary {
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 8px 8px 0 0;
+}
+.lesson-plan-part-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+.lesson-plan-range {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+.lesson-plan-note {
+  margin: 0;
+  padding: 0.9rem 1.1rem 0;
+  font-style: italic;
+  line-height: 1.5;
+  color: #475569;
+}
+.lesson-plan-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.1rem 0.75rem;
+}
+.lesson-plan-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  line-height: 1.5;
+}
+.lesson-plan-item:last-child {
+  border-bottom: none;
+}
+.lesson-plan-number {
+  flex: 0 0 4.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.lesson-plan-label {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.05rem 0.5rem;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+/* Soru çözümü, simülasyon ve değerlendirme dersleri koyu etiketle ayrışır */
+.lesson-kind-frq .lesson-plan-label,
+.lesson-kind-paper .lesson-plan-label,
+.lesson-kind-practice .lesson-plan-label,
+.lesson-kind-mcq .lesson-plan-label,
+.lesson-kind-sim .lesson-plan-label,
+.lesson-kind-eval .lesson-plan-label {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+}
+.lesson-plan-text {
+  color: #334155;
+}
+@media (max-width: 768px) {
+  .lesson-plan {
+    padding: 0 1.5rem 1.5rem;
+  }
+  .lesson-plan-item {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .lesson-plan-number {
+    flex: none;
+  }
 }

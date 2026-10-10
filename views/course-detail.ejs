@@ -68,6 +68,51 @@
                 </div>
             </div>
 
+            <% if (lessonPlan) { %>
+            <section class="lesson-plan">
+                <h2 class="lesson-plan-heading"><%= lessonPlan.labels.heading %></h2>
+                <h3 class="lesson-plan-title"><%= lessonPlan.title %></h3>
+                <% lessonPlan.intro.forEach(function(paragraph) { %>
+                    <p class="lesson-plan-intro"><%= paragraph %></p>
+                <% }) %>
+
+                <ul class="lesson-plan-meta">
+                    <li><strong><%= lessonPlan.labels.totalLessons %>:</strong> <%= lessonPlan.total %></li>
+                    <li><strong><%= lessonPlan.labels.duration %>:</strong> <%= lessonPlan.minutes %> <%= lessonPlan.labels.minutes %></li>
+                </ul>
+
+                <div class="course-info-box lesson-plan-flow">
+                    <h3 class="program-format-title"><i class="fas fa-clock"></i> <%= lessonPlan.labels.flow %></h3>
+                    <ul>
+                        <% lessonPlan.flow.forEach(function(step) { %>
+                            <li><span class="lesson-plan-time"><%= step.time %> <%= lessonPlan.labels.minutes %></span> <%= step.text %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+
+                <% lessonPlan.parts.forEach(function(part, index) { %>
+                <details class="lesson-plan-part"<%= index === 0 ? ' open' : '' %>>
+                    <summary>
+                        <span class="lesson-plan-part-title"><%= part.title %></span>
+                        <span class="lesson-plan-range"><%= lessonPlan.labels.lessons %> <%= part.range %></span>
+                    </summary>
+                    <p class="lesson-plan-note"><%= part.note %></p>
+                    <ol class="lesson-plan-list">
+                        <% part.lessons.forEach(function(lesson) { %>
+                            <li class="lesson-plan-item lesson-kind-<%= lesson.kind %>">
+                                <span class="lesson-plan-number"><%= lessonPlan.labels.lesson %> <%= lesson.number %></span>
+                                <div>
+                                    <span class="lesson-plan-label"><%= lesson.prefix %><%= lesson.label %></span>
+                                    <span class="lesson-plan-text"><%= lesson.text %></span>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ol>
+                </details>
+                <% }) %>
+            </section>
+            <% } %>
+
             <div class="course-back-container">
                 <a href="<%= localUrl('/tutoring') %>" class="course-back-link"><%= __('course_detail.link_back') %></a>
             </div>
