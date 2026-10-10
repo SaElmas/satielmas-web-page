@@ -1,6 +1,7 @@
 const coursesData = require("../data/courses");
 const tutoringSlider = require("../data/tutoringSlider");
 const nodemailer = require("nodemailer");
+const https = require("https");
 
 const fs = require("fs");
 const path = require("path");
@@ -111,6 +112,69 @@ exports.getNoteByTopic = (req, res) => {
     noteData: noteData, // <-- ReferenceError hatasını önleyen kritik parametre
   });
 };
+// DigitalOcean, Droplet'lerde SMTP portlarını (25/465/587) kapalı tuttuğu için canlıda mail
+// Resend'in HTTPS API'si üzerinden gider. RESEND_API_KEY tanımlı değilse (ör. yerelde) Gmail SMTP kullanılır.
+const sendViaResend = ({ name, email, message }) =>
+  new Promise((resolve, reject) => {
+    const body = JSON.stringify({
+      from: process.env.RESEND_FROM || "saitelmas.com <onboarding@resend.dev>",
+      to: [process.env.EMAIL_USER],
+      reply_to: email,
+      subject: `Web sitesi mesajı: ${name}`,
+      text: `Gönderen: ${name} <${email}>\n\n${message}`,
+    });
+    const request = https.request(
+      {
+        hostname: "api.resend.com",
+        path: "/emails",
+        method: "POST",
+        timeout: 10000,
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(body),
+        },
+      },
+      (response) => {
+        let data = "";
+        response.on("data", (chunk) => (data += chunk));
+        response.on("end", () => {
+          if (response.statusCode >= 200 && response.statusCode < 300) return resolve();
+          const error = new Error(`Resend ${response.statusCode}: ${data.slice(0, 300)}`);
+          error.code = "ERESEND";
+          reject(error);
+        });
+      },
+    );
+    request.on("timeout", () => request.destroy(Object.assign(new Error("Resend zaman aşımı"), { code: "ETIMEDOUT" })));
+    request.on("error", reject);
+    request.end(body);
+  });
+
+const sendViaGmailSmtp = ({ name, email, message }) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    // Sunucu SMTP portuna ulaşamıyorsa sayfa dakikalarca asılı kalmasın, 10 sn içinde hata dönsün
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
+  });
+
+  return transporter.sendMail({
+    from: `"saitelmas.com" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_USER,
+    replyTo: { name, address: email },
+    subject: `Web sitesi mesajı: ${name}`,
+    text: `Gönderen: ${name} <${email}>\n\n${message}`,
+  });
+};
+
 exports.sendContactEmail = async (req, res) => {
   // Başlık (header) enjeksiyonuna karşı satır sonlarını temizleyip uzunlukları sınırlıyoruz
   const clean = (value, max) => String(value || "").replace(/[\r\n]+/g, " ").trim().slice(0, max);
@@ -131,28 +195,22 @@ exports.sendContactEmail = async (req, res) => {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
     // Mail kendi adresimize gelir; "Yanıtla" denildiğinde ziyaretçiye gider
-    await transporter.sendMail({
-      from: `"saitelmas.com" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      replyTo: { name, address: email },
-      subject: `Web sitesi mesajı: ${name}`,
-      text: `Gönderen: ${name} <${email}>\n\n${message}`,
-    });
+    if (process.env.RESEND_API_KEY) {
+      await sendViaResend({ name, email, message });
+    } else {
+      await sendViaGmailSmtp({ name, email, message });
+    }
 
     renderContact({ successMessage: res.__("contact_page.msg_success") });
   } catch (error) {
-    console.error("İletişim formu maili gönderilemedi:", error);
+    // EAUTH = şifre hatalı, ETIMEDOUT/ESOCKET = sunucu mail servisine ulaşamıyor, ERESEND = Resend isteği reddetti
+    console.error(
+      "İletişim formu maili gönderilemedi:",
+      error.code,
+      error.message,
+      "| yöntem:", process.env.RESEND_API_KEY ? "Resend" : "Gmail SMTP",
+    );
     renderContact({ errorMessage: res.__("contact_page.msg_error") });
   }
 };
