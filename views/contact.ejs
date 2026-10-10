@@ -63,7 +63,7 @@
                         </div>
                     <% } %>
                     
-                    <form action="/contact" method="POST" class="form-container">
+                    <form action="<%= localUrl('/contact') %>" method="POST" class="form-container">
                         <div>
                             <label for="name" class="form-label"><%= __('contact_page.form_name') %></label>
                             <input type="text" id="name" name="name" placeholder="<%= __('contact_page.ph_name') %>" class="form-input" required>

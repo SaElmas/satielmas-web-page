@@ -8,7 +8,7 @@
 
     <main class="tutoring-content">
         
-        <% if (getLocale() === 'tr') { %>
+        <% if (currentLang === 'tr') { %>
         <div class="giving-back-notice">
             <h3 class="giving-back-title">
                 <span class="giving-back-icon">🌱</span> <%= __('tutoring_page.giving_back_title') %>
@@ -23,35 +23,35 @@
             <li class="category-item">
                 <a href="#"><%= __('tutoring_page.nav_high_school') %></a>
                 <ul class="dropdown">
-                    <li><a href="/tutoring/ap-calculus">AP Calculus AB & BC</a></li>
-                    <li><a href="/tutoring/ap-statistics">AP Statistics</a></li>
-                    <li><a href="/tutoring/ap-physics">AP Physics (1, 2, C)</a></li>
-                    <li><a href="/tutoring/ap-computer-science">AP Computer Science</a></li>
-                    <li><a href="/tutoring/ib-math">IB Math (AA & AI)</a></li>
-                    <li><a href="/tutoring/ib-physics">IB Physics</a></li>
-                    <li><a href="/tutoring/sat-math">SAT Math Prep</a></li>
+                    <li><a href="<%= localUrl('/tutoring/ap-calculus') %>">AP Calculus AB & BC</a></li>
+                    <li><a href="<%= localUrl('/tutoring/ap-statistics') %>">AP Statistics</a></li>
+                    <li><a href="<%= localUrl('/tutoring/ap-physics') %>">AP Physics (1, 2, C)</a></li>
+                    <li><a href="<%= localUrl('/tutoring/ap-computer-science') %>">AP Computer Science</a></li>
+                    <li><a href="<%= localUrl('/tutoring/ib-math') %>">IB Math (AA & AI)</a></li>
+                    <li><a href="<%= localUrl('/tutoring/ib-physics') %>">IB Physics</a></li>
+                    <li><a href="<%= localUrl('/tutoring/sat-math') %>">SAT Math Prep</a></li>
                 </ul>
             </li>
             <li class="category-item">
                 <a href="#"><%= __('tutoring_page.nav_uni_math') %></a>
                 <ul class="dropdown">
-                    <li><a href="/tutoring/calculus">Calculus I-II-III</a></li>
-                    <li><a href="/tutoring/linear-algebra">Linear Algebra</a></li>
-                    <li><a href="/tutoring/differential-equations">Differential Equations</a></li>
-                    <li><a href="/tutoring/real-complex-analysis">Real & Complex Analysis</a></li>
-                    <li><a href="/tutoring/numerical-analysis">Numerical Analysis</a></li>
-                    <li><a href="/tutoring/engineering-math">Engineering Math</a></li>
+                    <li><a href="<%= localUrl('/tutoring/calculus') %>">Calculus I-II-III</a></li>
+                    <li><a href="<%= localUrl('/tutoring/linear-algebra') %>">Linear Algebra</a></li>
+                    <li><a href="<%= localUrl('/tutoring/differential-equations') %>">Differential Equations</a></li>
+                    <li><a href="<%= localUrl('/tutoring/real-complex-analysis') %>">Real & Complex Analysis</a></li>
+                    <li><a href="<%= localUrl('/tutoring/numerical-analysis') %>">Numerical Analysis</a></li>
+                    <li><a href="<%= localUrl('/tutoring/engineering-math') %>">Engineering Math</a></li>
                 </ul>
             </li>
             <li class="category-item">
                 <a href="#"><%= __('tutoring_page.nav_uni_cs') %></a>
                 <ul class="dropdown">
-                    <li><a href="/tutoring/programming-languages">Python, C/C++, Java</a></li>
-                    <li><a href="/tutoring/data-structures">Data Structures</a></li>
-                    <li><a href="/tutoring/algorithm-design">Algorithm Design</a></li>
-                    <li><a href="/tutoring/automata-theory">Automata Theory</a></li>
-                    <li><a href="/tutoring/discrete-math">Discrete Mathematics</a></li>
-                    <li><a href="/tutoring/database-systems">Database Systems</a></li>
+                    <li><a href="<%= localUrl('/tutoring/programming-languages') %>">Python, C/C++, Java</a></li>
+                    <li><a href="<%= localUrl('/tutoring/data-structures') %>">Data Structures</a></li>
+                    <li><a href="<%= localUrl('/tutoring/algorithm-design') %>">Algorithm Design</a></li>
+                    <li><a href="<%= localUrl('/tutoring/automata-theory') %>">Automata Theory</a></li>
+                    <li><a href="<%= localUrl('/tutoring/discrete-math') %>">Discrete Mathematics</a></li>
+                    <li><a href="<%= localUrl('/tutoring/database-systems') %>">Database Systems</a></li>
                 </ul>
             </li>
         </ul>
@@ -161,7 +161,7 @@
             </div>
             <p class="testimonials-source">
                 <%= __('about_page.testimonials_source') %>
-                <a href="/about#testimonials"><%= __('tutoring_page.reviews_all') %></a>
+                <a href="<%= localUrl('/about#testimonials') %>"><%= __('tutoring_page.reviews_all') %></a>
             </p>
         </section>
     </main>
@@ -170,7 +170,7 @@
         <div class="slider-track exam-track">
             <% for (let copy = 0; copy < 4; copy++) { %>
                 <% exams.forEach(function(exam) { %>
-                    <a class="text-card exam-badge" href="<%= exam.href %>"<%- copy > 0 ? ' aria-hidden="true" tabindex="-1"' : '' %>>
+                    <a class="text-card exam-badge" href="<%= localUrl(exam.href) %>"<%- copy > 0 ? ' aria-hidden="true" tabindex="-1"' : '' %>>
                         <img class="exam-badge-img" src="/img/logos/exams/<%= exam.slug %>.png" alt="" loading="lazy">
                         <span><%= exam.label %></span>
                     </a>

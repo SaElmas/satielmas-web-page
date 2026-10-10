@@ -20,10 +20,9 @@ app.use(cookieParser());
 
 // i18n (Çoklu Dil) Ayarları
 i18n.configure({
-  locales: ['en', 'tr', 'fr'], 
+  locales: ['en', 'tr'], 
   directory: path.join(__dirname, 'src', 'locales'), 
   defaultLocale: 'en', 
-  cookie: 'lang', 
   autoReload: true, 
   syncFiles: true,
   objectNotation: true // EKSİK OLAN SİHİRLİ SATIR BU
@@ -31,11 +30,32 @@ i18n.configure({
 
 app.use(i18n.init); // i18n'i Express'e bağla
 
-// (İsteğe Bağlı) EJS içinde tüm dilleri kullanabilmek için global değişken yap
+// DİL ADRESTEN BELİRLENİR: İngilizce kökte (/about), Türkçe /tr altında (/tr/about).
+// /tr öneki burada ayıklanır; böylece aşağıdaki rotalar iki dil için de aynı kalır.
+const SITE_URL = 'https://saitelmas.com';
 app.use((req, res, next) => {
-    res.locals.currentLang = req.cookies.lang || 'en';
+    const isTurkish = req.path === '/tr' || req.path.startsWith('/tr/');
+    const lang = isTurkish ? 'tr' : 'en';
+    if (isTurkish) {
+        req.url = req.url.replace(/^\/tr(?=\/|\?|$)/, '') || '/';
+        if (!req.url.startsWith('/')) req.url = '/' + req.url;
+    }
+    req.setLocale(lang);
+    res.setLocale(lang);
+
+    // Sayfanın dilden bağımsız yolu (ana sayfa hem / hem /tutoring olarak açılıyor)
+    const pagePath = req.path === '/tutoring' ? '/' : req.path;
+    const urlFor = (language, pathname) =>
+        language === 'tr' ? (pathname === '/' ? '/tr' : '/tr' + pathname) : pathname;
+
+    res.locals.currentLang = lang;
+    // Şablonlardaki iç bağlantılar: localUrl('/about') -> /about veya /tr/about
+    res.locals.localUrl = (pathname) => urlFor(lang, pathname);
+    // Aynı sayfanın iki dildeki adresi (dil menüsü ve hreflang için)
+    res.locals.altUrls = { en: urlFor('en', pagePath), tr: urlFor('tr', pagePath) };
+    res.locals.siteUrl = SITE_URL;
     // Her sayfanın kalıcı adresi (canonical / og:url için); sorgu parametreleri hariç
-    res.locals.canonicalUrl = 'https://saitelmas.com' + (req.path === '/tutoring' ? '/' : req.path);
+    res.locals.canonicalUrl = SITE_URL + urlFor(lang, pagePath);
     next();
 });
 
@@ -46,6 +66,7 @@ app.use('/', mainRoutes);
 app.use((req, res) => {
     res.status(404).render('404', {
         pageTitle: res.__('not_found.title') + ' | Sait Elmas',
+        hreflang: false,
     });
 });
 

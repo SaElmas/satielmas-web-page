@@ -1,6 +1,6 @@
 <nav class="main-nav">
   <div class="nav-brand">
-    <a href="/">Sait Elmas</a>
+    <a href="<%= localUrl('/') %>">Sait Elmas</a>
   </div>
 
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menüyü Aç/Kapat">
@@ -8,18 +8,17 @@
   </button>
 
   <ul class="nav-links" id="navLinks">
-    <a href="/tutoring"><%= __('nav_tutoring') %></a>
-    <a href="/notes"><%= __('nav_notes') %></a>
-    <a href="/about"><%= __('nav_about') %></a>
-    <a href="/contact"><%= __('nav_contact') %></a>
+    <a href="<%= localUrl('/') %>"><%= __('nav_tutoring') %></a>
+    <a href="<%= localUrl('/notes') %>"><%= __('nav_notes') %></a>
+    <a href="<%= localUrl('/about') %>"><%= __('nav_about') %></a>
+    <a href="<%= localUrl('/contact') %>"><%= __('nav_contact') %></a>
     <div class="lang-dropdown">
     <button class="lang-btn">
         <i class="fas fa-globe"></i> <%= currentLang.toUpperCase() %>
     </button>
     <div class="lang-content">
-        <a href="/change-lang/en">🇬🇧 English</a>
-        <a href="/change-lang/tr">🇹🇷 Türkçe</a>
-        <a href="/change-lang/fr">🇫🇷 Français</a>
+        <a href="<%= altUrls.en %>" hreflang="en">🇬🇧 English</a>
+        <a href="<%= altUrls.tr %>" hreflang="tr">🇹🇷 Türkçe</a>
     </div>
 </div>
   </ul>

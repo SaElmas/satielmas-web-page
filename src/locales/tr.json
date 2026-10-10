@@ -157,5 +157,12 @@
 		"text": "Aradığınız sayfa mevcut değil ya da taşınmış.",
 		"btn_home": "Ana Sayfaya Dön",
 		"btn_notes": "Notlara Göz At"
+	},
+	"titles": {
+		"tutoring": "Matematik ve Bilgisayar Özel Ders | Sait Elmas",
+		"about": "Hakkımda | Sait Elmas",
+		"contact": "İletişim | Sait Elmas",
+		"notes": "Ders Notları | Sait Elmas",
+		"readings": "Okumalarım | Sait Elmas"
 	}
 }

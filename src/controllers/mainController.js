@@ -42,7 +42,7 @@ exports.getTutoringPage = (req, res, next) => {
   });
 
   res.render("tutoring", {
-    pageTitle: "Tutoring Services | Sait Elmas",
+    pageTitle: res.__("titles.tutoring"),
     pageDescription: res.__("meta.tutoring"),
     universities,
     exams: tutoringSlider.exams,
@@ -55,7 +55,7 @@ exports.getTutoringPage = (req, res, next) => {
 
 exports.getContactPage = (req, res, next) => {
   res.render("contact", {
-    pageTitle: "Contact | Sait Elmas",
+    pageTitle: res.__("titles.contact"),
     pageDescription: res.__("meta.contact"),
   });
 };
@@ -65,7 +65,7 @@ exports.getCourseDetails = (req, res, next) => {
   const courseInfo = coursesData[courseSlug];
 
   if (!courseInfo) {
-    return res.redirect("/tutoring");
+    return res.redirect(res.locals.localUrl("/"));
   }
 
   // Sınav derslerinin (AP, IB, SAT) rozeti varsa başlığın yanında gösterilir
@@ -79,10 +79,18 @@ exports.getCourseDetails = (req, res, next) => {
   });
 };
 
+// Notlar yalnızca İngilizce. /tr/notes/... altında çerçeve Türkçe, içerik aynı olduğu için
+// arama motorlarına asıl sayfa olarak İngilizce adres gösterilir ve hreflang verilmez.
+const englishOnlyPage = (req) => ({
+  canonicalUrl: SITE_URL + req.path,
+  hreflang: false,
+});
+
 exports.getNotesIndex = (req, res) => {
   res.render("notes", {
-    pageTitle: "Academic Notes | Sait Elmas",
+    pageTitle: res.__("titles.notes"),
     pageDescription: res.__("meta.notes"),
+    ...englishOnlyPage(req),
     activeTopic: "index",
     nodeData: null
   });
@@ -118,8 +126,9 @@ exports.getNoteByTopic = (req, res) => {
   // EJS şablonuna noteData'yı mutlaka gönderiyoruz
   // Not dosyası yoksa sayfa "bulunamadı" kutusunu gösterir; arama motorları için durum kodu da 404 olmalı
   res.status(noteData ? 200 : 404).render("notes", {
-    pageTitle: `${noteData ? noteData.title : "Academic Notes"} | Sait Elmas`,
+    pageTitle: noteData ? `${noteData.title} | Sait Elmas` : res.__("titles.notes"),
     pageDescription: (noteData && noteData.description) || res.__("meta.notes"),
+    ...englishOnlyPage(req),
     activeTopic: requestedTopic,
     noteData: noteData, // <-- ReferenceError hatasını önleyen kritik parametre
   });
@@ -196,7 +205,7 @@ exports.sendContactEmail = async (req, res) => {
 
   const renderContact = (result) =>
     res.render("contact", {
-      pageTitle: "Contact | Sait Elmas",
+      pageTitle: res.__("titles.contact"),
       pageDescription: res.__("meta.contact"),
       ...result,
     });
@@ -236,7 +245,7 @@ exports.sendContactEmail = async (req, res) => {
 // ==========================================
 exports.getMyReadingsPage = (req, res) => {
   // 1. Kullanıcının aktif dilini çerezlerden (cookies) al, yoksa 'en' varsay
-  const currentLang = req.cookies && req.cookies.lang ? req.cookies.lang : "en";
+  const currentLang = res.locals.currentLang;
 
   const readingsDir = path.join(__dirname, "../data/readings");
   let readingNotes = [];
@@ -269,33 +278,22 @@ exports.getMyReadingsPage = (req, res) => {
   }
 
   res.render("notes", {
-    pageTitle: "My Readings | Sait Elmas",
+    pageTitle: res.__("titles.readings"),
+    ...englishOnlyPage(req),
     activeTopic: "my-readings",
     readings: readingNotes,
     noteData: null,
   });
 };
 
+// Eski /change-lang/... bağlantıları çalışmaya devam etsin diye: dil artık adresten (/tr) belirleniyor
 exports.changeLanguage = (req, res) => {
-  const selectedLang = req.params.lang;
-  const supportedLanguages = ["en", "tr", "fr"];
-
-  if (supportedLanguages.includes(selectedLang)) {
-    res.cookie("lang", selectedLang, { maxAge: 31536000000, httpOnly: true });
-  }
-
-  const previousUrl = req.get("Referrer") || "/";
-
-  if (previousUrl.includes("/change-lang")) {
-    return res.redirect("/");
-  }
-
-  res.redirect(previousUrl);
+  res.redirect(req.params.lang === "tr" ? "/tr" : "/");
 };
 
 exports.getAboutPage = (req, res) => {
   res.render("about", {
-    pageTitle: "About Me | Sait Elmas",
+    pageTitle: res.__("titles.about"),
     pageDescription: res.__("meta.about"),
     reviewers: testimonials.reviewers,
     reviewsSourceUrl: testimonials.sourceUrl,
@@ -323,7 +321,11 @@ exports.getSitemap = (req, res) => {
     ...noteTopics.map((topic) => `/notes/${topic}`),
   ];
 
-  const urls = paths.map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join("\n");
+  // Notlar yalnızca İngilizce olduğu için Türkçe (/tr) adresleri yalnızca çevrilmiş sayfalar için eklenir
+  const translated = paths.filter((p) => !p.startsWith("/notes"));
+  const allPaths = [...paths, ...translated.map((p) => (p === "/" ? "/tr" : `/tr${p}`))];
+
+  const urls = allPaths.map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join("\n");
   res
     .type("application/xml")
     .send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);

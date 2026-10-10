@@ -47,7 +47,7 @@
                         <ul class="course-resource-list">
                             <% course.resources.forEach(function(resource) { %>
                                 <li>
-                                    <a href="<%= resource.href %>">
+                                    <a href="<%= localUrl(resource.href) %>">
                                         <i class="fas fa-book-open"></i>
                                         <span><%= resource.label[currentLang] %></span>
                                         <i class="fas fa-arrow-right course-resource-arrow"></i>
@@ -58,14 +58,14 @@
                     </div>
                     <% } %>
 
-                    <a href="/contact" class="course-trial-btn">
+                    <a href="<%= localUrl('/contact') %>" class="course-trial-btn">
                         <%= __('course_detail.btn_trial') %>
                     </a>
                 </div>
             </div>
 
             <div class="course-back-container">
-                <a href="/tutoring" class="course-back-link"><%= __('course_detail.link_back') %></a>
+                <a href="<%= localUrl('/tutoring') %>" class="course-back-link"><%= __('course_detail.link_back') %></a>
             </div>
         </section>
     </main>

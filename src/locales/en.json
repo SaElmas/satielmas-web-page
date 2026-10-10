@@ -166,5 +166,12 @@
 		"text": "The page you are looking for does not exist or has been moved.",
 		"btn_home": "Back to Home",
 		"btn_notes": "Browse the Notes"
+	},
+	"titles": {
+		"tutoring": "Math & Computer Science Tutoring | Sait Elmas",
+		"about": "About Me | Sait Elmas",
+		"contact": "Contact | Sait Elmas",
+		"notes": "Academic Notes | Sait Elmas",
+		"readings": "My Readings | Sait Elmas"
 	}
 }
