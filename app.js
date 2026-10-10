@@ -23,8 +23,11 @@ i18n.configure({
   locales: ['en', 'tr'], 
   directory: path.join(__dirname, 'src', 'locales'), 
   defaultLocale: 'en', 
-  autoReload: true, 
-  syncFiles: true,
+  // Kütüphane dil dosyalarına kendiliğinden yazmasın: sunucuda en.json/tr.json değişince
+  // "git pull" takılıyor ve eksik anahtarlar dosyaya çöp satır olarak ekleniyordu.
+  autoReload: false,
+  updateFiles: false,
+  syncFiles: false,
   objectNotation: true // EKSİK OLAN SİHİRLİ SATIR BU
 });
 
