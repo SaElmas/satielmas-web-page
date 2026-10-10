@@ -201,7 +201,25 @@ module.exports = {
             en: "The exam tests pen-and-paper coding, code reading, and tracing skills. It heavily emphasizes array/ArrayList loops and Class structures.",
             tr: "Sınav; kağıt üzerinde kod yazma, kod okuma ve izleme becerilerini test eder. Dizi/ArrayList döngüleri ve Sınıf (Class) yapılarına büyük önem verir.",
             fr: "L'examen teste le codage sur papier, la lecture de code et les compétences de traçage. Il met fortement l'accent sur les boucles de tableaux/ArrayList et les structures de classes."
-        }
+        },
+        resources: [
+            {
+                href: "/notes/ap-csa-lecture-notes",
+                label: {
+                    en: "Lecture Notes (with quiz and programming exercises)",
+                    tr: "Ders Notları (quiz ve programlama alıştırmalarıyla)",
+                    fr: "Notes de Cours (avec quiz et exercices de programmation)"
+                }
+            },
+            {
+                href: "/notes/ap-computer-science-a",
+                label: {
+                    en: "Practice Exercises",
+                    tr: "Alıştırma Soruları",
+                    fr: "Exercices Pratiques"
+                }
+            }
+        ]
     },
     "ib-math": {
         title: {

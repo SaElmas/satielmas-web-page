@@ -103,7 +103,8 @@
 		"lbl_curriculum": "Curriculum / Syllabus",
 		"lbl_strategy": "Exam & Course Strategy",
 		"btn_trial": "Book a Free Trial Lesson",
-		"link_back": "← Back to All Courses"
+		"link_back": "← Back to All Courses",
+		"lbl_resources": "Study Materials"
 	},
 	"footer": {
 		"copyright": "© 2026 Sait Elmas. All rights reserved.",

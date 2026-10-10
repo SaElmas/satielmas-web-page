@@ -94,7 +94,8 @@
 		"lbl_curriculum": "Müfredat",
 		"lbl_strategy": "Sınav ve Ders Stratejisi",
 		"btn_trial": "Ücretsiz Deneme Dersi Ayırt",
-		"link_back": "← Tüm Kurslara Dön"
+		"link_back": "← Tüm Kurslara Dön",
+		"lbl_resources": "Çalışma Materyalleri"
 	},
 	"readings_page": {
 		"list_title": "Okuma Listesi",

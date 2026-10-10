@@ -94,7 +94,8 @@
 		"lbl_curriculum": "Programme / Syllabus",
 		"lbl_strategy": "Stratégie d'Examen et de Cours",
 		"btn_trial": "Réserver une Leçon d'Essai Gratuite",
-		"link_back": "← Retour à Tous les Cours"
+		"link_back": "← Retour à Tous les Cours",
+		"lbl_resources": "Supports de Cours"
 	},
 	"readings_page": {
 		"list_title": "La Liste de Lecture",
