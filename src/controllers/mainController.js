@@ -60,9 +60,13 @@ exports.getCourseDetails = (req, res, next) => {
     return res.redirect("/tutoring");
   }
 
+  // Sınav derslerinin (AP, IB, SAT) rozeti varsa başlığın yanında gösterilir
+  const badgeFile = path.join(__dirname, "../../public/img/logos/exams", `${courseSlug}.png`);
+
   res.render("course-detail", {
     pageTitle: `Course Details | Tutoring`,
     course: courseInfo,
+    courseBadge: fs.existsSync(badgeFile) ? `/img/logos/exams/${courseSlug}.png` : null,
   });
 };
 

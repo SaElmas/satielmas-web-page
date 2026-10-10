@@ -8,48 +8,61 @@
 
     <main class="course-detail-main">
         <section class="card course-card-section">
-            <p class="course-category-label"><%= course.category[currentLang] %></p>
-            <h1 class="course-title"><%= course.title[currentLang] %></h1>
-            
-            <p class="course-description">
-                <%- course.description[currentLang] %>
-            </p>
+            <header class="course-header">
+                <% if (courseBadge) { %>
+                    <img class="course-badge" src="<%= courseBadge %>" alt="">
+                <% } %>
+                <div class="course-header-text">
+                    <p class="course-category-label"><%= course.category[currentLang] %></p>
+                    <h1 class="course-title"><%= course.title[currentLang] %></h1>
+                    <p class="course-description">
+                        <%- course.description[currentLang] %>
+                    </p>
+                </div>
+            </header>
 
             <div class="course-grid">
                 <div class="course-info-box">
-                    <h3 class="course-info-title"><%= __('course_detail.lbl_curriculum') %></h3>
-                    <ul class="course-syllabus-list">
+                    <h2 class="course-info-title"><%= __('course_detail.lbl_curriculum') %></h2>
+                    <ol class="course-syllabus-list">
                         <% if (course.syllabus && course.syllabus[currentLang]) { %>
                             <% course.syllabus[currentLang].forEach(function(item) { %>
                                 <li><%- item %></li>
                             <% }) %>
                         <% } %>
-                    </ul>
+                    </ol>
                 </div>
 
-                <div class="course-info-box">
-                    <h3 class="course-info-title"><%= __('course_detail.lbl_strategy') %></h3>
-                    <p class="course-strategy-text">
-                        <%- course.examInfo[currentLang] %>
-                    </p>
-                <div class="course-btn-container">
+                <div class="course-side">
+                    <div class="course-info-box">
+                        <h2 class="course-info-title"><%= __('course_detail.lbl_strategy') %></h2>
+                        <p class="course-strategy-text">
+                            <%- course.examInfo[currentLang] %>
+                        </p>
+                    </div>
+
+                    <% if (course.resources && course.resources.length) { %>
+                    <div class="course-info-box">
+                        <h2 class="course-info-title"><%= __('course_detail.lbl_resources') %></h2>
+                        <ul class="course-resource-list">
+                            <% course.resources.forEach(function(resource) { %>
+                                <li>
+                                    <a href="<%= resource.href %>">
+                                        <i class="fas fa-book-open"></i>
+                                        <span><%= resource.label[currentLang] %></span>
+                                        <i class="fas fa-arrow-right course-resource-arrow"></i>
+                                    </a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <% } %>
+
                     <a href="/contact" class="course-trial-btn">
                         <%= __('course_detail.btn_trial') %>
                     </a>
                 </div>
-                </div>
             </div>
-
-            <% if (course.resources && course.resources.length) { %>
-            <div class="course-info-box">
-                <h3 class="course-info-title"><%= __('course_detail.lbl_resources') %></h3>
-                <ul class="course-syllabus-list">
-                    <% course.resources.forEach(function(resource) { %>
-                        <li><a href="<%= resource.href %>"><%= resource.label[currentLang] %></a></li>
-                    <% }) %>
-                </ul>
-            </div>
-            <% } %>
 
             <div class="course-back-container">
                 <a href="/tutoring" class="course-back-link"><%= __('course_detail.link_back') %></a>
