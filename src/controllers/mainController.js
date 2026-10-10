@@ -1,4 +1,5 @@
 const coursesData = require("../data/courses");
+const tutoringSlider = require("../data/tutoringSlider");
 const nodemailer = require("nodemailer");
 
 const fs = require("fs");
@@ -26,8 +27,22 @@ exports.getHomePage = (req, res, next) => {
 };
 
 exports.getTutoringPage = (req, res, next) => {
+  // Logosu public/img/logos/universities altında bulunan üniversiteler logolu gösterilir
+  const logoDir = path.join(__dirname, "../../public/img/logos/universities");
+  const universities = tutoringSlider.universities.map((university) => {
+    const extension = ["svg", "png", "webp", "jpg"].find((ext) =>
+      fs.existsSync(path.join(logoDir, `${university.slug}.${ext}`)),
+    );
+    return {
+      ...university,
+      logo: extension ? `/img/logos/universities/${university.slug}.${extension}` : null,
+    };
+  });
+
   res.render("tutoring", {
     pageTitle: "Tutoring Services | Sait Elmas",
+    universities,
+    exams: tutoringSlider.exams,
   });
 };
 

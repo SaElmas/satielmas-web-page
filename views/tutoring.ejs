@@ -150,38 +150,33 @@
         </section>
     </main>
 
+    <div class="university-slider-fullwidth exam-slider">
+        <div class="slider-track exam-track">
+            <% for (let copy = 0; copy < 4; copy++) { %>
+                <% exams.forEach(function(exam) { %>
+                    <a class="text-card exam-badge" href="<%= exam.href %>"<%- copy > 0 ? ' aria-hidden="true" tabindex="-1"' : '' %>>
+                        <img class="exam-badge-img" src="/img/logos/exams/<%= exam.slug %>.png" alt="" loading="lazy">
+                        <span><%= exam.label %></span>
+                    </a>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+
     <div class="university-slider-fullwidth">
         <div class="slider-track">
-            <div class="text-card">Middle East Technical Univ. (METU)</div>
-            <div class="text-card">Istanbul Technical Univ. (ITU)</div>
-            <div class="text-card">Bogazici University</div>
-            <div class="text-card">Bilkent University</div>
-            <div class="text-card">Koc University</div>
-            <div class="text-card">Sabanci University</div>
-            <div class="text-card">Yildiz Technical Univ. (YTU)</div>
-            <div class="text-card">Izmir Inst. of Technology (IZTECH)</div>
-            <div class="text-card">Hacettepe University</div>
-            <div class="text-card">Galatasaray University</div>
-            <div class="text-card">Gebze Technical Univ. (GTU)</div>
-            <div class="text-card">Ankara University</div>
-            <div class="text-card">Gazi University</div>
-            <div class="text-card">Ege University</div>
-            <div class="text-card">Marmara University</div>
-            <div class="text-card">Middle East Technical Univ. (METU)</div>
-            <div class="text-card">Istanbul Technical Univ. (ITU)</div>
-            <div class="text-card">Bogazici University</div>
-            <div class="text-card">Bilkent University</div>
-            <div class="text-card">Koc University</div>
-            <div class="text-card">Sabanci University</div>
-            <div class="text-card">Yildiz Technical Univ. (YTU)</div>
-            <div class="text-card">Izmir Inst. of Technology (IZTECH)</div>
-            <div class="text-card">Hacettepe University</div>
-            <div class="text-card">Galatasaray University</div>
-            <div class="text-card">Gebze Technical Univ. (GTU)</div>
-            <div class="text-card">Ankara University</div>
-            <div class="text-card">Gazi University</div>
-            <div class="text-card">Ege University</div>
-            <div class="text-card">Marmara University</div>
+            <% for (let copy = 0; copy < 2; copy++) { %>
+                <% universities.forEach(function(university) { %>
+                    <div class="text-card<%= university.logo ? (university.wordmark ? ' has-logo logo-only' : ' has-logo') : '' %>"<%- copy > 0 ? ' aria-hidden="true"' : '' %>>
+                        <% if (university.logo) { %>
+                            <img class="university-logo" src="<%= university.logo %>" alt="<%= university.wordmark ? university.name : '' %>" loading="lazy">
+                        <% } %>
+                        <% if (!(university.logo && university.wordmark)) { %>
+                            <span><%= university.name %></span>
+                        <% } %>
+                    </div>
+                <% }) %>
+            <% } %>
         </div>
     </div>
     <%- include('partials/footer') %>
