@@ -34,20 +34,20 @@
 		"nav_high_school": "High School ▾",
 		"nav_uni_math": "University Math ▾",
 		"nav_uni_cs": "University CS ▾",
-		"exam_prep_title": "Exam Preparation Programs",
-		"exam_flexible_title": "🗓️ Flexible Formats",
+		"exam_prep_title": "How Exam Preparation Works",
+		"exam_flexible_title": "Flexible Formats",
 		"exam_flexible_desc": "Offering both <strong>1-on-1 individual</strong> and <strong>group sessions</strong>. Choose between an <strong>8-week accelerated</strong> crash course or a comprehensive <strong>16-week standard</strong> program tailored to your exam timeline.",
-		"exam_mock_title": "📊 Mock Exams & Analysis",
+		"exam_mock_title": "Mock Exams & Analysis",
 		"exam_mock_desc": "Every student receives <strong>5 free mock exams</strong> simulating real test conditions, followed by comprehensive <strong>result evaluation reports</strong> to pinpoint areas for improvement.",
-		"exam_strategic_title": "🎯 Strategic Problem Solving",
+		"exam_strategic_title": "Strategic Problem Solving",
 		"exam_strategic_desc": "Includes <strong>personalized homework</strong> and guided solving sessions. Students master the effective use of <strong>TI and Desmos calculators</strong>, saving crucial time during exams.",
-		"exam_guarantee_title": "⭐ The Guarantee",
+		"exam_guarantee_title": "The Guarantee",
 		"exam_guarantee_desc": "Start with a completely <strong>Free Trial Lesson</strong> to experience the methodology firsthand. I stand by a strict <strong>Success Guarantee</strong> for students who complete the required program milestones.",
-		"stem_intro_title": "STEM Tutoring & Lecturing",
+		"stem_intro_title": "Online AP, IB & University Tutoring",
 		"stem_intro_desc": "I specialize in providing high-quality, structured tutoring for high school and university students across international curricula. My approach focuses on deep conceptual understanding and rigorous problem-solving.",
-		"badge_language": "🌍 English & Turkish",
-		"badge_online": "💻 100% Online",
-		"badge_duration": "⏱️ 90-Minute Blocks",
+		"badge_language": "English & Turkish",
+		"badge_online": "100% Online",
+		"badge_duration": "60 & 90-Minute Lessons",
 		"box_ap_title": "AP (Advanced Placement)",
 		"box_ap_math": "<strong>Mathematics:</strong> Calculus AB & BC, Statistics",
 		"box_ap_physics": "<strong>Physics:</strong> Physics 1, 2, and Physics C (Mechanics & E&M)",
@@ -67,7 +67,9 @@
 		"box_uni_cs_prog": "<strong>Programming Languages:</strong> Python, C, C++, Java",
 		"box_uni_cs_core": "<strong>Core CS & Theory:</strong> Data Structures, Algorithm Design, Automata Theory, Discrete Mathematics",
 		"box_uni_cs_systems": "<strong>Systems & Hardware:</strong> Database Systems, Computer Architecture, Circuit Design",
-		"reviews_all": "Read all reviews"
+		"reviews_all": "Read all reviews",
+		"programs_title": "Courses & Programs",
+		"program_more": "See the details"
 	},
 	"notes_page": {
 		"sidebar_title": "Subjects & Topics",
@@ -112,7 +114,8 @@
 		"lbl_strategy": "Exam & Course Strategy",
 		"btn_trial": "Book a Free Trial Lesson",
 		"link_back": "← Back to All Courses",
-		"lbl_resources": "Study Materials"
+		"lbl_resources": "Study Materials",
+		"title_suffix": "Tutoring"
 	},
 	"footer": {
 		"copyright": "© 2026 Sait Elmas. All rights reserved.",
@@ -156,7 +159,7 @@
 	"sidebar_ap_cs_a": "AP Computer Sciece A",
 	"meta": {
 		"default": "Private tutoring in mathematics and computer science by Sait Elmas: AP, IB, SAT and university courses, with lecture notes and exercises.",
-		"tutoring": "One-to-one tutoring for AP Calculus, AP Statistics, AP Physics, AP Computer Science A, IB Math and Physics, SAT Math, and university mathematics and computer science courses.",
+		"tutoring": "Online tutoring for AP, IB, SAT and university courses, in group lessons or one-to-one: AP Calculus, AP Statistics, AP Physics, AP Computer Science A, IB Math and Physics, and university mathematics, programming and physics.",
 		"about": "Sait Elmas: ITU engineer, METU graduate in mathematics and computer engineering, and Ph.D. student in mathematics who has taught over 100 students. Read real student reviews.",
 		"contact": "Contact Sait Elmas for mathematics and computer science tutoring: send a message by email or WhatsApp, or ask for a free trial lesson.",
 		"notes": "Lecture notes, proofs and exercise sets in mathematics and computer science by Sait Elmas: algebra, real analysis, finite groups and AP Computer Science A."
@@ -168,7 +171,7 @@
 		"btn_notes": "Browse the Notes"
 	},
 	"titles": {
-		"tutoring": "Math & Computer Science Tutoring | Sait Elmas",
+		"tutoring": "Online AP, IB & University Tutoring | Sait Elmas",
 		"about": "About Me | Sait Elmas",
 		"contact": "Contact | Sait Elmas",
 		"notes": "Academic Notes | Sait Elmas",

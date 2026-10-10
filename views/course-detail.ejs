@@ -13,7 +13,11 @@
                     <img class="course-badge" src="<%= courseBadge %>" alt="">
                 <% } %>
                 <div class="course-header-text">
-                    <p class="course-category-label"><%= course.category[currentLang] %></p>
+                    <% if (programUrl) { %>
+                        <a class="course-category-label" href="<%= programUrl %>"><%= course.category[currentLang] %></a>
+                    <% } else { %>
+                        <p class="course-category-label"><%= course.category[currentLang] %></p>
+                    <% } %>
                     <h1 class="course-title"><%= course.title[currentLang] %></h1>
                     <p class="course-description">
                         <%- course.description[currentLang] %>

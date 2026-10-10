@@ -54,6 +54,24 @@ app.use((req, res, next) => {
     // Aynı sayfanın iki dildeki adresi (dil menüsü ve hreflang için)
     res.locals.altUrls = { en: urlFor('en', pagePath), tr: urlFor('tr', pagePath) };
     res.locals.siteUrl = SITE_URL;
+    // Arama motorları için yapısal veri (schema.org): sitenin sahibi ve verdiği hizmet
+    res.locals.baseSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Sait Elmas',
+        url: SITE_URL,
+        image: SITE_URL + '/img/logos/logo.png',
+        jobTitle: lang === 'tr' ? 'Matematik ve Bilgisayar Bilimleri Özel Ders Öğretmeni' : 'Mathematics and Computer Science Tutor',
+        description: res.__('meta.default'),
+        address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
+        knowsAbout: ['AP Calculus', 'AP Statistics', 'AP Physics', 'AP Computer Science A', 'IB Mathematics', 'IB Physics', 'SAT Math', 'Calculus', 'Linear Algebra', 'Differential Equations', 'Data Structures', 'Algorithms', 'Programming'],
+        knowsLanguage: ['tr', 'en'],
+        sameAs: [
+            'https://linkedin.com/in/saitelmas',
+            'https://instagram.com/saitelmas_tutor',
+            'https://ankara.ozelders.com/ders-veren/gemi-insa-muhendisi-sait-e-324085',
+        ],
+    };
     // Her sayfanın kalıcı adresi (canonical / og:url için); sorgu parametreleri hariç
     res.locals.canonicalUrl = SITE_URL + urlFor(lang, pagePath);
     next();

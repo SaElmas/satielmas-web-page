@@ -25,20 +25,20 @@
 		"nav_high_school": "Lise ▾",
 		"nav_uni_math": "Üniversite Matematiği ▾",
 		"nav_uni_cs": "Üniversite Bilgisayar Bilimleri ▾",
-		"exam_prep_title": "Sınav Hazırlık Programları",
-		"exam_flexible_title": "🗓️ Esnek Formatlar",
+		"exam_prep_title": "Sınav Hazırlığı Nasıl İlerliyor?",
+		"exam_flexible_title": "Esnek Formatlar",
 		"exam_flexible_desc": "Hem <strong>birebir</strong> hem de <strong>grup dersleri</strong> sunuyorum. Sınav takviminize göre uyarlanmış <strong>8 haftalık hızlandırılmış</strong> kurs veya kapsamlı <strong>16 haftalık standart</strong> program arasından seçim yapın.",
-		"exam_mock_title": "📊 Deneme Sınavları ve Analiz",
+		"exam_mock_title": "Deneme Sınavları ve Analiz",
 		"exam_mock_desc": "Her öğrenci gerçek test koşullarını simüle eden <strong>5 ücretsiz deneme sınavına</strong> girer, ardından gelişim alanlarını belirlemek için kapsamlı <strong>sonuç değerlendirme raporları</strong> alır.",
-		"exam_strategic_title": "🎯 Stratejik Problem Çözme",
+		"exam_strategic_title": "Stratejik Problem Çözme",
 		"exam_strategic_desc": "<strong>Kişiselleştirilmiş ev ödevleri</strong> ve rehberli problem çözme seanslarını içerir. Öğrenciler <strong>TI ve Desmos hesap makinelerini</strong> etkili kullanmada uzmanlaşır, sınavlarda kritik zaman kazanırlar.",
-		"exam_guarantee_title": "⭐ Başarı Garantisi",
+		"exam_guarantee_title": "Başarı Garantisi",
 		"exam_guarantee_desc": "Metodolojiyi ilk elden deneyimlemek için tamamen <strong>Ücretsiz Deneme Dersi</strong> ile başlayın. Gerekli program kilometre taşlarını tamamlayan öğrenciler için sıkı bir <strong>Başarı Garantisinin</strong> arkasındayım.",
-		"stem_intro_title": "STEM Özel Ders & Danışmanlık",
+		"stem_intro_title": "Online AP, IB ve Üniversite Özel Ders",
 		"stem_intro_desc": "Uluslararası müfredatlarda lise ve üniversite öğrencilerine yüksek kaliteli, yapılandırılmış özel ders verme konusunda uzmanım. Yaklaşımım, derin kavramsal anlama ve titiz problem çözmeye odaklanır.",
-		"badge_language": "🌍 İngilizce & Türkçe",
-		"badge_online": "💻 %100 Çevrimiçi",
-		"badge_duration": "⏱️ 90 Dakikalık Bloklar",
+		"badge_language": "İngilizce & Türkçe",
+		"badge_online": "%100 Çevrimiçi",
+		"badge_duration": "60 ve 90 Dakikalık Dersler",
 		"box_ap_title": "AP (Advanced Placement)",
 		"box_ap_math": "<strong>Matematik:</strong> Calculus AB & BC, İstatistik",
 		"box_ap_physics": "<strong>Fizik:</strong> Fizik 1, 2 ve Fizik C (Mekanik & E&M)",
@@ -58,7 +58,9 @@
 		"box_uni_cs_prog": "<strong>Programlama Dilleri:</strong> Python, C, C++, Java",
 		"box_uni_cs_core": "<strong>Temel Bilgisayar Bilimi & Teori:</strong> Veri Yapıları, Algoritma Tasarımı, Otomata Teorisi, Ayrık Matematik",
 		"box_uni_cs_systems": "<strong>Sistemler & Donanım:</strong> Veritabanı Sistemleri, Bilgisayar Mimarisi, Devre Tasarımı",
-		"reviews_all": "Tüm yorumları okuyun"
+		"reviews_all": "Tüm yorumları okuyun",
+		"programs_title": "Dersler ve Programlar",
+		"program_more": "Ayrıntıları inceleyin"
 	},
 	"notes_page": {
 		"sidebar_title": "Dersler & Konular",
@@ -103,7 +105,8 @@
 		"lbl_strategy": "Sınav ve Ders Stratejisi",
 		"btn_trial": "Ücretsiz Deneme Dersi Ayırt",
 		"link_back": "← Tüm Kurslara Dön",
-		"lbl_resources": "Çalışma Materyalleri"
+		"lbl_resources": "Çalışma Materyalleri",
+		"title_suffix": "Özel Ders"
 	},
 	"readings_page": {
 		"list_title": "Okuma Listesi",
@@ -147,7 +150,7 @@
 	"sidebar_ap_cs_a": "AP Computer Sciece A",
 	"meta": {
 		"default": "Sait Elmas'tan matematik ve bilgisayar bilimleri özel dersleri: AP, IB, SAT ve üniversite dersleri; ders notları ve alıştırmalarla.",
-		"tutoring": "AP Calculus, AP Statistics, AP Physics, AP Computer Science A, IB Matematik ve Fizik, SAT Matematik ile üniversite matematik ve bilgisayar derslerinde birebir özel ders.",
+		"tutoring": "AP, IB, SAT ve üniversite derslerinde online özel ders; grup dersleri ya da birebir: AP Calculus, AP Statistics, AP Physics, AP Computer Science A, IB Matematik ve Fizik, üniversite matematik, programlama ve fizik dersleri.",
 		"about": "Sait Elmas: İTÜ mühendisi, ODTÜ Matematik ve Bilgisayar Mühendisliği mezunu, matematik doktora öğrencisi. 100'den fazla öğrenciye ders verdi. Gerçek öğrenci yorumlarını okuyun.",
 		"contact": "Matematik ve bilgisayar bilimleri özel dersleri için Sait Elmas'a ulaşın: e-posta veya WhatsApp ile mesaj gönderin ya da ücretsiz deneme dersi isteyin.",
 		"notes": "Sait Elmas'ın matematik ve bilgisayar bilimleri ders notları, ispatları ve alıştırmaları: cebir, reel analiz, sonlu gruplar ve AP Computer Science A."
@@ -159,7 +162,7 @@
 		"btn_notes": "Notlara Göz At"
 	},
 	"titles": {
-		"tutoring": "Matematik ve Bilgisayar Özel Ders | Sait Elmas",
+		"tutoring": "Online AP, IB ve Üniversite Özel Ders | Sait Elmas",
 		"about": "Hakkımda | Sait Elmas",
 		"contact": "İletişim | Sait Elmas",
 		"notes": "Ders Notları | Sait Elmas",

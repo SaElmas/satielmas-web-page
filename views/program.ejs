@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="<%= currentLang %>">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main class="course-detail-main">
+        <section class="card course-card-section">
+            <header class="course-header">
+                <div class="course-header-text">
+                    <h1 class="course-title"><%= program.title[currentLang] %></h1>
+                    <p class="course-description"><%= program.lead[currentLang] %></p>
+                </div>
+            </header>
+
+            <div class="program-body">
+                <section class="program-section">
+                    <h2 class="course-info-title"><%= labels.courses %></h2>
+                    <ul class="course-resource-list program-course-list">
+                        <% programCourses.forEach(function(course) { %>
+                            <li>
+                                <a href="<%= localUrl('/tutoring/' + course.slug) %>">
+                                    <span><%= course.title %></span>
+                                    <i class="fas fa-arrow-right course-resource-arrow"></i>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <% if (program.also && program.also[currentLang].length) { %>
+                        <p class="program-also">
+                            <strong><%= labels.also %>:</strong> <%= program.also[currentLang].join(' · ') %>
+                        </p>
+                    <% } %>
+                </section>
+
+                <% if (program.exams) { %>
+                <section class="program-section">
+                    <h2 class="course-info-title"><%= labels.exams %></h2>
+                    <div class="program-format-grid">
+                        <% program.exams[currentLang].forEach(function(item) { %>
+                            <div class="course-info-box">
+                                <h3 class="program-format-title"><%= item.name %></h3>
+                                <p class="course-strategy-text"><%= item.text %></p>
+                            </div>
+                        <% }) %>
+                    </div>
+                </section>
+                <% } %>
+
+                <section class="program-section">
+                    <h2 class="course-info-title"><%= labels.format %></h2>
+                    <div class="program-format-grid">
+                        <% formatItems.forEach(function(item) { %>
+                            <div class="course-info-box">
+                                <h3 class="program-format-title"><%= item.title %></h3>
+                                <p class="course-strategy-text"><%= item.text %></p>
+                            </div>
+                        <% }) %>
+                    </div>
+                </section>
+
+                <% if (programReviews.length) { %>
+                <section class="program-section">
+                    <h2 class="course-info-title"><%= labels.reviews %></h2>
+                    <div class="home-reviews-grid">
+                        <% programReviews.forEach(function(review) { %>
+                            <div class="testimonial-card home-review-card">
+                                <p class="student-text"><%= __('testimonials.t' + review.number + '_text') %></p>
+                                <div class="student-name"><%= review.name %></div>
+                                <div class="student-school"><%= __('testimonials.t' + review.number + '_subject') %></div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <p class="testimonials-source">
+                        <%= __('about_page.testimonials_source') %>
+                        <a href="<%= localUrl('/about#testimonials') %>"><%= labels.allReviews %></a>
+                    </p>
+                </section>
+                <% } %>
+
+                <section class="program-section">
+                    <h2 class="course-info-title"><%= labels.faq %></h2>
+                    <dl class="program-faq">
+                        <% faqItems.forEach(function(item) { %>
+                            <dt><%= item.q %></dt>
+                            <dd><%= item.a %></dd>
+                        <% }) %>
+                    </dl>
+                </section>
+
+                <a href="<%= localUrl('/contact') %>" class="course-trial-btn"><%= labels.cta %></a>
+            </div>
+
+            <div class="course-back-container">
+                <a href="<%= localUrl('/') %>" class="course-back-link"><%= __('course_detail.link_back') %></a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

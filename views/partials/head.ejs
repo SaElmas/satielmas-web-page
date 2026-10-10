@@ -15,6 +15,10 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<% [baseSchema].concat(locals.jsonLd || []).forEach(function(schema) { %>
+<script type="application/ld+json"><%- JSON.stringify(schema).replace(/</g, '\\u003c') %></script>
+<% }) %>
+
 <meta property="og:title" content="<%= locals.pageTitle || 'Sait Elmas | Math & CS Tutoring' %>">
 <meta property="og:description" content="<%= locals.pageDescription || __('meta.default') %>">
 <meta property="og:url" content="<%= canonicalUrl %>">
@@ -23,6 +27,6 @@
 <meta property="og:image" content="https://saitelmas.com/img/logos/logo.png">
 <meta property="og:image:type" content="image/png">
 
-<link rel="stylesheet" href="/css/style.css?v=3.9">
+<link rel="stylesheet" href="/css/style.css?v=4.3">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">

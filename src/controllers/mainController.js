@@ -1,6 +1,7 @@
 const coursesData = require("../data/courses");
 const tutoringSlider = require("../data/tutoringSlider");
 const testimonials = require("../data/testimonials");
+const programData = require("../data/programs");
 const nodemailer = require("nodemailer");
 const https = require("https");
 
@@ -28,6 +29,36 @@ exports.getHomePage = (req, res, next) => {
   });
 };
 
+// Ana sayfadaki "Dersler ve Programlar" kartları: solda AP, IB ve SAT; sağda üniversite.
+// Her kart kendi derslerine bağlantı verir.
+const buildProgramColumns = (res) => {
+  const lang = res.locals.currentLang;
+  const courseLink = (slug) => ({
+    title: coursesData[slug].title[lang] || coursesData[slug].title.en,
+    href: res.locals.localUrl(`/tutoring/${slug}`),
+  });
+  const programCard = (key) => {
+    const program = programData.programs[key];
+    // Üniversite dersleri kategori başlıklarıyla (Matematik / Bilgisayar Bilimleri) gruplanır
+    const groups = [];
+    program.courses.forEach((slug) => {
+      const label = key === "university" ? coursesData[slug].category[lang] : null;
+      let group = groups.find((item) => item.label === label);
+      if (!group) groups.push((group = { label, courses: [] }));
+      group.courses.push(courseLink(slug));
+    });
+    return {
+      title: program.title[lang],
+      lead: program.lead[lang],
+      href: res.locals.localUrl(`/${program.slug[lang]}`),
+      groups,
+      also: (program.also && program.also[lang]) || [],
+      alsoLabel: programData.labels[lang].also,
+    };
+  };
+  return [[programCard("ap"), programCard("ib"), programCard("exams")], [programCard("university")]];
+};
+
 exports.getTutoringPage = (req, res, next) => {
   // Logosu public/img/logos/universities altında bulunan üniversiteler logolu gösterilir
   const logoDir = path.join(__dirname, "../../public/img/logos/universities");
@@ -46,6 +77,7 @@ exports.getTutoringPage = (req, res, next) => {
     pageDescription: res.__("meta.tutoring"),
     universities,
     exams: tutoringSlider.exams,
+    programColumns: buildProgramColumns(res),
     featuredReviews: testimonials.featured.map((number) => ({
       number,
       name: testimonials.reviewers[number - 1],
@@ -68,13 +100,32 @@ exports.getCourseDetails = (req, res, next) => {
     return res.redirect(res.locals.localUrl("/"));
   }
 
+  const lang = res.locals.currentLang;
+  const courseTitle = courseInfo.title[lang] || courseInfo.title.en;
+  const courseDescription = String(courseInfo.description[lang] || courseInfo.description.en).replace(/<[^>]+>/g, "");
+  const programKey = programData.programKeyForCourse(courseSlug);
+
   // Sınav derslerinin (AP, IB, SAT) rozeti varsa başlığın yanında gösterilir
   const badgeFile = path.join(__dirname, "../../public/img/logos/exams", `${courseSlug}.png`);
 
   res.render("course-detail", {
-    pageTitle: `${courseInfo.title[res.locals.currentLang] || courseInfo.title.en} | Sait Elmas`,
-    pageDescription: String(courseInfo.description[res.locals.currentLang] || courseInfo.description.en).replace(/<[^>]+>/g, ""),
+    pageTitle: `${courseTitle} ${res.__("course_detail.title_suffix")} | Sait Elmas`,
+    pageDescription: courseDescription,
     course: courseInfo,
+    programUrl: programKey
+      ? res.locals.localUrl(`/${programData.programs[programKey].slug[lang]}`)
+      : null,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        name: courseTitle,
+        description: courseDescription,
+        inLanguage: ["tr", "en"],
+        provider: { "@type": "Person", name: "Sait Elmas", url: SITE_URL },
+        hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
+      },
+    ],
     courseBadge: fs.existsSync(badgeFile) ? `/img/logos/exams/${courseSlug}.png` : null,
   });
 };
@@ -325,6 +376,10 @@ exports.getSitemap = (req, res) => {
   const translated = paths.filter((p) => !p.startsWith("/notes"));
   const allPaths = [...paths, ...translated.map((p) => (p === "/" ? "/tr" : `/tr${p}`))];
 
+  Object.values(programData.programs).forEach((program) => {
+    allPaths.push(`/${program.slug.en}`, `/tr/${program.slug.tr}`);
+  });
+
   const urls = allPaths.map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join("\n");
   res
     .type("application/xml")
@@ -333,4 +388,60 @@ exports.getSitemap = (req, res) => {
 
 exports.getRobots = (req, res) => {
   res.type("text/plain").send(`User-agent: *\nAllow: /\nDisallow: /change-lang/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+};
+
+// ==========================================
+// PROGRAM SAYFALARI (AP / IB / Üniversite özel ders)
+// ==========================================
+exports.getProgramPage = (req, res, next) => {
+  const lang = res.locals.currentLang;
+  const otherLang = lang === "tr" ? "en" : "tr";
+  const requested = req.params.programSlug;
+  const all = Object.values(programData.programs);
+
+  const program = all.find((item) => item.slug[lang] === requested);
+  if (!program) {
+    // Diğer dilin adresiyle gelindiyse (ör. /tr/ap-tutoring) bu dildeki doğru adrese yönlendir
+    const fromOtherLang = all.find((item) => item.slug[otherLang] === requested);
+    if (fromOtherLang) {
+      return res.redirect(301, res.locals.localUrl(`/${fromOtherLang.slug[lang]}`));
+    }
+    return next();
+  }
+
+  const formatItems = [
+    ...programData.format[lang],
+    ...(program.exam ? programData.examFormat[lang] : []),
+  ];
+  const faqItems = programData.faq[lang];
+
+  res.render("program", {
+    pageTitle: `${program.title[lang]} | Sait Elmas`,
+    pageDescription: program.description[lang],
+    // Bu sayfanın iki dildeki adresi farklı olduğu için varsayılan eşleştirme yerine elle veriliyor
+    altUrls: { en: `/${program.slug.en}`, tr: `/tr/${program.slug.tr}` },
+    program,
+    labels: programData.labels[lang],
+    formatItems,
+    faqItems,
+    programCourses: program.courses.map((slug) => ({
+      slug,
+      title: coursesData[slug].title[lang] || coursesData[slug].title.en,
+    })),
+    programReviews: program.reviews.map((number) => ({
+      number,
+      name: testimonials.reviewers[number - 1],
+    })),
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      },
+    ],
+  });
 };

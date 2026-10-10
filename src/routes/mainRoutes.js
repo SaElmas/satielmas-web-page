@@ -32,4 +32,7 @@ router.post('/contact', mainController.sendContactEmail);
 // ==========================================
 router.get('/about', mainController.getAboutPage);
 
+// Program sayfaları: /ap-tutoring, /tr/ap-ozel-ders vb. En sonda durmalı; eşleşmezse 404'e düşer.
+router.get('/:programSlug', mainController.getProgramPage);
+
 module.exports = router;
