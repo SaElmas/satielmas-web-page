@@ -1437,3 +1437,14 @@ footer a {
 .not-found-secondary:hover {
   border-color: #0f172a;
 }
+
+/* Türkçe sitede notların İngilizce olduğunu belirten satır */
+.notes-lang-notice {
+  margin: 0 0 1.25rem;
+  padding: 0.6rem 0.9rem;
+  background: #f1f5f9;
+  border-left: 4px solid #0f172a;
+  border-radius: 6px;
+  color: #475569;
+  font-size: 0.9rem;
+}

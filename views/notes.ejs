@@ -60,6 +60,10 @@
 
     <main class="notes-content">
 
+      <% if (currentLang === 'tr') { %>
+      <p class="notes-lang-notice"><i class="fas fa-circle-info"></i> <%= __('notes_english_notice') %></p>
+      <% } %>
+
       <% if (locals.noteData) { %>
       <!-- Sadece Markdown Dosyası Varsa Burası Çalışır -->
       <div class="markdown-body">
