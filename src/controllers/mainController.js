@@ -64,7 +64,7 @@ exports.getCourseDetails = (req, res, next) => {
   const badgeFile = path.join(__dirname, "../../public/img/logos/exams", `${courseSlug}.png`);
 
   res.render("course-detail", {
-    pageTitle: `Course Details | Tutoring`,
+    pageTitle: `${courseInfo.title[res.locals.currentLang] || courseInfo.title.en} | Sait Elmas`,
     course: courseInfo,
     courseBadge: fs.existsSync(badgeFile) ? `/img/logos/exams/${courseSlug}.png` : null,
   });
@@ -72,7 +72,7 @@ exports.getCourseDetails = (req, res, next) => {
 
 exports.getNotesIndex = (req, res) => {
   res.render("notes", {
-    pageTitle: "Academic Notes - Sait Elmas",
+    pageTitle: "Academic Notes | Sait Elmas",
     activeTopic: "index",
     nodeData: null
   });
@@ -106,7 +106,7 @@ exports.getNoteByTopic = (req, res) => {
 
   // EJS şablonuna noteData'yı mutlaka gönderiyoruz
   res.render("notes", {
-    pageTitle: `${noteData ? noteData.title : "Academic Notes"} - Sait Elmas`,
+    pageTitle: `${noteData ? noteData.title : "Academic Notes"} | Sait Elmas`,
     activeTopic: requestedTopic,
     noteData: noteData, // <-- ReferenceError hatasını önleyen kritik parametre
   });
@@ -119,7 +119,7 @@ exports.sendContactEmail = async (req, res) => {
   const message = String(req.body.message || "").trim().slice(0, 5000);
 
   const renderContact = (result) =>
-    res.render("contact", { pageTitle: "Contact - Sait Elmas", ...result });
+    res.render("contact", { pageTitle: "Contact | Sait Elmas", ...result });
 
   // Gizli "website" alanını yalnızca botlar doldurur; onlara mail atmadan başarı gösteriyoruz
   if (req.body.website) {

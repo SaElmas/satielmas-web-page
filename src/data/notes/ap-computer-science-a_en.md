@@ -1,3 +1,7 @@
+---
+title: "AP Computer Science A: Practice Exercises"
+---
+
 ### Exercise 1: Sum of the Digits of a Number
 Write a Java program that calculates the sum of the digit values of a given positive integer.
 
