@@ -1360,3 +1360,80 @@ footer a {
     padding: 0 1.5rem 1.5rem;
   }
 }
+
+/* =========================================
+   ANA SAYFA: ÖNE ÇIKAN ÖĞRENCİ YORUMLARI
+========================================= */
+.home-reviews {
+  margin-top: 3rem;
+}
+.home-reviews-title {
+  text-align: center;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+.home-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  text-align: left;
+}
+.home-review-card {
+  width: auto;
+  box-sizing: border-box;
+}
+.home-reviews .testimonials-source {
+  margin-top: 1.25rem;
+}
+@media (max-width: 900px) {
+  .home-reviews-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* =========================================
+   404 SAYFASI
+========================================= */
+.not-found-card {
+  max-width: 560px;
+  margin: 3rem auto;
+  text-align: center;
+  border-top: 4px solid #0f172a;
+}
+.not-found-code {
+  margin: 0;
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #0f172a;
+}
+.not-found-title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.6rem;
+  color: #0f172a;
+}
+.not-found-text {
+  margin: 0 0 1.75rem;
+  color: #475569;
+}
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-actions .course-trial-btn {
+  padding: 0.75rem 1.5rem;
+}
+.not-found-secondary {
+  padding: 0.75rem 1.25rem;
+  color: #0f172a;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+.not-found-secondary:hover {
+  border-color: #0f172a;
+}

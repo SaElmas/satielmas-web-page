@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= currentLang %>">
 <head>
     <%- include('partials/head') %>
 </head>
@@ -147,6 +147,22 @@
                 </div>
 
             </div>
+        </section>
+        <section class="home-reviews">
+            <h2 class="home-reviews-title"><%= __('about_page.testimonials_title') %></h2>
+            <div class="home-reviews-grid">
+                <% featuredReviews.forEach(function(review) { %>
+                    <div class="testimonial-card home-review-card">
+                        <p class="student-text"><%= __('testimonials.t' + review.number + '_text') %></p>
+                        <div class="student-name"><%= review.name %></div>
+                        <div class="student-school"><%= __('testimonials.t' + review.number + '_subject') %></div>
+                    </div>
+                <% }) %>
+            </div>
+            <p class="testimonials-source">
+                <%= __('about_page.testimonials_source') %>
+                <a href="/about#testimonials"><%= __('tutoring_page.reviews_all') %></a>
+            </p>
         </section>
     </main>
 

@@ -34,11 +34,20 @@ app.use(i18n.init); // i18n'i Express'e bağla
 // (İsteğe Bağlı) EJS içinde tüm dilleri kullanabilmek için global değişken yap
 app.use((req, res, next) => {
     res.locals.currentLang = req.cookies.lang || 'en';
+    // Her sayfanın kalıcı adresi (canonical / og:url için); sorgu parametreleri hariç
+    res.locals.canonicalUrl = 'https://saitelmas.com' + (req.path === '/tutoring' ? '/' : req.path);
     next();
 });
 
 // Rotalar
 app.use('/', mainRoutes);
+
+// Hiçbir rota eşleşmediyse: 404 sayfası
+app.use((req, res) => {
+    res.status(404).render('404', {
+        pageTitle: res.__('not_found.title') + ' | Sait Elmas',
+    });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

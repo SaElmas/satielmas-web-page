@@ -57,7 +57,8 @@
 		"box_uni_cs_title": "Üniversite Bilgisayar Bilimleri",
 		"box_uni_cs_prog": "<strong>Programlama Dilleri:</strong> Python, C, C++, Java",
 		"box_uni_cs_core": "<strong>Temel Bilgisayar Bilimi & Teori:</strong> Veri Yapıları, Algoritma Tasarımı, Otomata Teorisi, Ayrık Matematik",
-		"box_uni_cs_systems": "<strong>Sistemler & Donanım:</strong> Veritabanı Sistemleri, Bilgisayar Mimarisi, Devre Tasarımı"
+		"box_uni_cs_systems": "<strong>Sistemler & Donanım:</strong> Veritabanı Sistemleri, Bilgisayar Mimarisi, Devre Tasarımı",
+		"reviews_all": "Tüm yorumları okuyun"
 	},
 	"notes_page": {
 		"sidebar_title": "Dersler & Konular",
@@ -143,5 +144,18 @@
 		"t13_text": "Hollanda'da bilgisayar mühendisliği eğitimi alan oğlumun gireceği bir sınav öncesi Sait Hocam'dan destek istedim. Kendisinin programı çok yoğun olmasına rağmen beni kırmadı ve geç saatlerde destek oldu. Oğlum aldığı destekten aşırı derecede memnun kaldı. İletişimi mükemmel ve alanında çok başarılı. Kendisine çok teşekkür ediyor ve başarılar diliyorum.",
 		"t13_subject": "Yazılım Mühendisliği (veli) · Nisan 2023"
 	},
-	"sidebar_ap_cs_a": "AP Computer Sciece A"
+	"sidebar_ap_cs_a": "AP Computer Sciece A",
+	"meta": {
+		"default": "Sait Elmas'tan matematik ve bilgisayar bilimleri özel dersleri: AP, IB, SAT ve üniversite dersleri; ders notları ve alıştırmalarla.",
+		"tutoring": "AP Calculus, AP Statistics, AP Physics, AP Computer Science A, IB Matematik ve Fizik, SAT Matematik ile üniversite matematik ve bilgisayar derslerinde birebir özel ders.",
+		"about": "Sait Elmas: İTÜ mühendisi, ODTÜ Matematik ve Bilgisayar Mühendisliği mezunu, matematik doktora öğrencisi. 100'den fazla öğrenciye ders verdi. Gerçek öğrenci yorumlarını okuyun.",
+		"contact": "Matematik ve bilgisayar bilimleri özel dersleri için Sait Elmas'a ulaşın: e-posta veya WhatsApp ile mesaj gönderin ya da ücretsiz deneme dersi isteyin.",
+		"notes": "Sait Elmas'ın matematik ve bilgisayar bilimleri ders notları, ispatları ve alıştırmaları: cebir, reel analiz, sonlu gruplar ve AP Computer Science A."
+	},
+	"not_found": {
+		"title": "Sayfa Bulunamadı",
+		"text": "Aradığınız sayfa mevcut değil ya da taşınmış.",
+		"btn_home": "Ana Sayfaya Dön",
+		"btn_notes": "Notlara Göz At"
+	}
 }

@@ -1,5 +1,6 @@
 const coursesData = require("../data/courses");
 const tutoringSlider = require("../data/tutoringSlider");
+const testimonials = require("../data/testimonials");
 const nodemailer = require("nodemailer");
 const https = require("https");
 
@@ -42,14 +43,20 @@ exports.getTutoringPage = (req, res, next) => {
 
   res.render("tutoring", {
     pageTitle: "Tutoring Services | Sait Elmas",
+    pageDescription: res.__("meta.tutoring"),
     universities,
     exams: tutoringSlider.exams,
+    featuredReviews: testimonials.featured.map((number) => ({
+      number,
+      name: testimonials.reviewers[number - 1],
+    })),
   });
 };
 
 exports.getContactPage = (req, res, next) => {
   res.render("contact", {
     pageTitle: "Contact | Sait Elmas",
+    pageDescription: res.__("meta.contact"),
   });
 };
 
@@ -66,6 +73,7 @@ exports.getCourseDetails = (req, res, next) => {
 
   res.render("course-detail", {
     pageTitle: `${courseInfo.title[res.locals.currentLang] || courseInfo.title.en} | Sait Elmas`,
+    pageDescription: String(courseInfo.description[res.locals.currentLang] || courseInfo.description.en).replace(/<[^>]+>/g, ""),
     course: courseInfo,
     courseBadge: fs.existsSync(badgeFile) ? `/img/logos/exams/${courseSlug}.png` : null,
   });
@@ -74,6 +82,7 @@ exports.getCourseDetails = (req, res, next) => {
 exports.getNotesIndex = (req, res) => {
   res.render("notes", {
     pageTitle: "Academic Notes | Sait Elmas",
+    pageDescription: res.__("meta.notes"),
     activeTopic: "index",
     nodeData: null
   });
@@ -98,6 +107,7 @@ exports.getNoteByTopic = (req, res) => {
 
       noteData = {
         title: data.title || requestedTopic,
+        description: data.description,
         htmlBody: htmlContent,
       };
     } catch (err) {
@@ -106,8 +116,10 @@ exports.getNoteByTopic = (req, res) => {
   }
 
   // EJS şablonuna noteData'yı mutlaka gönderiyoruz
-  res.render("notes", {
+  // Not dosyası yoksa sayfa "bulunamadı" kutusunu gösterir; arama motorları için durum kodu da 404 olmalı
+  res.status(noteData ? 200 : 404).render("notes", {
     pageTitle: `${noteData ? noteData.title : "Academic Notes"} | Sait Elmas`,
+    pageDescription: (noteData && noteData.description) || res.__("meta.notes"),
     activeTopic: requestedTopic,
     noteData: noteData, // <-- ReferenceError hatasını önleyen kritik parametre
   });
@@ -183,7 +195,11 @@ exports.sendContactEmail = async (req, res) => {
   const message = String(req.body.message || "").trim().slice(0, 5000);
 
   const renderContact = (result) =>
-    res.render("contact", { pageTitle: "Contact | Sait Elmas", ...result });
+    res.render("contact", {
+      pageTitle: "Contact | Sait Elmas",
+      pageDescription: res.__("meta.contact"),
+      ...result,
+    });
 
   // Gizli "website" alanını yalnızca botlar doldurur; onlara mail atmadan başarı gösteriyoruz
   if (req.body.website) {
@@ -280,5 +296,39 @@ exports.changeLanguage = (req, res) => {
 exports.getAboutPage = (req, res) => {
   res.render("about", {
     pageTitle: "About Me | Sait Elmas",
+    pageDescription: res.__("meta.about"),
+    reviewers: testimonials.reviewers,
+    reviewsSourceUrl: testimonials.sourceUrl,
   });
+};
+
+// ==========================================
+// SEO: sitemap.xml ve robots.txt
+// ==========================================
+const SITE_URL = "https://saitelmas.com";
+
+exports.getSitemap = (req, res) => {
+  const notesDir = path.join(__dirname, "../data/notes");
+  const noteTopics = fs
+    .readdirSync(notesDir)
+    .filter((file) => file.endsWith("_en.md"))
+    .map((file) => file.replace(/_en\.md$/, ""));
+
+  const paths = [
+    "/",
+    "/about",
+    "/contact",
+    "/notes",
+    ...Object.keys(coursesData).map((slug) => `/tutoring/${slug}`),
+    ...noteTopics.map((topic) => `/notes/${topic}`),
+  ];
+
+  const urls = paths.map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join("\n");
+  res
+    .type("application/xml")
+    .send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+};
+
+exports.getRobots = (req, res) => {
+  res.type("text/plain").send(`User-agent: *\nAllow: /\nDisallow: /change-lang/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 };

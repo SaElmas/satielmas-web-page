@@ -4,6 +4,8 @@ const mainController = require('../controllers/mainController');
 
 // Ana Sayfa Yönlendirmesi
 router.get('/', mainController.getTutoringPage);
+router.get('/sitemap.xml', mainController.getSitemap);
+router.get('/robots.txt', mainController.getRobots);
 
 // Dil Değiştirme
 router.get('/change-lang/:lang', mainController.changeLanguage);

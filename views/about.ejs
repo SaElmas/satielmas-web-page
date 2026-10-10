@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= currentLang %>">
 
 <head>
   <%- include('partials/head') %>
@@ -40,16 +40,15 @@
 
     </div>
 
-    <section class="testimonials-section">
+    <section class="testimonials-section" id="testimonials">
       <h2 class="testimonials-title"><%= __('about_page.testimonials_title') %></h2>
 
       <p class="testimonials-source">
         <%= __('about_page.testimonials_source') %>
-        <a href="https://ankara.ozelders.com/ders-veren/gemi-insa-muhendisi-sait-e-324085" target="_blank" rel="noopener"><%= __('about_page.testimonials_source_link') %></a>
+        <a href="<%= reviewsSourceUrl %>" target="_blank" rel="noopener"><%= __('about_page.testimonials_source_link') %></a>
       </p>
 
       <%# ozelders.com profilindeki gerçek yorumlar; metinler locales/*.json içinde (t1..t13) %>
-      <% const reviewers = ["Elif V.","Kaan B.","Pınar D.","Cinar K.","Berkan Ö.","Edibe Ö.","Arhan T.","Zeynep A.","Mine T.","Emin K.","Muhammed Eren G.","Kaan C.","Halil K."]; %>
       <div class="testimonial-container">
         <div class="testimonial-track">
           <% for (let copy = 0; copy < 2; copy++) { %>

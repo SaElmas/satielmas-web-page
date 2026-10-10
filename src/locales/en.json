@@ -66,7 +66,8 @@
 		"box_uni_cs_title": "University Computer Science",
 		"box_uni_cs_prog": "<strong>Programming Languages:</strong> Python, C, C++, Java",
 		"box_uni_cs_core": "<strong>Core CS & Theory:</strong> Data Structures, Algorithm Design, Automata Theory, Discrete Mathematics",
-		"box_uni_cs_systems": "<strong>Systems & Hardware:</strong> Database Systems, Computer Architecture, Circuit Design"
+		"box_uni_cs_systems": "<strong>Systems & Hardware:</strong> Database Systems, Computer Architecture, Circuit Design",
+		"reviews_all": "Read all reviews"
 	},
 	"notes_page": {
 		"sidebar_title": "Subjects & Topics",
@@ -152,5 +153,18 @@
 		"t13_text": "I asked Mr. Elmas for help before an exam for my son, who studies computer engineering in the Netherlands. Although his schedule was very full, he did not turn me down and supported my son late in the evening. My son was extremely happy with the help he received. His communication is excellent and he is very strong in his field. We thank him and wish him continued success.",
 		"t13_subject": "Software Engineering (parent) · April 2023"
 	},
-	"sidebar_ap_cs_a": "AP Computer Sciece A"
+	"sidebar_ap_cs_a": "AP Computer Sciece A",
+	"meta": {
+		"default": "Private tutoring in mathematics and computer science by Sait Elmas: AP, IB, SAT and university courses, with lecture notes and exercises.",
+		"tutoring": "One-to-one tutoring for AP Calculus, AP Statistics, AP Physics, AP Computer Science A, IB Math and Physics, SAT Math, and university mathematics and computer science courses.",
+		"about": "Sait Elmas: ITU engineer, METU graduate in mathematics and computer engineering, and Ph.D. student in mathematics who has taught over 100 students. Read real student reviews.",
+		"contact": "Contact Sait Elmas for mathematics and computer science tutoring: send a message by email or WhatsApp, or ask for a free trial lesson.",
+		"notes": "Lecture notes, proofs and exercise sets in mathematics and computer science by Sait Elmas: algebra, real analysis, finite groups and AP Computer Science A."
+	},
+	"not_found": {
+		"title": "Page Not Found",
+		"text": "The page you are looking for does not exist or has been moved.",
+		"btn_home": "Back to Home",
+		"btn_notes": "Browse the Notes"
+	}
 }

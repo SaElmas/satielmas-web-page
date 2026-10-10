@@ -57,7 +57,8 @@
 		"box_uni_cs_title": "Informatique Universitaire",
 		"box_uni_cs_prog": "<strong>Langages de Programmation :</strong> Python, C, C++, Java",
 		"box_uni_cs_core": "<strong>Informatique de Base & Théorie :</strong> Structures de Données, Conception d'Algorithmes, Théorie des Automates, Mathématiques Discrètes",
-		"box_uni_cs_systems": "<strong>Systèmes et Matériel :</strong> Systèmes de Bases de Données, Architecture des Ordinateurs, Conception de Circuits"
+		"box_uni_cs_systems": "<strong>Systèmes et Matériel :</strong> Systèmes de Bases de Données, Architecture des Ordinateurs, Conception de Circuits",
+		"reviews_all": "Lire tous les avis"
 	},
 	"notes_page": {
 		"sidebar_title": "Matières et Sujets",
@@ -143,5 +144,18 @@
 		"t13_text": "J'ai demandé l'aide de M. Elmas avant un examen pour mon fils, qui étudie l'ingénierie informatique aux Pays-Bas. Malgré un emploi du temps très chargé, il n'a pas refusé et a aidé mon fils tard le soir. Mon fils a été extrêmement satisfait de l'aide reçue. Sa communication est excellente et il est très compétent dans son domaine. Nous le remercions et lui souhaitons beaucoup de succès.",
 		"t13_subject": "Génie logiciel (parent) · avril 2023"
 	},
-	"sidebar_ap_cs_a": "AP Computer Sciece A"
+	"sidebar_ap_cs_a": "AP Computer Sciece A",
+	"meta": {
+		"default": "Cours particuliers de mathématiques et d'informatique par Sait Elmas : AP, IB, SAT et cours universitaires, avec notes de cours et exercices.",
+		"tutoring": "Cours individuels pour AP Calculus, AP Statistics, AP Physics, AP Computer Science A, mathématiques et physique IB, SAT Math, et cours universitaires de mathématiques et d'informatique.",
+		"about": "Sait Elmas : ingénieur de l'ITU, diplômé de METU en mathématiques et en génie informatique, doctorant en mathématiques, plus de 100 élèves accompagnés. Lisez de vrais avis d'élèves.",
+		"contact": "Contactez Sait Elmas pour des cours de mathématiques et d'informatique : envoyez un message par e-mail ou WhatsApp, ou demandez une leçon d'essai gratuite.",
+		"notes": "Notes de cours, démonstrations et exercices de mathématiques et d'informatique par Sait Elmas : algèbre, analyse réelle, groupes finis et AP Computer Science A."
+	},
+	"not_found": {
+		"title": "Page introuvable",
+		"text": "La page que vous cherchez n'existe pas ou a été déplacée.",
+		"btn_home": "Retour à l'accueil",
+		"btn_notes": "Parcourir les notes"
+	}
 }

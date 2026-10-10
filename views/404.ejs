@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="<%= currentLang %>">
+<head>
+    <%- include('partials/head') %>
+    <meta name="robots" content="noindex">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main class="not-found-main">
+        <section class="card not-found-card">
+            <p class="not-found-code">404</p>
+            <h1 class="not-found-title"><%= __('not_found.title') %></h1>
+            <p class="not-found-text"><%= __('not_found.text') %></p>
+            <div class="not-found-actions">
+                <a href="/" class="course-trial-btn"><%= __('not_found.btn_home') %></a>
+                <a href="/notes" class="not-found-secondary"><%= __('not_found.btn_notes') %></a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
