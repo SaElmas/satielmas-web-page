@@ -1755,3 +1755,18 @@ a.course-category-label:hover {
     flex: none;
   }
 }
+
+/* Resmi kurum bağlantıları */
+.official-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+.official-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+}

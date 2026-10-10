@@ -43,6 +43,9 @@
                             <div class="course-info-box">
                                 <h3 class="program-format-title"><%= item.name %></h3>
                                 <p class="course-strategy-text"><%= item.text %></p>
+                                <% if (examSites[item.name]) { %>
+                                    <a class="official-link" href="<%= examSites[item.name] %>" target="_blank" rel="noopener" title="<%= officialLabels.external %>"><%= officialLabels.heading %> <i class="fas fa-arrow-up-right-from-square"></i></a>
+                                <% } %>
                             </div>
                         <% }) %>
                     </div>

@@ -62,6 +62,24 @@
                     </div>
                     <% } %>
 
+                    <% if (officialLinks) { %>
+                    <div class="course-info-box">
+                        <h2 class="course-info-title"><%= officialLinks.heading %></h2>
+                        <ul class="course-resource-list">
+                            <% officialLinks.items.forEach(function(item) { %>
+                                <li>
+                                    <a href="<%= item.href %>" target="_blank" rel="noopener" title="<%= officialLinks.external %>">
+                                        <i class="fas fa-landmark"></i>
+                                        <span><%= item.label %></span>
+                                        <i class="fas fa-arrow-up-right-from-square course-resource-arrow"></i>
+                                    </a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                        <p class="official-disclaimer"><%= officialLinks.disclaimer %></p>
+                    </div>
+                    <% } %>
+
                     <a href="<%= localUrl('/contact') %>" class="course-trial-btn">
                         <%= __('course_detail.btn_trial') %>
                     </a>

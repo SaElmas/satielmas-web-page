@@ -3,6 +3,7 @@ const tutoringSlider = require("../data/tutoringSlider");
 const testimonials = require("../data/testimonials");
 const programData = require("../data/programs");
 const lessonPlanData = require("../data/lessonPlans");
+const officialData = require("../data/officialLinks");
 const nodemailer = require("nodemailer");
 const https = require("https");
 
@@ -160,6 +161,14 @@ exports.getCourseDetails = (req, res, next) => {
     pageDescription: courseDescription,
     course: courseInfo,
     lessonPlan: buildLessonPlan(courseSlug, lang),
+    officialLinks: officialData.links[courseSlug]
+      ? {
+          heading: officialData.labels[lang].heading,
+          external: officialData.labels[lang].external,
+          disclaimer: officialData.disclaimers[officialData.links[courseSlug].disclaimer][lang],
+          items: officialData.links[courseSlug].items.map((item) => ({ label: item.label[lang], href: item.href })),
+        }
+      : null,
     programUrl: programKey
       ? res.locals.localUrl(`/${programData.programs[programKey].slug[lang]}`)
       : null,
@@ -469,6 +478,8 @@ exports.getProgramPage = (req, res, next) => {
     // Bu sayfanın iki dildeki adresi farklı olduğu için varsayılan eşleştirme yerine elle veriliyor
     altUrls: { en: `/${program.slug.en}`, tr: `/tr/${program.slug.tr}` },
     program,
+    examSites: officialData.examSites,
+    officialLabels: officialData.labels[lang],
     labels: programData.labels[lang],
     formatItems,
     faqItems,
